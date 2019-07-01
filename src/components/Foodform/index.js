@@ -6,7 +6,13 @@ import './style.css';
 class Foodform extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {value: ''};
+      this.state = {
+        name: '',
+        image: '',
+        description: '',
+        // rating:'',
+        location:'',
+      };
       this.input = React.createRef();
   
       this.handleChange = this.handleChange.bind(this);
@@ -14,7 +20,7 @@ class Foodform extends React.Component {
     }
   
     handleChange(event) {
-      this.setState({value: event.target.value});
+      this.setState({[event.target.name] : event.target.value});
     }
   
     handleSubmit(event) {
