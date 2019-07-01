@@ -1,6 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Navigation from './components/Navigation/';
+import Video from './components/Video/';
+import Foodform from './components/Foodform';
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
           Learn React
         </a>
       </header>
+      <Navigation/>
+      <Video/>
+      <Foodform/>
     </div>
   );
 }
