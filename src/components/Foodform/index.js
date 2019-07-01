@@ -19,14 +19,25 @@ class Foodform extends React.Component {
       this.handleSubmit = this.handleSubmit.bind(this);
     }
   
-    handleChange(event) {
-      this.setState({[event.target.name] : event.target.value});
-    }
+    handleChange = event => {
+    const {name, value } = event.target;
+    
+    this.setState ({
+      [name]:value
+    });
+  };
   
-    handleSubmit(event) {
-      alert('A name was submitted: ' + this.state.value);
+    handleSubmit = event => {
       event.preventDefault();
-    }
+      alert('A name was submitted: ' + this.state.name);
+     this.setState({
+        name: '',
+        image: '',
+        description: '',
+        // rating:'',
+        location:'',
+      });
+    };
 
     onStarClick(nextValue, prevValue, name) {
       this.setState({rating: nextValue});
