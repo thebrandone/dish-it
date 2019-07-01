@@ -8,7 +8,7 @@ class Foodform extends React.Component {
       super(props);
       this.state = {
         name: '',
-        image: '',
+        img: '',
         description: '',
         // rating:'',
         location:'',
@@ -50,7 +50,7 @@ class Foodform extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             Name of dish:
-            <input name="plate" type="text" value={this.state.value} onChange={this.handleChange} />
+            <input name="name" type="text" value={this.state.value} onChange={this.handleChange} />
           </label>
           <label>
           Upload Image:
