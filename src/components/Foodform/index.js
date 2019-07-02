@@ -3,6 +3,7 @@ import './style.css';
 import StarRatingComponent from 'react-star-rating-component'; 
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button';
+// import { FontAwesomeIcon } from '@fontawesome/react-fontawesome'
 //Info can be found at https://www.npmjs.com/package/react-star-rating-component
 
 class Foodform extends React.Component {
@@ -65,7 +66,7 @@ class Foodform extends React.Component {
         
         <div class="dishForm">
          <Button className="dish-btn" variant="primary" onClick={this.handleShow}>
-          Dish It!
+           Dish it! 
         </Button>
 
         <Modal show={this.state.show} onHide={this.handleClose}>
