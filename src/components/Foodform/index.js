@@ -64,7 +64,7 @@ class Foodform extends React.Component {
       return (
         
         <div class="dishForm">
-         <Button variant="primary" onClick={this.handleShow}>
+         <Button className="dish-btn" variant="primary" onClick={this.handleShow}>
           Dish It!
         </Button>
 
