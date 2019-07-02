@@ -3,3 +3,11 @@ form {
     margin: 0px auto;
     padding: -2%;
 }
+
+.dv-star-rating {
+    width: 150%;
+}
+
+/* .dishForm {
+    width:50%;
+} */
