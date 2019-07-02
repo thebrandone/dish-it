@@ -1,23 +1,27 @@
 import React from "react";
 import './style.css';
 import StarRatingComponent from 'react-star-rating-component'; 
+import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button';
 //Info can be found at https://www.npmjs.com/package/react-star-rating-component
 
 class Foodform extends React.Component {
-    constructor(props) {
+    constructor(props, context) {
       super(props);
       this.state = {
         name: '',
         img: '',
         description: '',
-        // rating:'',
         location:'',
-        rating: 0
+        rating: 0,
+        show: false
       };
       this.input = React.createRef();
   
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleShow = this.handleShow.bind(this);
+      this.handleClose = this.handleClose.bind(this);
     }
   
     handleChange = event => {
@@ -30,7 +34,8 @@ class Foodform extends React.Component {
   
     handleSubmit = event => {
       event.preventDefault();
-      alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} location: ${this.state.location}`)
+      alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} I give this ${this.state.rating} stars. location: ${this.state.location}`)
+      this.handleClose();
 
      this.setState({
         name: '',
@@ -38,9 +43,17 @@ class Foodform extends React.Component {
         description: '',
         // rating:'',
         location:'',
-        rating:0
+        rating:1
       });
     };
+
+    handleClose() {
+      this.setState({ show: false });
+    }
+  
+    handleShow() {
+      this.setState({ show: true });
+    }
 
     onStarClick(nextValue, prevValue, name) {
       this.setState({rating: nextValue});
@@ -51,6 +64,15 @@ class Foodform extends React.Component {
       return (
         
         <div class="dishForm">
+         <Button variant="primary" onClick={this.handleShow}>
+          Dish It!
+        </Button>
+
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Dish It!</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
           <form onSubmit={this.handleSubmit}>
             <label>
               Name of dish:
@@ -73,8 +95,19 @@ class Foodform extends React.Component {
             Location:
             <textarea name="location" value={this.state.value} onChange={this.handleChange} />
           </label>
-            <input type="submit" value="Submit" />
           </form>
+
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.handleClose}>
+              Close
+            </Button>
+            <Button type="submit" value="Submit" variant="primary"  onClick={this.handleSubmit}>
+              Submit
+            </Button>
+          </Modal.Footer>
+        </Modal>
+         
         </div>
       );
     }
@@ -82,3 +115,4 @@ class Foodform extends React.Component {
 
 
   export default Foodform;
+
