@@ -2,19 +2,19 @@ import React from "react";
 import './style.css';
 //import StarRatingComponent from 'react-star-rating-component'; 
 import Modal from 'react-bootstrap/Modal'
+import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 // import { FontAwesomeIcon } from '@fontawesome/react-fontawesome'
 //Info can be found at https://www.npmjs.com/package/react-star-rating-component
 
-class Foodform extends React.Component {
+class EditProfileForm extends React.Component {
     constructor(props, context) {
       super(props);
       this.state = {
         name: '',
-        img: '',
-        description: '',
-        location:'',
-        rating: 0,
+        avatar: '',
+        location: '',
+        favoriteFood:'',
         show: false
       };
       this.input = React.createRef();
@@ -39,12 +39,10 @@ class Foodform extends React.Component {
       this.handleClose();
 
      this.setState({
-        name: '',
-        image: '',
-        description: '',
-        // rating:'',
-        location:'',
-        rating:1
+         name: '',
+        avatar: '',
+        location: '',
+        favoriteFood:'',
       });
     };
 
@@ -64,9 +62,9 @@ class Foodform extends React.Component {
       // const { rating } = this.state;
       return (
         
-        <div class="dishForm">
+        <div class="editProfileForm">
          <Button className="dish-btn" variant="primary" onClick={this.handleShow}>
-           Dish it! 
+           Edit My Profile 
         </Button>
 
         <Modal show={this.state.show} onHide={this.handleClose}>
@@ -76,26 +74,37 @@ class Foodform extends React.Component {
           <Modal.Body>
           <form onSubmit={this.handleSubmit}>
             <label>
-              Name of dish:
-              <input name="name" type="text" value={this.state.value} onChange={this.handleChange} />
+              Name:
+              <input name="name" type="text" value={this.state.value} placeholder= "Nickname" onChange={this.handleChange} />
             </label>
             <label>
-            Upload Image:
-            <input name="img" type="file" ref={this.fileInput} />
+            Upload Profile Image:
+            <input name="avatar" type="file" ref={this.fileInput} />
           </label>
           <label>
-            Describe the dish:
-            <textarea name="description" value={this.state.value} onChange={this.handleChange} />
+            Where are you from?
+            <input type="text" name="location" placeholder="City, State" value={this.state.value} onChange={this.handleChange} />
           </label>
-          {/* <StarRatingComponent
-          starCount={10}
-          value={this.state.rating}
-          onStarClick={this.onStarClick.bind(this)}
-        /> */}
+          <Form.Row>
           <label>
-            Location:
-            <input type="text" name="location" value={this.state.value} onChange={this.handleChange} />
-          </label>
+              What are you favorite types of food?
+    <div class="input-group-prepend fav-foods">
+    <button class="btn btn-outline-secondary" type="button">American</button>
+    <button class="btn btn-outline-secondary" type="button">Japanese</button>
+    <button class="btn btn-outline-secondary" type="button">Ramen</button>
+    <button class="btn btn-outline-secondary" type="button">Thai</button>
+    <button class="btn btn-outline-secondary" type="button">Sushi</button>
+    <button class="btn btn-outline-secondary" type="button">Salads</button>
+    <button class="btn btn-outline-secondary" type="button">Steaks</button>
+    <button class="btn btn-outline-secondary" type="button">Wraps</button>
+    <button class="btn btn-outline-secondary" type="button">Wings</button>
+    <button class="btn btn-outline-secondary" type="button">BBQ</button>
+    <button class="btn btn-outline-secondary" type="button">Southern</button>
+    <button class="btn btn-outline-secondary" type="button">Spanish</button>
+  </div>
+         </label>
+         </Form.Row>
+
           </form>
 
           </Modal.Body>
@@ -115,5 +124,5 @@ class Foodform extends React.Component {
   }
 
 
-  export default Foodform;
+  export default EditProfileForm;
 
