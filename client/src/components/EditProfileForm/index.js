@@ -1,6 +1,6 @@
 import React from "react";
 import './style.css';
-import StarRatingComponent from 'react-star-rating-component'; 
+//import StarRatingComponent from 'react-star-rating-component'; 
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
