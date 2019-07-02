@@ -94,7 +94,7 @@ class Foodform extends React.Component {
         />
           <label>
             Location:
-            <textarea name="location" value={this.state.value} onChange={this.handleChange} />
+            <input type="text" name="location" value={this.state.value} onChange={this.handleChange} />
           </label>
           </form>
 
