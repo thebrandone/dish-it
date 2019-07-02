@@ -1,7 +1,7 @@
 import React from "react";
 import './style.css';
-// import StarRatingComponent from 'react-star-rating-component'; Info can be found
-// at https://www.npmjs.com/package/react-star-rating-component
+import StarRatingComponent from 'react-star-rating-component'; 
+//Info can be found at https://www.npmjs.com/package/react-star-rating-component
 
 class Foodform extends React.Component {
     constructor(props) {
@@ -12,6 +12,7 @@ class Foodform extends React.Component {
         description: '',
         // rating:'',
         location:'',
+        rating: 0
       };
       this.input = React.createRef();
   
@@ -29,13 +30,15 @@ class Foodform extends React.Component {
   
     handleSubmit = event => {
       event.preventDefault();
-      alert('A name was submitted: ' + this.state.name);
+      alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} location: ${this.state.location}`)
+
      this.setState({
         name: '',
         image: '',
         description: '',
         // rating:'',
         location:'',
+        rating:0
       });
     };
 
@@ -47,25 +50,32 @@ class Foodform extends React.Component {
       // const { rating } = this.state;
       return (
         
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Name of dish:
-            <input name="name" type="text" value={this.state.value} onChange={this.handleChange} />
+        <div class="dishForm">
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              Name of dish:
+              <input name="name" type="text" value={this.state.value} onChange={this.handleChange} />
+            </label>
+            <label>
+            Upload Image:
+            <input name="img" type="file" ref={this.fileInput} />
           </label>
           <label>
-          Upload Image:
-          <input name="img" type="file" ref={this.fileInput} />
-        </label>
-        <label>
-          Describe the dish:
-          <textarea name="description" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <label>
-          Location:
-          <textarea name="location" value={this.state.value} onChange={this.handleChange} />
-        </label>
-          <input type="submit" value="Submit" />
-        </form>
+            Describe the dish:
+            <textarea name="description" value={this.state.value} onChange={this.handleChange} />
+          </label>
+          <StarRatingComponent
+          starCount={10}
+          value={this.state.rating}
+          onStarClick={this.onStarClick.bind(this)}
+        />
+          <label>
+            Location:
+            <textarea name="location" value={this.state.value} onChange={this.handleChange} />
+          </label>
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
       );
     }
   }
