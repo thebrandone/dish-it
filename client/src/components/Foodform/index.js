@@ -1,6 +1,6 @@
 import React from "react";
 import './style.css';
-import StarRatingComponent from 'react-star-rating-component'; 
+//import StarRatingComponent from 'react-star-rating-component'; 
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button';
 // import { FontAwesomeIcon } from '@fontawesome/react-fontawesome'
@@ -87,11 +87,11 @@ class Foodform extends React.Component {
             Describe the dish:
             <textarea name="description" value={this.state.value} onChange={this.handleChange} />
           </label>
-          <StarRatingComponent
+          {/* <StarRatingComponent
           starCount={10}
           value={this.state.rating}
           onStarClick={this.onStarClick.bind(this)}
-        />
+        /> */}
           <label>
             Location:
             <textarea name="location" value={this.state.value} onChange={this.handleChange} />
