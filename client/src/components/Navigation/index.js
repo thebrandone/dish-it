@@ -4,7 +4,7 @@ import './style.css';
 
 function Navigation() {
     return (
-        <Navbar bg="orange" expand="sm">
+        <Navbar bg="orange" fixed='top' expand="sm">
             <Navbar.Brand href="#home">Dish-it!</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
