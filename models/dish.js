@@ -7,7 +7,7 @@ var FoodPost = new Schema({
         type: String,
         required: true
     },
-    image: {
+    img: {
         type: String,
         required: true
     },
