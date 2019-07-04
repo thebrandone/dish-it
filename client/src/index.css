@@ -30,3 +30,18 @@ code {
 .fav-foods {
   display: inline;
 }
+
+.submitDish{
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+}
+
+.dish-btn{
+  width: 200px;
+  font-style: italic;
+  background-color: #c2404d;
+  color: rgb(218, 153, 32);
+}
