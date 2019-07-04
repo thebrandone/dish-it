@@ -5,10 +5,10 @@ var Schema = mongoose.Schema;
 var FoodPost = new Schema({
     user: {
         type: String,
-        required : true
+        required: true
     },
-    img: {
-        Type: String,
+    image: {
+        type: String,
         required: true
     },
     description: {

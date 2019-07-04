@@ -20,11 +20,11 @@ const imageController = require("../../controllers/imageController");
 // const singleUpload = multer({ storage: storage }).single('file');
 
 router.route("/files:filename")
-   .get(imageController.findOne);
+   .get(imageController.findById);
 
 router.route("/files")
-   .get(imageController.findAll)
-   .post(/*single upload */);
+   .get(imageController.findAll);
+   // .post(/*single upload */);
 
 router.route("/files/:id")
    .delete(imageController.remove);

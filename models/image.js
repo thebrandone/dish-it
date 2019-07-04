@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var ImageUpload = new Schema({
     filename: {
         type: String,
-        require: true
+        required: true
     },
     
 });
