@@ -1,7 +1,8 @@
 {
   "name": "project3",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "main": "server.js",
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "bootstrap": "^4.3.1",
