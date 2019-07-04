@@ -2,10 +2,9 @@ import React from "react";
 import './style.css';
 import StarRatingComponent from 'react-star-rating-component'; 
 import Modal from 'react-bootstrap/Modal'
-// import DatePicker from "react-datepicker";
+import DatePicker from "react-datepicker";
 import {Button} from 'react-bootstrap';
 import "react-datepicker/dist/react-datepicker.css"
-import DatePickerComponent from '../DatePicker'
 // import { FontAwesomeIcon } from '@fontawesome/react-fontawesome'
 //Info can be found at https://www.npmjs.com/package/react-star-rating-component
 
@@ -19,7 +18,7 @@ class Foodform extends React.Component {
         location:'',
         rating: 0,
         show: false,
-        startDate: ''
+        date: ''
       };
       this.input = React.createRef();
   
@@ -52,7 +51,7 @@ class Foodform extends React.Component {
         // rating:'',
         location:'',
         rating:1,
-        startDate: ''
+        date: ''
       });
     };
 
@@ -62,6 +61,13 @@ class Foodform extends React.Component {
   
     handleShow() {
       this.setState({ show: true });
+    }
+
+    handleDateChange = date => {
+      this.setState({
+        startDate: date
+      });
+      return date;
     }
 
     onStarClick(nextValue, prevValue, name) {
@@ -104,9 +110,16 @@ class Foodform extends React.Component {
             Location:
             <input type="text" name="location" value={this.state.value} onChange={this.handleChange} />
           </label>
-          <DatePickerComponent
-             selected={this.state.startDate}
-             onChange={this.handleChange}/>
+          <label> Date Devoured
+          <DatePicker
+          name="date"
+          placeholderText= {""}
+          todayButton={"Today"}
+          selected={this.state.startDate}
+          onChange={this.handleDateChange}
+          />
+          </label>
+         
           </form>
 
           </Modal.Body>
