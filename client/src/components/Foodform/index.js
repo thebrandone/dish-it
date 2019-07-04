@@ -1,13 +1,16 @@
 import React from "react";
 import './style.css';
-//import StarRatingComponent from 'react-star-rating-component'; 
+import StarRatingComponent from 'react-star-rating-component'; 
 import Modal from 'react-bootstrap/Modal'
+// import DatePicker from "react-datepicker";
 import {Button} from 'react-bootstrap';
+import "react-datepicker/dist/react-datepicker.css"
+import DatePickerComponent from '../DatePicker'
 // import { FontAwesomeIcon } from '@fontawesome/react-fontawesome'
 //Info can be found at https://www.npmjs.com/package/react-star-rating-component
 
 class Foodform extends React.Component {
-    constructor(props, context) {
+    constructor(props, context, date) {
       super(props);
       this.state = {
         name: '',
@@ -15,7 +18,8 @@ class Foodform extends React.Component {
         description: '',
         location:'',
         rating: 0,
-        show: false
+        show: false,
+        startDate: ''
       };
       this.input = React.createRef();
   
@@ -27,15 +31,18 @@ class Foodform extends React.Component {
   
     handleChange = event => {
     const {name, value } = event.target;
+
     
     this.setState ({
-      [name]:value
+      [name]:value,
     });
+
   };
+
   
     handleSubmit = event => {
       event.preventDefault();
-      alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} I give this ${this.state.rating} stars. location: ${this.state.location}`)
+      alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} I give this ${this.state.rating} stars. location: ${this.state.location} Date: ${this.state.startDate}`)
       this.handleClose();
 
      this.setState({
@@ -44,7 +51,8 @@ class Foodform extends React.Component {
         description: '',
         // rating:'',
         location:'',
-        rating:1
+        rating:1,
+        startDate: ''
       });
     };
 
@@ -87,15 +95,18 @@ class Foodform extends React.Component {
             Describe the dish:
             <textarea name="description" value={this.state.value} onChange={this.handleChange} />
           </label>
-          {/* <StarRatingComponent
+          <StarRatingComponent
           starCount={10}
           value={this.state.rating}
           onStarClick={this.onStarClick.bind(this)}
-        /> */}
+          />
           <label>
             Location:
             <input type="text" name="location" value={this.state.value} onChange={this.handleChange} />
           </label>
+          <DatePickerComponent
+             selected={this.state.startDate}
+             onChange={this.handleChange}/>
           </form>
 
           </Modal.Body>
