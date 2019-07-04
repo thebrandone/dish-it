@@ -22,6 +22,12 @@
     box-shadow: 5px 5px 10px black;
     font-size: 20px;   
 }
+
+.dropdown-item:visited{
+    background-color: #c2404d;
+    color: black;
+}
+
 .dropdown-item:hover{
     background-color: rgb(241, 180, 65);
 }
@@ -34,3 +40,4 @@
 .dropdown-divider{
     border-top: 3px solid rgb(241, 180, 65);
 }
+

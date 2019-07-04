@@ -8,12 +8,16 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
+  // will need to be changed to find by hashtag
   findById: function(req, res) {
     db.Dish
       .findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
+  
   create: function(req, res) {
     db.Dish
       .create(req.body)
