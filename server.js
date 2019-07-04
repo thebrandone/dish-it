@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const morgan = require('morgan');
 const routes = require("./routes");
 const app = express();
+const config = require('./config/file')
 const PORT = process.env.PORT || 3001;
 
 // Define middleware here
@@ -34,9 +35,7 @@ app.get('*', (req, res) => {
 });
 
 // Connect to the Mongo DB
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/project3"
-);
+mongoose.connect(config.db);
 
 // Start the API server
 app.listen(PORT, function() {
