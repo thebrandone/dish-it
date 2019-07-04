@@ -67,7 +67,6 @@ class Foodform extends React.Component {
       this.setState({
         startDate: date
       });
-      alert(date)
       return date;
     }
 
@@ -111,12 +110,16 @@ class Foodform extends React.Component {
             Location:
             <input type="text" name="location" value={this.state.value} onChange={this.handleChange} />
           </label>
+          <label> Date Devoured
           <DatePicker
           name="date"
+          placeholderText= {""}
           todayButton={"Today"}
           selected={this.state.startDate}
           onChange={this.handleDateChange}
           />
+          </label>
+         
           </form>
 
           </Modal.Body>
