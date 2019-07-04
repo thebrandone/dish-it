@@ -1,9 +1,9 @@
 import React from "react";
 import './style.css';
 //import StarRatingComponent from 'react-star-rating-component'; 
-import Modal from 'react-bootstrap/Modal'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+import {Button} from 'react-bootstrap';
 // import { FontAwesomeIcon } from '@fontawesome/react-fontawesome'
 //Info can be found at https://www.npmjs.com/package/react-star-rating-component
 
@@ -63,7 +63,7 @@ class EditProfileForm extends React.Component {
       return (
         
         <div class="editProfileForm">
-         <Button className="dish-btn" variant="primary" onClick={this.handleShow}>
+         <Button variant="primary" onClick={this.handleShow}>
            Edit My Profile 
         </Button>
 
