@@ -1,8 +1,9 @@
 import React from "react";
 import { Navbar, Nav, Form, Button, NavDropdown } from 'react-bootstrap';
 import './style.css';
-import Foodform from '../Foodform';
-import EditProfileForm from "../EditProfileForm";
+// import Foodform from '../Foodform';
+// import EditProfileForm from "../EditProfileForm";
+import Login from "../Login"
 
 function Navigation() {
     return (
@@ -23,7 +24,7 @@ function Navigation() {
                 </Nav>
 
                 <Form inline>
-                    <Button variant="outline-danger">Login</Button>
+                    <Login />
                 </Form>
             </Navbar.Collapse>
         </Navbar>
