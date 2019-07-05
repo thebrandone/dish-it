@@ -1,6 +1,8 @@
 import React from "react";
 import { Navbar, Nav, Form, Button, NavDropdown } from 'react-bootstrap';
 import './style.css';
+import Foodform from '../Foodform';
+import EditProfileForm from "../EditProfileForm";
 
 function Navigation() {
     return (
@@ -19,6 +21,7 @@ function Navigation() {
                         <NavDropdown.Item href="#action/3.4">Dish-it! Team</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
+
                 <Form inline>
                     <Button variant="outline-danger">Login</Button>
                 </Form>

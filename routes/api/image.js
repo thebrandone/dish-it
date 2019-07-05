@@ -20,7 +20,7 @@ const imageController = require("../../controllers/imageController");
 // const singleUpload = multer({ storage: storage }).single('file');
 
 router.route("/files:filename")
-   .get(imageController.findOne);
+   .get(imageController.findById);
 
 router.route("/files")
    .get(imageController.findAll)
@@ -29,4 +29,11 @@ router.route("/files")
 router.route("/files/:id")
    .delete(imageController.remove);
 
-module.exports = router;
+// router.delete('/files/:id', (req, res) => {
+//    gfs.remove({ _id: req.params.id }, (err) => {
+//       if (err) return res.status(500).json({ success: false })
+//       return res.json({ success: true });
+//    })
+// })
+
+// module.exports = router;

@@ -6,8 +6,7 @@ var ImageUpload = new Schema({
     filename: {
         type: String,
         require: true
-    },
-    
+    }
 });
 
 var Image = mongoose.model("Image", ImageUpload);
