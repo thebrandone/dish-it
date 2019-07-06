@@ -31,7 +31,7 @@ class Feed extends Component {
   // Deletes a book from the database with a given id, then reloads books from the db
   deleteDish = id => {
     API.deleteDish(id)
-      .then(res => this.loadBooks())
+      .then(res => this.loadDishes())
       .catch(err => console.log(err));
   };
 

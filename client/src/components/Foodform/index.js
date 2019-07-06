@@ -3,6 +3,7 @@ import './style.css';
 //import StarRatingComponent from 'react-star-rating-component'; 
 import Modal from 'react-bootstrap/Modal'
 import {Button} from 'react-bootstrap';
+import API from '../../utils/API';
 // import { FontAwesomeIcon } from '@fontawesome/react-fontawesome'
 //Info can be found at https://www.npmjs.com/package/react-star-rating-component
 
@@ -15,7 +16,8 @@ class Foodform extends React.Component {
         description: '',
         location:'',
         rating: 0,
-        show: false
+        show: false,
+        dishes: []
       };
       this.input = React.createRef();
   
@@ -23,6 +25,10 @@ class Foodform extends React.Component {
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleShow = this.handleShow.bind(this);
       this.handleClose = this.handleClose.bind(this);
+    }
+
+    componentDidMount() {
+      this.loadDishes();
     }
   
     handleChange = event => {
@@ -38,14 +44,16 @@ class Foodform extends React.Component {
       alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} I give this ${this.state.rating} stars. location: ${this.state.location}`)
       this.handleClose();
 
-     this.setState({
-        name: '',
-        image: '',
-        description: '',
-        // rating:'',
-        location:'',
-        rating:1
-      });
+    //  this.setState({
+    //     name: '',
+    //     image: '',
+    //     description: '',
+    //     // rating:'',
+    //     location:'',
+    //     rating:1
+    //   });
+
+      this.handleFormSubmit();
     };
 
     handleClose() {
@@ -59,12 +67,48 @@ class Foodform extends React.Component {
     onStarClick(nextValue, prevValue, name) {
       this.setState({rating: nextValue});
     }
+
+    loadDishes = () => {
+      API.getDishes()
+        .then(res =>
+          this.setState({ dishes: res.data })
+        )
+        .catch(err => console.log(err));
+    };
   
+    deleteDish = id => {
+      API.deleteDish(id)
+        .then(res => this.loadDishes())
+        .catch(err => console.log(err));
+    };
+  
+    handleInputChange = event => {
+      const { name, value } = event.target;
+      this.setState({
+        [name]: value
+      });
+    };
+  
+    handleFormSubmit = event => {
+      // event.preventDefault();
+      if (this.state.name && this.state.description) {
+        API.saveDish({
+          name: this.state.name,
+          description: this.state.description,
+          location: this.state.location
+
+          
+        })
+          .then(res => console.log(this.state))
+          .catch(err => console.log(err));
+      }
+    };
+
     render() {
       // const { rating } = this.state;
       return (
         
-        <div class="dishForm">
+        <div className="dishForm">
          <Button className="dish-btn" variant="outline-danger" onClick={this.handleShow}>
            Post Dish!
         </Button>
