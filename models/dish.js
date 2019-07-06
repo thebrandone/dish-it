@@ -26,6 +26,10 @@ var FoodPost = new Schema({
     location: {
         type: String,
         required: false
+    },
+    date: {
+        type: Date,
+        required: false
     }
 });
 

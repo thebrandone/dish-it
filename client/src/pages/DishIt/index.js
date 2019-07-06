@@ -7,7 +7,7 @@ import { Col, Row, Container } from "react-bootstrap";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 
-class Books extends Component {
+class DishIt extends Component {
   state = {
     dishes: [],
     title: "",
@@ -16,7 +16,7 @@ class Books extends Component {
 
   componentDidMount() {
     this.loadDishes();
-  }
+  };
 
   loadDishes = () => {
     API.getDishes()
@@ -88,11 +88,11 @@ class Books extends Component {
               <List>
                 {this.state.dishes.map(dishes => (
                   <ListItem key={dishes._id}>
-                    <Link to={"/dishes/" + dishes._id}>
+                    {/* <Link to={"/dishes/" + dishes._id}>
                       <strong>
                         {dishes.title} by {dishes.description}
                       </strong>
-                    </Link>
+                    </Link> */}
                     <DeleteBtn onClick={() => this.deleteDish(dishes._id)} />
                   </ListItem>
                 ))}
@@ -107,4 +107,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default DishIt;

@@ -1,138 +1,132 @@
 import React from "react";
 import './style.css';
-import StarRatingComponent from 'react-star-rating-component'; 
+import StarRatingComponent from 'react-star-rating-component';
 import Modal from 'react-bootstrap/Modal'
 import DatePicker from "react-datepicker";
-import {Button} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import API from '../../utils/API';
-import "react-datepicker/dist/react-datepicker.css"
-// import { FontAwesomeIcon } from '@fontawesome/react-fontawesome'
+import 'react-datepicker/dist/react-datepicker-cssmodules.css'
+import Moment from 'moment-react';
+
+//import { FontAwesomeIcon } from '@fontawesome/react-fontawesome'
 //Info can be found at https://www.npmjs.com/package/react-star-rating-component
 
 class Foodform extends React.Component {
-    constructor(props, context, date) {
-      super(props);
-      this.state = {
-        name: '',
-        img: '',
-        description: '',
-        location:'',
-        rating: 0,
-        show: false,
-        dishes: []
-        date: ''
-      };
-      this.input = React.createRef();
-  
-      this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
-      this.handleShow = this.handleShow.bind(this);
-      this.handleClose = this.handleClose.bind(this);
-    }
+  constructor(props, context, date) {
+    super(props);
+    this.state = {
+      name: '',
+      img: '',
+      description: '',
+      location: '',
+      rating: 0,
+      show: false,
+      dishes: [],
+      date: ''
+    };
+    this.input = React.createRef();
 
-    componentDidMount() {
-      this.loadDishes();
-    }
-  
-    handleChange = event => {
-    const {name, value } = event.target;
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+  }
 
-    
-    this.setState ({
-      [name]:value,
+  componentDidMount() {
+    this.loadDishes();
+  }
+
+  handleChange = event => {
+    const { name, value } = event.target;
+
+
+    this.setState({
+      [name]: value,
     });
 
   };
 
-  
-    handleSubmit = event => {
-      event.preventDefault();
-      alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} I give this ${this.state.rating} stars. location: ${this.state.location} Date: ${this.state.startDate}`)
-      this.handleClose();
 
-    //  this.setState({
-    //     name: '',
-    //     image: '',
-    //     description: '',
-    //     // rating:'',
-    //     location:'',
-    //     rating:1
-    //   });
+  handleSubmit = event => {
+    event.preventDefault();
+    alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} I give this ${this.state.rating} stars. location: ${this.state.location} Date: ${this.state.startDate}`)
+    this.handleClose();
+    this.handleFormSubmit();
+    this.setState({
+      name: '',
+      image: '',
+      description: '',
+      rating: '',
+      location: '',
+      startDate: '',
+      user: ''
+    });
+  };
 
-      this.handleFormSubmit();
-     this.setState({
-        name: '',
-        image: '',
-        description: '',
-        // rating:'',
-        location:'',
-        rating:1,
-        date: ''
-      });
-    };
+  handleClose() {
+    this.setState({ show: false });
+  }
 
-    handleClose() {
-      this.setState({ show: false });
-    }
-  
-    handleShow() {
-      this.setState({ show: true });
-    }
+  handleShow() {
+    this.setState({ show: true });
+  }
 
-    handleDateChange = date => {
-      this.setState({
-        startDate: date
-      });
-      return date;
-    }
+  handleDateChange = date => {
+    this.setState({
+      startDate: date
+    });
+    return date;
+  }
 
-    onStarClick(nextValue, prevValue, name) {
-      this.setState({rating: nextValue});
-    }
+  onStarClick(nextValue, prevValue, name) {
+    this.setState({ rating: nextValue });
+  }
 
-    loadDishes = () => {
-      API.getDishes()
-        .then(res =>
-          this.setState({ dishes: res.data })
-        )
+  loadDishes = () => {
+    API.getDishes()
+      .then(res =>
+        this.setState({ dishes: res.data })
+      )
+      .catch(err => console.log(err));
+  };
+
+  deleteDish = id => {
+    API.deleteDish(id)
+      .then(res => this.loadDishes())
+      .catch(err => console.log(err));
+  };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = event => {
+    // event.preventDefault();
+    if (this.state.name && this.state.description) {
+
+      API.saveDish({
+        user: this.state.user,
+        name: this.state.name,
+        description: this.state.description,
+        location: this.state.location,
+        rating: this.state.rating,
+        date: this.state.startDate
+      })
+        .then(res => console.log(this.state))
         .catch(err => console.log(err));
-    };
-  
-    deleteDish = id => {
-      API.deleteDish(id)
-        .then(res => this.loadDishes())
-        .catch(err => console.log(err));
-    };
-  
-    handleInputChange = event => {
-      const { name, value } = event.target;
-      this.setState({
-        [name]: value
-      });
-    };
-  
-    handleFormSubmit = event => {
-      // event.preventDefault();
-      if (this.state.name && this.state.description) {
-        API.saveDish({
-          name: this.state.name,
-          description: this.state.description,
-          location: this.state.location
+    }
+  };
 
-          
-        })
-          .then(res => console.log(this.state))
-          .catch(err => console.log(err));
-      }
-    };
+  render() {
+    // const { rating } = this.state;
+    return (
 
-    render() {
-      // const { rating } = this.state;
-      return (
-        
-        <div className="dishForm">
-         <Button className="dish-btn" variant="outline-danger" onClick={this.handleShow}>
-           Post Dish!
+      <div className="dishForm">
+        <Button className="dish-btn" variant="outline-danger" onClick={this.handleShow}>
+          Post Dish!
         </Button>
 
         <Modal show={this.state.show} onHide={this.handleClose}>
@@ -140,54 +134,54 @@ class Foodform extends React.Component {
             <Modal.Title>Submit a Dish!</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Name of dish:
+            <form onSubmit={this.handleSubmit}>
+              <label>
+                Name of dish:
               <input name="name" type="text" value={this.state.value} onChange={this.handleChange} />
-            </label>
-            <label>
-            Upload Image:
+              </label>
+              <label>
+                Upload Image:
             <input name="img" type="file" ref={this.fileInput} />
-          </label>
-          <label>
-            Describe the dish:
+              </label>
+              <label>
+                Describe the dish:
             <textarea name="description" value={this.state.value} onChange={this.handleChange} />
-          </label>
-          <StarRatingComponent
-          starCount={10}
-          value={this.state.rating}
-          onStarClick={this.onStarClick.bind(this)}
-          />
-          <label>
-            Location:
+              </label>
+              <StarRatingComponent
+                starCount={10}
+                value={this.state.rating}
+                onStarClick={this.onStarClick.bind(this)}
+              />
+              <label>
+                Location:
             <input type="text" name="location" value={this.state.value} onChange={this.handleChange} />
-          </label>
-          <label> Date Devoured
+              </label>
+              <label> Date Devoured
           <DatePicker
-          name="date"
-          placeholderText= {""}
-          todayButton={"Today"}
-          selected={this.state.startDate}
-          onChange={this.handleDateChange}
-          />
-          </label>
-         
-          </form>
+                  name="date"
+                  placeholderText={""}
+                  todayButton={"Today"}
+                  selected={this.state.startDate}
+                  onChange={this.handleDateChange}
+                />
+              </label>
+
+            </form>
 
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleClose}>
               Close
             </Button>
-            <Button type="submit" value="Submit" variant="primary"  onClick={this.handleSubmit}>
+            <Button type="submit" value="Submit" variant="primary" onClick={this.handleSubmit}>
               Submit
             </Button>
           </Modal.Footer>
         </Modal>
-         
-        </div>
-      );
-    }
-  }
 
-  export default Foodform;
+      </div>
+    );
+  }
+}
+
+export default Foodform;
