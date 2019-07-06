@@ -23,8 +23,8 @@ router.route("/files:filename")
    .get(imageController.findById);
 
 router.route("/files")
-   .get(imageController.findAll)
-   .post(/*single upload */);
+   .get(imageController.findAll);
+   // .post(/*single upload */);
 
 router.route("/files/:id")
    .delete(imageController.remove);
