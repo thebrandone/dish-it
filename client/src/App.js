@@ -1,22 +1,23 @@
 import React from 'react';
-// import logo from './logo.svg';
 import './App.css';
 import Navigation from './components/Navigation/';
-// import Video from './components/Video/';
 import Foodform from './components/Foodform';
-import Feed from './components/Feed'
+import Feed from './pages/Feed';
 import EditProfileForm from './components/EditProfileForm';
 
 function App() {
   return (
     <div className="App">
-      <div className='feedWrapper'>
-        <Navigation />
-        <Feed></Feed>
-        {/* <Video/> */}
+      <Navigation />
+
+      <div className="submitDish">
         <Foodform />
-        <EditProfileForm />
       </div>
+
+      <div className='feedWrapper'>
+        <Feed />
+      </div>
+
     </div>
   );
 }

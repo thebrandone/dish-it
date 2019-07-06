@@ -1,9 +1,9 @@
 import React from "react";
 import './style.css';
 //import StarRatingComponent from 'react-star-rating-component'; 
-import Modal from 'react-bootstrap/Modal'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+import {Button} from 'react-bootstrap';
 // import { FontAwesomeIcon } from '@fontawesome/react-fontawesome'
 //Info can be found at https://www.npmjs.com/package/react-star-rating-component
 
@@ -13,7 +13,7 @@ class EditProfileForm extends React.Component {
       this.state = {
         name: '',
         avatar: '',
-        location: '',
+        hometown: '',
         favoriteFood:'',
         show: false
       };
@@ -35,7 +35,7 @@ class EditProfileForm extends React.Component {
   
     handleSubmit = event => {
       event.preventDefault();
-      alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} I give this ${this.state.rating} stars. location: ${this.state.location}`)
+      alert(`name ${this.state.name} <br> Image: ${this.state.img} I am from ${this.state.hometown} My favorite foods are: ${this.state.rating}`)
       this.handleClose();
 
      this.setState({
@@ -63,7 +63,7 @@ class EditProfileForm extends React.Component {
       return (
         
         <div class="editProfileForm">
-         <Button className="dish-btn" variant="primary" onClick={this.handleShow}>
+         <Button variant="primary" onClick={this.handleShow}>
            Edit My Profile 
         </Button>
 
@@ -83,7 +83,7 @@ class EditProfileForm extends React.Component {
           </label>
           <label>
             Where are you from?
-            <input type="text" name="location" placeholder="City, State" value={this.state.value} onChange={this.handleChange} />
+            <input type="text" name="hometown" placeholder="City, State" value={this.state.value} onChange={this.handleChange} />
           </label>
           <Form.Row>
           <label>
