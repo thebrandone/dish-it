@@ -13,7 +13,7 @@ class EditProfileForm extends React.Component {
       this.state = {
         name: '',
         avatar: '',
-        location: '',
+        hometown: '',
         favoriteFood:'',
         show: false
       };
@@ -35,7 +35,7 @@ class EditProfileForm extends React.Component {
   
     handleSubmit = event => {
       event.preventDefault();
-      alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} I give this ${this.state.rating} stars. location: ${this.state.location}`)
+      alert(`name ${this.state.name} <br> Image: ${this.state.img} I am from ${this.state.hometown} My favorite foods are: ${this.state.rating}`)
       this.handleClose();
 
      this.setState({
@@ -83,7 +83,7 @@ class EditProfileForm extends React.Component {
           </label>
           <label>
             Where are you from?
-            <input type="text" name="location" placeholder="City, State" value={this.state.value} onChange={this.handleChange} />
+            <input type="text" name="hometown" placeholder="City, State" value={this.state.value} onChange={this.handleChange} />
           </label>
           <Form.Row>
           <label>
