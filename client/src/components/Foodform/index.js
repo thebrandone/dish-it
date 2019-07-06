@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal'
 import DatePicker from "react-datepicker";
 import {Button} from 'react-bootstrap';
 import "react-datepicker/dist/react-datepicker.css"
+import axios from "axios";
 // import { FontAwesomeIcon } from '@fontawesome/react-fontawesome'
 //Info can be found at https://www.npmjs.com/package/react-star-rating-component
 
@@ -18,7 +19,8 @@ class Foodform extends React.Component {
         location:'',
         rating: 0,
         show: false,
-        date: ''
+        date: '',
+        file: null
       };
       this.input = React.createRef();
   
@@ -45,15 +47,32 @@ class Foodform extends React.Component {
       this.handleClose();
 
      this.setState({
-        name: '',
-        image: '',
-        description: '',
-        // rating:'',
-        location:'',
-        rating:1,
-        date: ''
+        name: this.state.name,
+        img: this.state.img,
+        description: this.state.description,
+        location: this.state.location,
+        rating: this.state.rating,
+        date: this.state.date
+      });
+
+      // AWS
+      const formData = new FormData();
+      formData.append('file', this.state.file[0]);
+      axios.post(`/test-upload`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(response => {
+        console.log(response);
+      }).catch(error => {
+        console.log(error);
       });
     };
+
+    // MORE AWS
+    handleFileUpload = (event) => {
+      this.setState({file: event.target.files});
+    }
 
     handleClose() {
       this.setState({ show: false });
@@ -65,7 +84,7 @@ class Foodform extends React.Component {
 
     handleDateChange = date => {
       this.setState({
-        startDate: date
+        startDate: this.state.date
       });
       return date;
     }
@@ -95,7 +114,7 @@ class Foodform extends React.Component {
             </label>
             <label>
             Upload Image:
-            <input name="img" type="file" ref={this.fileInput} />
+            <input name="img" type="file" ref={this.fileInput} onChange={this.handleFileUpload}/>
           </label>
           <label>
             Describe the dish:
