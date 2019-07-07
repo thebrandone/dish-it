@@ -4,8 +4,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navigation from './components/Navigation/';
 import Foodform from './components/Foodform';
 import Feed from './pages/Feed';
-//import DishIt from './pages/DishIt/';
-//import EditProfileForm from './components/EditProfileForm';
+import DishIt from './pages/DishIt/';
+import EditProfileForm from './components/EditProfileForm';
+
 
 function App() {
   return (

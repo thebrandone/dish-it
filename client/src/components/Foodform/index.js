@@ -150,6 +150,7 @@ class Foodform extends React.Component {
       <div className="dishForm">
         <Button className="dish-btn" variant="outline-danger" onClick={this.handleShow}>
           Post Dish!
+
         </Button>
 
         <Modal show={this.state.show} onHide={this.handleClose}>
@@ -169,6 +170,7 @@ class Foodform extends React.Component {
           <label>
             Describe the dish:
             <textarea name="description" value={this.state.value} onChange={this.handleChange} />
+
               </label>
               <StarRatingComponent
                 starCount={10}

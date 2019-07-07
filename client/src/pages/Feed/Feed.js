@@ -30,6 +30,7 @@ class Feed extends Component {
   };
 
   // Deletes a book from the database with a given id, then reloads books from the db
+
   deleteDish = id => {
     API.deleteDish(id)
       .then(res => this.loadDishes())
@@ -78,27 +79,26 @@ class Feed extends Component {
   };
 
   // Handles updating component state when the user types into the input field
-  //   handleInputChange = event => {
-  //     const { name, value } = event.target;
-  //     this.setState({
-  //       [name]: value
-  //     });
-  //   };
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
   // When the form is submitted, use the API.saveBook method to save the book data
   // Then reload books from the database
-  //   handleFormSubmit = event => {
-  //     event.preventDefault();
-  //     if (this.state.title && this.state.author) {
-  //       API.saveBook({
-  //         title: this.state.title,
-  //         author: this.state.author,
-  //         synopsis: this.state.synopsis
-  //       })
-  //         .then(res => this.loadBooks())
-  //         .catch(err => console.log(err));
-  //     }
-  //   };
+  handleFormSubmit = event => {
+    event.preventDefault();
+    if (this.state.name && this.state.description) {
+      API.saveDish({
+        name: this.state.name,
+        description: this.state.description,
+      })
+        .then(res => this.loadDishes())
+        .catch(err => console.log(err));
+    }
+  };
 
   render() {
     return (
