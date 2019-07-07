@@ -3,6 +3,7 @@ import './style.css';
 import StarRatingComponent from 'react-star-rating-component';
 import Modal from 'react-bootstrap/Modal'
 import DatePicker from "react-datepicker";
+<<<<<<< HEAD
 import { Button } from 'react-bootstrap';
 import API from '../../utils/API';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css'
@@ -31,6 +32,37 @@ class Foodform extends React.Component {
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
+=======
+import {Button} from 'react-bootstrap';
+import "react-datepicker/dist/react-datepicker.css"
+import axios from "axios";
+// import { FontAwesomeIcon } from '@fontawesome/react-fontawesome'
+//Info can be found at https://www.npmjs.com/package/react-star-rating-component
+
+class Foodform extends React.Component {
+    constructor(props, context, date) {
+      super(props);
+      this.state = {
+        name: '',
+        img: '',
+        description: '',
+        location:'',
+        rating: 0,
+        show: false,
+        date: '',
+        file: null
+      };
+      this.input = React.createRef();
+  
+      this.handleChange = this.handleChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleShow = this.handleShow.bind(this);
+      this.handleClose = this.handleClose.bind(this);
+    }
+  
+    handleChange = event => {
+    const {name, value } = event.target;
+>>>>>>> 83cd31687357a1221e2fbde1dc224a50c4d4869b
 
   componentDidMount() {
     this.loadDishes();
@@ -46,30 +78,54 @@ class Foodform extends React.Component {
 
   };
 
+  
+    handleSubmit = event => {
+      event.preventDefault();
+      alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} I give this ${this.state.rating} stars. location: ${this.state.location} Date: ${this.state.startDate}`)
+      this.handleClose();
 
-  handleSubmit = event => {
-    event.preventDefault();
-    alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} I give this ${this.state.rating} stars. location: ${this.state.location} Date: ${this.state.startDate}`)
-    this.handleClose();
-    this.handleFormSubmit();
-    this.setState({
-      name: '',
-      image: '',
-      description: '',
-      rating: '',
-      location: '',
-      startDate: '',
-      user: ''
-    });
-  };
+     this.setState({
+        name: this.state.name,
+        img: this.state.img,
+        description: this.state.description,
+        location: this.state.location,
+        rating: this.state.rating,
+        date: this.state.date
+      });
 
-  handleClose() {
-    this.setState({ show: false });
-  }
+      // AWS
+      const formData = new FormData();
+      formData.append('file', this.state.file[0]);
+      axios.post(`/test-upload`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(response => {
+        console.log(response);
+      }).catch(error => {
+        console.log(error);
+      });
+    };
 
-  handleShow() {
-    this.setState({ show: true });
-  }
+    // MORE AWS
+    handleFileUpload = (event) => {
+      this.setState({file: event.target.files});
+    }
+
+    handleClose() {
+      this.setState({ show: false });
+    }
+  
+    handleShow() {
+      this.setState({ show: true });
+    }
+
+    handleDateChange = date => {
+      this.setState({
+        startDate: this.state.date
+      });
+      return date;
+    }
 
   handleDateChange = date => {
     this.setState({
@@ -138,6 +194,7 @@ class Foodform extends React.Component {
               <label>
                 Name of dish:
               <input name="name" type="text" value={this.state.value} onChange={this.handleChange} />
+<<<<<<< HEAD
               </label>
               <label>
                 Upload Image:
@@ -145,6 +202,15 @@ class Foodform extends React.Component {
               </label>
               <label>
                 Describe the dish:
+=======
+            </label>
+            <label>
+            Upload Image:
+            <input name="img" type="file" ref={this.fileInput} onChange={this.handleFileUpload}/>
+          </label>
+          <label>
+            Describe the dish:
+>>>>>>> 83cd31687357a1221e2fbde1dc224a50c4d4869b
             <textarea name="description" value={this.state.value} onChange={this.handleChange} />
               </label>
               <StarRatingComponent
