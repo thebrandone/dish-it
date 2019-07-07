@@ -1,22 +1,19 @@
 const express = require("express");
 const app = express();
-
 // the usual
 const path = require('path');
 const mongoose = require("mongoose");
 const morgan = require('morgan');
-
-
 // aws
 const AWS = require('aws-sdk');
 const fs = require('fs');
 const fileType = require('file-type');
 const bluebird = require('bluebird');
 const multiparty = require('multiparty');
+const bodyParser = require('body-parser');
 
 // DOTENV to secure AWS creds
 require('dotenv').config();
-
 
 // our files
 const routes = require("./routes");
@@ -84,20 +81,38 @@ app.get('/test-download', (request, response) => {
 
 
 
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(bodyParser.json());
+app.use(morgan('dev'));
+// Put all API endpoints under '/api'
+
+
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
 // Add routes, both API and view
 app.use(routes);
 
 // catch all handler
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+  res.sendFile(path.join(__dirname + '/client/build'));
 });
+
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/dishit", {
-    useNewUrlParser: true
+  useNewUrlParser: true
 });
 
-// Start the API server
-app.listen(PORT, function() {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-});
+mongoose.connection.once("open", () => {
+
+  app.use('/api', require('./routes/index'));
+  //app.use('/api', require('./routes/file'));
+
+  // Start the API server
+  app.listen(PORT, function () {
+    console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+  });
+})
+
