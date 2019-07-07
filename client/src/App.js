@@ -7,6 +7,8 @@ import Feed from './pages/Feed';
 import DishIt from './pages/DishIt/';
 import EditProfileForm from './components/EditProfileForm';
 import { PostData } from "./components/Login/services/PostData";
+import TestUpload from './components/testUpload/';
+
 // import Login from "../Login/Login";
 // import Logout from "../Login/Logout";
 
@@ -52,6 +54,7 @@ signup(res, type) {
 
         <div className='feedWrapper'>
           <Feed />
+          {/* <TestUpload /> */}
         </div>
 
 
