@@ -1,26 +1,23 @@
 const express = require("express");
 const app = express();
-
 // the usual
 const path = require('path');
 const mongoose = require("mongoose");
 const morgan = require('morgan');
-
-
 // aws
 const AWS = require('aws-sdk');
 const fs = require('fs');
 const fileType = require('file-type');
 const bluebird = require('bluebird');
 const multiparty = require('multiparty');
+const bodyParser = require('body-parser');
 
 // DOTENV to secure AWS creds
 require('dotenv').config();
 
-
 // our files
 const routes = require("./routes");
-const config = require('./config/file')
+
 const PORT = process.env.PORT || 3001;
 
 // Define middleware here
@@ -60,23 +57,23 @@ const uploadFile = (buffer, name, type) => {
 // Define POST route
 app.post('/test-upload', (request, response) => {
   const form = new multiparty.Form();
-    form.parse(request, async (error, fields, files) => {
-      if (error) throw new Error(error);
-      try {
-        const path = files.file[0].path;
-        const buffer = fs.readFileSync(path);
-        const type = fileType(buffer);
-        const timestamp = Date.now().toString();
-        const fileName = `bucketFolder/${timestamp}-lg`;
-        const data = await uploadFile(buffer, fileName, type);
-        return response.status(200).send(data);
-      } catch (error) {
-        return response.status(400).send(error);
-      }
-    });
+  form.parse(request, async (error, fields, files) => {
+    if (error) throw new Error(error);
+    try {
+      const path = files.file[0].path;
+      const buffer = fs.readFileSync(path);
+      const type = fileType(buffer);
+      const timestamp = Date.now().toString();
+      const fileName = `bucketFolder/${timestamp}-lg`;
+      const data = await uploadFile(buffer, fileName, type);
+      return response.status(200).send(data);
+    } catch (error) {
+      return response.status(400).send(error);
+    }
+  });
 });
 
-app.use(function(req, res, next) { //allow cross origin requests
+app.use(function (req, res, next) { //allow cross origin requests
   res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -84,20 +81,38 @@ app.use(function(req, res, next) { //allow cross origin requests
   next();
 });
 
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(bodyParser.json());
+app.use(morgan('dev'));
+// Put all API endpoints under '/api'
+
+
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
 // Add routes, both API and view
 app.use(routes);
 
 // catch all handler
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+  res.sendFile(path.join(__dirname + '/client/build'));
 });
+
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/dishit", {
-    useNewUrlParser: true
+  useNewUrlParser: true
 });
 
-// Start the API server
-app.listen(PORT, function() {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-});
+mongoose.connection.once("open", () => {
+
+  app.use('/api', require('./routes/index'));
+  //app.use('/api', require('./routes/file'));
+
+  // Start the API server
+  app.listen(PORT, function () {
+    console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+  });
+})
+

@@ -10,6 +10,7 @@ import { Container } from "react-bootstrap";
 
 class Feed extends Component {
   // Setting our component's initial state
+
   state = {
     dishes: [],
     rating: 0
