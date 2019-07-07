@@ -5,19 +5,31 @@ var Schema = mongoose.Schema;
 var FoodPost = new Schema({
     user: {
         type: String,
-        required: true
+        required: false
+    },
+    name: {
+        type: String,
+        required: false
     },
     img: {
         type: String,
-        required: true
+        required: false
     },
     description: {
         type: String,
-        required: true
+        required: false
     },
     rating: {
         type: Number,
-        required: true
+        required: false
+    },
+    location: {
+        type: String,
+        required: false
+    },
+    date: {
+        type: Date,
+        required: false
     }
 });
 

@@ -1,12 +1,15 @@
 import React from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navigation from './components/Navigation/';
 import Foodform from './components/Foodform';
 import Feed from './pages/Feed';
+import DishIt from './pages/DishIt/';
 import EditProfileForm from './components/EditProfileForm';
 import { PostData } from "./components/Login/services/PostData";
 // import Login from "../Login/Login";
 // import Logout from "../Login/Logout";
+
 
 class App extends React.Component{
   constructor(props) {
@@ -42,6 +45,7 @@ signup(res, type) {
         signup = {this.signup}
         />
 
+
         <div className="submitDish">
           <Foodform />
         </div>
@@ -49,6 +53,7 @@ signup(res, type) {
         <div className='feedWrapper'>
           <Feed />
         </div>
+
 
       </div>
     );

@@ -6,12 +6,17 @@ const path = require('path');
 const mongoose = require("mongoose");
 const morgan = require('morgan');
 
+
 // aws
 const AWS = require('aws-sdk');
 const fs = require('fs');
 const fileType = require('file-type');
 const bluebird = require('bluebird');
 const multiparty = require('multiparty');
+
+// DOTENV to secure AWS creds
+require('dotenv').config();
+
 
 // our files
 const routes = require("./routes");
@@ -30,8 +35,8 @@ app.use(morgan('dev'));
 
 // AWS
 AWS.config.update({
-  accessKeyId: process.env.AKIAV7GXXHSWPCTPMTEX,
-  secretAccessKey: process.env.O4EeXZk6ZXFyTD3TyaRoRjbtTNMBBOwazYGo5eZi
+  accessKeyId: process.env.Access,
+  secretAccessKey: process.env.Secret
 });
 
 // configure AWS to work with promises
@@ -45,7 +50,7 @@ const uploadFile = (buffer, name, type) => {
   const params = {
     ACL: 'public-read',
     Body: buffer,
-    Bucket: process.env.apollo-landing,
+    Bucket: process.env.S3_Bucket,
     ContentType: type.mime,
     Key: `${name}.${type.ext}`
   };
@@ -88,7 +93,9 @@ app.get('*', (req, res) => {
 });
 
 // Connect to the Mongo DB
-mongoose.connect(config.db);
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/dishit", {
+    useNewUrlParser: true
+});
 
 // Start the API server
 app.listen(PORT, function() {
