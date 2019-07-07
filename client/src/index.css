@@ -16,11 +16,13 @@ code {
 
 .feedWrapper{
   padding-top: 60px;
+  padding-bottom: 60px;
   flex-grow: 1;
   margin: 30px auto;
   max-width: 500px;
   position: relative;
   width: 100%;
+  
 }
 
 .editProfileForm {
@@ -37,11 +39,17 @@ code {
   left: 0;
   bottom: 0;
   text-align: center;
+  z-index: 999;
 }
 
 .dish-btn{
+  display: fixed;
   width: 200px;
   font-style: italic;
   background-color: #c2404d;
   color: rgb(218, 153, 32);
+}
+
+.container .container-fluid{
+  margin-bottom: 80px;
 }
