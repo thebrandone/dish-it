@@ -3,39 +3,10 @@ import './style.css';
 import StarRatingComponent from 'react-star-rating-component';
 import Modal from 'react-bootstrap/Modal'
 import DatePicker from "react-datepicker";
-<<<<<<< HEAD
-import { Button } from 'react-bootstrap';
-import API from '../../utils/API';
-import 'react-datepicker/dist/react-datepicker-cssmodules.css'
-import Moment from 'moment-react';
-
-//import { FontAwesomeIcon } from '@fontawesome/react-fontawesome'
-//Info can be found at https://www.npmjs.com/package/react-star-rating-component
-
-class Foodform extends React.Component {
-  constructor(props, context, date) {
-    super(props);
-    this.state = {
-      name: '',
-      img: '',
-      description: '',
-      location: '',
-      rating: 0,
-      show: false,
-      dishes: [],
-      date: ''
-    };
-    this.input = React.createRef();
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-  }
-=======
 import {Button} from 'react-bootstrap';
 import "react-datepicker/dist/react-datepicker.css"
 import axios from "axios";
+import API from '../../utils/API'
 // import { FontAwesomeIcon } from '@fontawesome/react-fontawesome'
 //Info can be found at https://www.npmjs.com/package/react-star-rating-component
 
@@ -59,10 +30,6 @@ class Foodform extends React.Component {
       this.handleShow = this.handleShow.bind(this);
       this.handleClose = this.handleClose.bind(this);
     }
-  
-    handleChange = event => {
-    const {name, value } = event.target;
->>>>>>> 83cd31687357a1221e2fbde1dc224a50c4d4869b
 
   componentDidMount() {
     this.loadDishes();
@@ -194,15 +161,6 @@ class Foodform extends React.Component {
               <label>
                 Name of dish:
               <input name="name" type="text" value={this.state.value} onChange={this.handleChange} />
-<<<<<<< HEAD
-              </label>
-              <label>
-                Upload Image:
-            <input name="img" type="file" ref={this.fileInput} />
-              </label>
-              <label>
-                Describe the dish:
-=======
             </label>
             <label>
             Upload Image:
@@ -210,7 +168,6 @@ class Foodform extends React.Component {
           </label>
           <label>
             Describe the dish:
->>>>>>> 83cd31687357a1221e2fbde1dc224a50c4d4869b
             <textarea name="description" value={this.state.value} onChange={this.handleChange} />
               </label>
               <StarRatingComponent
