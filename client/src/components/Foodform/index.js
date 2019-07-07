@@ -1,6 +1,6 @@
 import React from "react";
 import './style.css';
-import StarRatingComponent from 'react-star-rating-component'; 
+// import StarRatingComponent from 'react-star-rating-component'; 
 import Modal from 'react-bootstrap/Modal'
 import DatePicker from "react-datepicker";
 import {Button} from 'react-bootstrap';
@@ -97,7 +97,7 @@ class Foodform extends React.Component {
       // const { rating } = this.state;
       return (
         
-        <div class="dishForm">
+        <div className="dishForm">
          <Button className="dish-btn" variant="outline-danger" onClick={this.handleShow}>
            Post Dish!
         </Button>
@@ -120,11 +120,11 @@ class Foodform extends React.Component {
             Describe the dish:
             <textarea name="description" value={this.state.value} onChange={this.handleChange} />
           </label>
-          <StarRatingComponent
+          {/* <StarRatingComponent
           starCount={10}
           value={this.state.rating}
           onStarClick={this.onStarClick.bind(this)}
-          />
+          /> */}
           <label>
             Location:
             <input type="text" name="location" value={this.state.value} onChange={this.handleChange} />
