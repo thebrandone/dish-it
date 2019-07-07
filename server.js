@@ -20,7 +20,6 @@ require('dotenv').config();
 
 // our files
 const routes = require("./routes");
-const config = require('./config/file')
 const PORT = process.env.PORT || 3001;
 
 // Define middleware here
@@ -36,7 +35,7 @@ app.use(morgan('dev'));
 // AWS
 AWS.config.update({
   accessKeyId: process.env.Access,
-  secretAccessKey: process.env.Secret
+  secretAccessKey: process.env.Secret,
 });
 
 // configure AWS to work with promises
@@ -72,17 +71,18 @@ app.post('/test-upload', (request, response) => {
         return response.status(200).send(data);
       } catch (error) {
         return response.status(400).send(error);
-      }
+      };
     });
 });
 
-app.use(function(req, res, next) { //allow cross origin requests
-  res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Credentials", true);
-  next();
-});
+app.get('/test-download', (request, response) => {
+  const s3 = new AWS.S3();
+  response = s3.listObjectsV2({
+    Bucket: process.env.S3_Bucket
+  })
+})
+
+
 
 // Add routes, both API and view
 app.use(routes);
