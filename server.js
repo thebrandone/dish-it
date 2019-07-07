@@ -17,7 +17,6 @@ require('dotenv').config();
 
 // our files
 const routes = require("./routes");
-
 const PORT = process.env.PORT || 3001;
 
 // Define middleware here
@@ -33,7 +32,7 @@ app.use(morgan('dev'));
 // AWS
 AWS.config.update({
   accessKeyId: process.env.Access,
-  secretAccessKey: process.env.Secret
+  secretAccessKey: process.env.Secret,
 });
 
 // configure AWS to work with promises
@@ -57,29 +56,30 @@ const uploadFile = (buffer, name, type) => {
 // Define POST route
 app.post('/test-upload', (request, response) => {
   const form = new multiparty.Form();
-  form.parse(request, async (error, fields, files) => {
-    if (error) throw new Error(error);
-    try {
-      const path = files.file[0].path;
-      const buffer = fs.readFileSync(path);
-      const type = fileType(buffer);
-      const timestamp = Date.now().toString();
-      const fileName = `bucketFolder/${timestamp}-lg`;
-      const data = await uploadFile(buffer, fileName, type);
-      return response.status(200).send(data);
-    } catch (error) {
-      return response.status(400).send(error);
-    }
-  });
+    form.parse(request, async (error, fields, files) => {
+      if (error) throw new Error(error);
+      try {
+        const path = files.file[0].path;
+        const buffer = fs.readFileSync(path);
+        const type = fileType(buffer);
+        const timestamp = Date.now().toString();
+        const fileName = `bucketFolder/${timestamp}-lg`;
+        const data = await uploadFile(buffer, fileName, type);
+        return response.status(200).send(data);
+      } catch (error) {
+        return response.status(400).send(error);
+      };
+    });
 });
 
-app.use(function (req, res, next) { //allow cross origin requests
-  res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Credentials", true);
-  next();
-});
+// app.get('/test-download', (request, response) => {
+//   const s3 = new AWS.S3();
+//   response = s3.listObjectsV2({
+//     Bucket: process.env.S3_Bucket
+//   })
+// })
+
+
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
