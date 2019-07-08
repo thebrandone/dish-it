@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import { Button } from 'react-bootstrap';
 import "react-datepicker/dist/react-datepicker.css"
 import API from '../../utils/API.js'
+import axios from "axios"
 
 class Foodform extends React.Component {
   constructor(props, context, date) {
@@ -58,17 +59,17 @@ class Foodform extends React.Component {
     this.handleFormSubmit();
     this.handleClose();
     // // AWS
-    // const formData = new FormData();
-    // formData.append('file', this.state.file[0]);
-    // axios.post(`/test-upload`, formData, {
-    //   headers: {
-    //     'Content-Type': 'multipart/form-data'
-    //   }
-    // }).then(response => {
-    //   console.log(response);
-    // }).catch(error => {
-    //   console.log(error);
-    // });
+    const formData = new FormData();
+    formData.append('file', this.state.file[0]);
+    axios.post(`/test-upload`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }).then(response => {
+      console.log(response);
+    }).catch(error => {
+      console.log(error);
+    });
   };
 
   // MORE AWS
