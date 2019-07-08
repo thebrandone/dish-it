@@ -4,8 +4,10 @@ import StarRatingComponent from 'react-star-rating-component';
 import Modal from 'react-bootstrap/Modal'
 import DatePicker from "react-datepicker";
 import { Button } from 'react-bootstrap';
-import "react-datepicker/dist/react-datepicker.css"
-import API from '../../utils/API.js'
+import "react-datepicker/dist/react-datepicker.css";
+import API from '../../utils/API.js';
+import axios from 'axios';
+
 
 class Foodform extends React.Component {
   constructor(props, context, date) {
@@ -22,7 +24,7 @@ class Foodform extends React.Component {
       file: null,
       dishes: []
     };
-
+    this.props=props;
     this.input = React.createRef();
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,7 +33,7 @@ class Foodform extends React.Component {
   }
 
   componentDidMount() {
-    this.loadDishes();
+    //this.loadDishes();
   }
 
   handleChange = event => {
@@ -57,18 +59,18 @@ class Foodform extends React.Component {
     });
     this.handleFormSubmit();
     this.handleClose();
-    // // AWS
-    // const formData = new FormData();
-    // formData.append('file', this.state.file[0]);
-    // axios.post(`/test-upload`, formData, {
-    //   headers: {
-    //     'Content-Type': 'multipart/form-data'
-    //   }
-    // }).then(response => {
-    //   console.log(response);
-    // }).catch(error => {
-    //   console.log(error);
-    // });
+    // AWS
+    const formData = new FormData();
+    formData.append('file', this.state.file[0]);
+    axios.post(`/test-upload`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }).then(response => {
+      console.log(response);
+    }).catch(error => {
+      console.log(error);
+    });
   };
 
   // MORE AWS
@@ -102,15 +104,15 @@ class Foodform extends React.Component {
     this.setState({ rating: nextValue });
   }
 
-  loadDishes = () => {
-    API.getDishes()
-      .then(res =>
-        this.setState({dishes: res.data})
-      )
-      .catch(err => console.log(err));
+  // loadDishes = () => {
+  //   API.getDishes()
+  //     .then(res =>
+  //       this.setState({dishes: res.data})
+  //     )
+  //     .catch(err => console.log(err));
 
-      console.log()
-  };
+  //     console.log()
+  // };
 
   deleteDish = id => {
     API.deleteDish(id)
@@ -138,7 +140,7 @@ class Foodform extends React.Component {
         date: this.state.startDate
       })
         .then(res => console.log(this.state))
-        .then(this.loadDishes)
+        .then(this.props.loadDishes)
         .catch(err => console.log(err));
     }
   };

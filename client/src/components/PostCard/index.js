@@ -6,6 +6,12 @@ import burger from './burger.jpeg';
 function PostCard(props) {
     return (
         <Card>
+            <ListGroup className="list-group-flush">
+                <ListGroupItem>
+                    {props.user}
+                </ListGroupItem>
+            </ListGroup>
+
             <Card.Img variant="top" fixed='top' src={burger} />
             <Card.Body>
                 <Card.Title>{props.name}</Card.Title>
