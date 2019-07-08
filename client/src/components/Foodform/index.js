@@ -106,15 +106,15 @@ class Foodform extends React.Component {
     this.setState({ rating: nextValue });
   }
 
-  // loadDishes = () => {
-  //   API.getDishes()
-  //     .then(res =>
-  //       this.setState({dishes: res.data})
-  //     )
-  //     .catch(err => console.log(err));
+  loadDishes = () => {
+    API.getDishes()
+      .then(res =>
+        this.setState({dishes: res.data})
+      )
+      .catch(err => console.log(err));
 
-  //     console.log()
-  // };
+      console.log()
+  };
 
   deleteDish = id => {
     API.deleteDish(id)

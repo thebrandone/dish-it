@@ -8,6 +8,7 @@ import Feed from './pages/Feed';
 // import EditProfileForm from './components/EditProfileForm';
 import { PostData } from "./components/Login/services/PostData";
 import API from './utils/API';
+import { Router, Link } from "react-router-dom";
 
 // import Login from "../Login/Login";
 // import Logout from "../Login/Logout";
@@ -57,7 +58,6 @@ class App extends React.Component {
           user={this.state.user}
           signup={this.signup}
         />
-
         <div className="submitDish">
           <Foodform
             user={this.state.user}
@@ -66,9 +66,6 @@ class App extends React.Component {
         <div className='feedWrapper'>
           <Feed />
         </div>
-
-
-
       </div>
     );
   }
