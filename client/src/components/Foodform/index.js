@@ -23,7 +23,7 @@ class Foodform extends React.Component {
       file: null,
       dishes: []
     };
-
+    this.props=props;
     this.input = React.createRef();
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,7 +32,7 @@ class Foodform extends React.Component {
   }
 
   componentDidMount() {
-    this.loadDishes();
+    //this.loadDishes();
   }
 
   handleChange = event => {
@@ -58,7 +58,9 @@ class Foodform extends React.Component {
     });
     this.handleFormSubmit();
     this.handleClose();
-    // // AWS
+
+    //AWS
+
     const formData = new FormData();
     formData.append('file', this.state.file[0]);
     axios.post(`/test-upload`, formData, {
@@ -103,15 +105,15 @@ class Foodform extends React.Component {
     this.setState({ rating: nextValue });
   }
 
-  loadDishes = () => {
-    API.getDishes()
-      .then(res =>
-        this.setState({dishes: res.data})
-      )
-      .catch(err => console.log(err));
+  // loadDishes = () => {
+  //   API.getDishes()
+  //     .then(res =>
+  //       this.setState({dishes: res.data})
+  //     )
+  //     .catch(err => console.log(err));
 
-      console.log()
-  };
+  //     console.log()
+  // };
 
   deleteDish = id => {
     API.deleteDish(id)
@@ -139,7 +141,7 @@ class Foodform extends React.Component {
         date: this.state.startDate
       })
         .then(res => console.log(this.state))
-        .then(this.loadDishes)
+        .then(this.props.loadDishes)
         .catch(err => console.log(err));
     }
   };

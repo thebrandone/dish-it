@@ -8,6 +8,7 @@ import Feed from './pages/Feed';
 // import EditProfileForm from './components/EditProfileForm';
 import { PostData } from "./components/Login/services/PostData";
 import TestUpload from './components/testUpload/';
+import API from './utils/API';
 
 // import Login from "../Login/Login";
 // import Logout from "../Login/Logout";
@@ -39,6 +40,16 @@ signup(res, type) {
         }
     })
 }
+
+loadDishes = () => {
+  API.getDishes()
+    .then(res =>
+      this.setState({dishes: res.data})
+    )
+    .catch(err => console.log(err));
+
+    console.log()
+};
   render(){
     return (
       <div className="App">
@@ -47,9 +58,10 @@ signup(res, type) {
         signup = {this.signup}
         />
 
-
         <div className="submitDish">
-          <Foodform />
+          <Foodform 
+          user = {this.state.user}
+          loadDishes = {this.loadDishes}/>
         </div>
 
         <div className='feedWrapper'>
