@@ -14,7 +14,7 @@ class Feed extends Component {
   state = {
     dishes: [],
     rating: 0,
-    user: ''
+    user: localStorage.getItem('username')
   };
 
   // When the component mounts, load all books and save them to this.state.books
@@ -110,6 +110,7 @@ class Feed extends Component {
             {this.state.dishes.map(dish => {
               return (
                 <PostCard key={dish._id}
+                  user={dish.user}
                   name={dish.name}
                   description={dish.description}
                   location={dish.location}

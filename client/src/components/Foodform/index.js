@@ -49,6 +49,7 @@ class Foodform extends React.Component {
     alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} I give this ${this.state.rating} stars. location: ${this.state.location} Date: ${this.state.startDate}`);
     
     this.setState({
+
       name: this.state.name,
       img: this.state.img,
       description: this.state.description,
@@ -133,7 +134,7 @@ class Foodform extends React.Component {
     if (this.state.name && this.state.description) {
 
       API.saveDish({
-        user: this.state.user,
+        user: localStorage.getItem('username'),
         name: this.state.name,
         description: this.state.description,
         location: this.state.location,
