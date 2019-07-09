@@ -16,5 +16,8 @@ export default {
   // Saves a book to the database
   saveDish: function(dishData) {
     return axios.post("/api/dish", dishData);
+  },
+  saveImage: function(imgData) {
+    return axios.post("/api/image", imgData);
   }
 };
