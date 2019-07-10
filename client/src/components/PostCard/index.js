@@ -23,7 +23,7 @@ function PostCard(props) {
                 <ListGroupItem>
                     {props.renderStars(props.rating)}
                 </ListGroupItem>
-                <ListGroupItem>Location: {props.location}</ListGroupItem>
+                <ListGroupItem>Location: {props.address}</ListGroupItem>
                 <ListGroupItem>Date: {props.date}</ListGroupItem>
             </ListGroup>
             <Card.Body>

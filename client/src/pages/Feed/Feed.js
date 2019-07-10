@@ -44,34 +44,34 @@ class Feed extends Component {
 
     switch (rating) {
       case "1": {
-        return "⭐✩✩✩✩✩✩✩✩✩";
+        return "⭐✩✩✩✩✩✩✩✩✩ 1/10";
       }
       case 2: {
-        return "⭐⭐✩✩✩✩✩✩✩✩";       
+        return "⭐⭐✩✩✩✩✩✩✩✩ 2/10";       
       }
       case 3: {
-        return "⭐⭐⭐✩✩✩✩✩✩✩";
+        return "⭐⭐⭐✩✩✩✩✩✩✩ 3/10";
       }
       case 4: {
-        return "⭐⭐⭐⭐✩✩✩✩✩✩";
+        return "⭐⭐⭐⭐✩✩✩✩✩✩ 4/10";
       }
       case 5: {
-        return "⭐⭐⭐⭐⭐✩✩✩✩✩";
+        return "⭐⭐⭐⭐⭐✩✩✩✩✩ 5/10";
       }
       case 6: {
-        return "⭐⭐⭐⭐⭐⭐✩✩✩✩";
+        return "⭐⭐⭐⭐⭐⭐✩✩✩✩ 6/10";
       }
       case 7: {
-        return "⭐⭐⭐⭐⭐⭐⭐✩✩✩";
+        return "⭐⭐⭐⭐⭐⭐⭐✩✩✩ 7/10";
       }
       case 8: {
-        return "⭐⭐⭐⭐⭐⭐⭐⭐✩✩";
+        return "⭐⭐⭐⭐⭐⭐⭐⭐✩✩ 8/10";
       }
       case 9: {
-        return "⭐⭐⭐⭐⭐⭐⭐⭐⭐✩";
+        return "⭐⭐⭐⭐⭐⭐⭐⭐⭐✩ 9/10";
       }
       case 10: {
-        return "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐";
+        return "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 10/10";
       }
       default: {
         this.setState.rating = "No Rating";
@@ -112,7 +112,7 @@ class Feed extends Component {
                 <PostCard key={dish._id}
                   name={dish.name}
                   description={dish.description}
-                  location={dish.location}
+                  address={dish.address}
                   date={dish.date}
                   rating={dish.rating}
                   renderStars={this.renderStars}
