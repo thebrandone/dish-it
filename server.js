@@ -96,8 +96,6 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 // Put all API endpoints under '/api'
 
-
-
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 // Add routes, both API and view

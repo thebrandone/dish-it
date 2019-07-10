@@ -13,7 +13,8 @@ class Feed extends Component {
 
   state = {
     dishes: [],
-    rating: 0
+    rating: 0,
+    user: ''
   };
 
   // When the component mounts, load all books and save them to this.state.books
