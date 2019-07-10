@@ -2,6 +2,8 @@
   "name": "project-3",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001/",
+  "main":"server/js",
   "dependencies": {
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
@@ -22,7 +24,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "proxy": "http://localhost:3001/",
+  
   "browserslist": {
     "production": [
       ">0.2%",
