@@ -31,8 +31,8 @@ app.use(morgan('dev'));
 
 // AWS
 AWS.config.update({
-  accessKeyId: process.env.Access,
-  secretAccessKey: process.env.Secret,
+  accessKeyId: process.env.ACCESS,
+  secretAccessKey: process.env.SECRET,
 });
 
 // configure AWS to work with promises
@@ -50,7 +50,16 @@ const uploadFile = (buffer, name, type) => {
     ContentType: type.mime,
     Key: `${name}.${type.ext}`
   };
-  return s3.upload(params).promise();
+  // ********* this was commentsed out to test if we are able to grab URL
+  // return s3.upload(params).promise();
+  // ********* 
+  s3.getSignedUrl('putObject', s3Params, (err, data) => {
+    if(err) {
+      console.log(err);
+      return res.end();
+      
+    }
+  })
 };
 
 // Define POST route
