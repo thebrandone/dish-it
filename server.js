@@ -50,16 +50,7 @@ const uploadFile = (buffer, name, type) => {
     ContentType: type.mime,
     Key: `${name}.${type.ext}`
   };
-  // ********* this was commentsed out to test if we are able to grab URL
-  // return s3.upload(params).promise();
-  // ********* 
-  s3.getSignedUrl('putObject', s3Params, (err, data) => {
-    if(err) {
-      console.log(err);
-      return res.end();
-      
-    }
-  })
+  return s3.upload(params).promise();
 };
 
 // Define POST route
