@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
 import './style.css';
-import burger from './burger.jpeg';
 
 function PostCard(props) {
     return (
@@ -12,7 +11,7 @@ function PostCard(props) {
                 </ListGroupItem>
             </ListGroup>
 
-            <Card.Img variant="top" fixed='top' src={burger} />
+            <Card.Img variant="top" fixed='top' src={props.Location} />
             <Card.Body>
                 <Card.Title>{props.name}</Card.Title>
                 <Card.Text>
