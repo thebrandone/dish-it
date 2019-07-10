@@ -7,6 +7,8 @@ import { Button } from 'react-bootstrap';
 import "react-datepicker/dist/react-datepicker.css"
 import API from '../../utils/API.js'
 import axios from "axios"
+// import LocationSearchInput from "../PlacesAutocomplete";
+import PlacesAutocomplete from 'react-places-autocomplete'
 
 class Foodform extends React.Component {
   constructor(props, context, date) {
@@ -16,16 +18,17 @@ class Foodform extends React.Component {
       name: '',
       img: '',
       description: '',
-      location: '',
+      address: '',
       rating: 0,
       show: false,
       date: '',
       file: null,
       dishes: []
     };
-    this.props=props;
+    this.props = props;
     this.input = React.createRef();
     this.handleChange = this.handleChange.bind(this);
+    this.handleAddressChange = this.handleAddressChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
@@ -46,13 +49,13 @@ class Foodform extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} I give this ${this.state.rating} stars. location: ${this.state.location} Date: ${this.state.startDate}`);
-    
+    alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} I give this ${this.state.rating} stars. address: ${this.state.address} Date: ${this.state.startDate}`);
+
     this.setState({
       name: this.state.name,
       img: this.state.img,
       description: this.state.description,
-      location: this.state.location,
+      address: this.state.address,
       rating: this.state.rating,
       date: this.state.date
     });
@@ -87,12 +90,12 @@ class Foodform extends React.Component {
     this.setState({ show: true });
   }
 
-  handleDateChange = date => {
-    this.setState({
-      startDate: this.state.date
-    });
-    return date;
-  }
+  // handleDateChange = date => {
+  //   this.setState({
+  //     startDate: this.state.date
+  //   });
+  //   return date;
+  // }
 
   handleDateChange = date => {
     this.setState({
@@ -100,6 +103,14 @@ class Foodform extends React.Component {
     });
     return date;
   }
+
+  handleAddressChange = address => {
+    this.setState({
+      address
+    });
+
+    console.log(address);
+  };
 
   onStarClick(nextValue, prevValue, name) {
     this.setState({ rating: nextValue });
@@ -136,7 +147,7 @@ class Foodform extends React.Component {
         user: this.state.user,
         name: this.state.name,
         description: this.state.description,
-        location: this.state.location,
+        address: this.state.address,
         rating: this.state.rating,
         date: this.state.startDate
       })
@@ -182,8 +193,51 @@ class Foodform extends React.Component {
               />
               <label>
                 Location:
-            <input type="text" name="location" value={this.state.value} onChange={this.handleChange} />
+            {/* <input type="text" name="location" value={this.state.value} onChange={this.handleChange} /> */}
+
+
+                <PlacesAutocomplete
+                  name="address"
+                  value={this.state.address}
+                  onChange={this.handleAddressChange}
+                  // onSelect={this.handleSelect}
+                  highlightFirstSuggestion={true}
+                >
+                  {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                    <div>
+                      <input
+                        {...getInputProps({
+                          placeholder: 'Search Places ...',
+                          className: 'location-search-input',
+                        })}
+                      />
+                      <div className="autocomplete-dropdown-container">
+                        {loading && <div>Loading...</div>}
+                        {suggestions.map(suggestion => {
+                          const className = suggestion.active
+                            ? 'suggestion-item--active'
+                            : 'suggestion-item';
+                          // inline style for demonstration purpose
+                          const style = suggestion.active
+                            ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                            : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                          return (
+                            <div
+                              {...getSuggestionItemProps(suggestion, {
+                                className,
+                                style,
+                              })}
+                            >
+                              <span>{suggestion.description}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </PlacesAutocomplete>
               </label>
+
               <label> Date Devoured
           <DatePicker
                   name="date"

@@ -23,7 +23,7 @@ var FoodPost = new Schema({
         type: Number,
         required: false
     },
-    location: {
+    address: {
         type: String,
         required: false
     },
