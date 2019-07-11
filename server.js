@@ -31,8 +31,8 @@ app.use(morgan('dev'));
 
 // AWS
 AWS.config.update({
-  accessKeyId: process.env.Access,
-  secretAccessKey: process.env.Secret,
+  accessKeyId: process.env.ACCESS,
+  secretAccessKey: process.env.SECRET,
 });
 
 // configure AWS to work with promises
@@ -102,6 +102,12 @@ app.get('*', (req, res) => {
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/dishit", {
   useNewUrlParser: true
 });
+
+// connect to the Mongo DB for Heroku
+// mongoose.connect(process.env.MONGODB_URI || ";mongodb://username:Starfish1@ds349587.mlab.com:49587/heroku_5sw7jz8q", {
+//   useNewUrlParser: true
+// })
+
 
 mongoose.connection.once("open", () => {
 

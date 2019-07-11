@@ -1,19 +1,32 @@
 import React from "react";
-import { Navbar, Nav, Form, Button, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, Form, NavDropdown } from 'react-bootstrap';
 import './style.css';
 import Foodform from '../Foodform';
 import EditProfileForm from "../EditProfileForm";
-import { PostData } from "../Login/services/PostData";
+// import { PostData } from "../Login/services/PostData";
 import Login from "../Login/Login";
 import Logout from "../Login/Logout";
 class Navigation extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            inLoggedIn: false,
+            isLoggedIn: false,
+            user: "",
+            name: ""
         }
+        // this.getProducts = this.getProducts.bind(this);
+    };
+    componentDidMount() {
+        this.getUserInfo();
+        this.setState({ isloggedIn: (sessionStorage.getItem("loggedIn")) })
     }
-    render(props) {
+    getUserInfo = () => {
+        var info = sessionStorage.getItem("name");
+        console.log(info);
+        this.setState({ name: info })
+    }
+
+    render() {
         const responseGoogle = (response) => {
             console.log(response);
             this.props.signup(response, 'google')
@@ -21,7 +34,9 @@ class Navigation extends React.Component {
         }
         const logout = response => {
             console.log(response)
-            sessionStorage.setItem("userData", '');
+            sessionStorage.setItem("name", '');
+            sessionStorage.setItem("email", '');
+            sessionStorage.setItem("pic", '');
             sessionStorage.clear();
             this.setState({ redirect: true });
             alert("You have signed out")
@@ -73,9 +88,9 @@ class Navigation extends React.Component {
                                 <NavDropdown.Item href="#action/3.4">Dish-it! Team</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
-
+                        Welcome {this.state.name}
                         <Form inline>
-                            Welcome {this.props.user}
+
                             <Logout
                                 logout={logout}
                             />

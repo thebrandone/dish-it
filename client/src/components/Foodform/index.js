@@ -71,7 +71,14 @@ class Foodform extends React.Component {
         'Content-Type': 'multipart/form-data'
       }
     }).then(response => {
+      console.log("--");
       console.log(response);
+      console.log(response.data.key);
+      console.log("--");
+      const image = response.data.key
+      API.saveImage({image: image})
+      .then(res => console.log(res))
+      .catch(err => console.log(err.response.data));
     }).catch(error => {
       console.log(error);
     });
