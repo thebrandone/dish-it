@@ -2,6 +2,8 @@ import React from "react";
 import { Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
 import './style.css';
 import burger from './burger.jpeg';
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 function PostCard(props) {
     return (
@@ -24,7 +26,11 @@ function PostCard(props) {
                     {props.renderStars(props.rating)}
                 </ListGroupItem>
                 <ListGroupItem>Location: {props.address}</ListGroupItem>
-                <ListGroupItem>Date: {props.date}</ListGroupItem>
+                <ListGroupItem>Date:      
+                    <Moment format="LLLL">
+                    {props.date}    
+                    </Moment>
+                     </ListGroupItem>
             </ListGroup>
             <Card.Body>
                 <Button><Card.Link href="#">Like</Card.Link></Button>

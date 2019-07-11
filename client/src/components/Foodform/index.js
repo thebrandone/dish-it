@@ -243,6 +243,7 @@ class Foodform extends React.Component {
                   name="date"
                   placeholderText={""}
                   todayButton={"Today"}
+                  showTimeSelect
                   selected={this.state.startDate}
                   onChange={this.handleDateChange}
                 />
