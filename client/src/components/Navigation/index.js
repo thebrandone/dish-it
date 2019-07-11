@@ -12,18 +12,20 @@ class Navigation extends React.Component {
         this.state = {
             isLoggedIn: false,
             user: "",
-            name:""
+            name: ""
         }
         // this.getProducts = this.getProducts.bind(this);
     };
-    componentDidMount(){
+    componentDidMount() {
         this.getUserInfo();
+        this.setState({ isloggedIn: (sessionStorage.getItem("loggedIn")) })
     }
     getUserInfo = () => {
-        var info = [];
-         info = sessionStorage.getItem("name");
-        this.setState({name:info})
-    }    
+        var info = sessionStorage.getItem("name");
+        console.log(info);
+        this.setState({ name: info })
+    }
+
     render() {
         const responseGoogle = (response) => {
             console.log(response);
@@ -32,7 +34,9 @@ class Navigation extends React.Component {
         }
         const logout = response => {
             console.log(response)
-            sessionStorage.setItem("userData", '');
+            sessionStorage.setItem("name", '');
+            sessionStorage.setItem("email", '');
+            sessionStorage.setItem("pic", '');
             sessionStorage.clear();
             this.setState({ redirect: true });
             alert("You have signed out")
@@ -84,9 +88,9 @@ class Navigation extends React.Component {
                                 <NavDropdown.Item href="#action/3.4">Dish-it! Team</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
-
+                        Welcome {this.state.name}
                         <Form inline>
-                            Welcome {this.state.name}
+
                             <Logout
                                 logout={logout}
                             />

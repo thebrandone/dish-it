@@ -19,8 +19,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       redirectToReferrer: false,
-      user: []
-
+      user: [],
     }
     this.signup = this.signup.bind(this);
   }
@@ -34,6 +33,7 @@ class App extends React.Component {
     sessionStorage.setItem("name", postData.name);
     sessionStorage.setItem("email", postData.email);
     sessionStorage.setItem("pic", postData.provider_pic);
+    sessionStorage.setItem("loggedIn", true)
      
   }
 
