@@ -112,6 +112,7 @@ class Feed extends Component {
                 <PostCard key={dish._id}
                   name={dish.name}
                   description={dish.description}
+                  image={dish.image}
                   address={dish.address}
                   date={dish.date}
                   rating={dish.rating}

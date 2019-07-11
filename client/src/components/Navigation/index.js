@@ -22,8 +22,6 @@ class Navigation extends React.Component {
     getUserInfo = () => {
         var info = [];
          info = sessionStorage.getItem("name");
-        console.log(info);
-        console.log(info.name)
         this.setState({name:info})
     }    
     render() {

@@ -59,7 +59,7 @@ class Foodform extends React.Component {
       rating: this.state.rating,
       date: this.state.date
     });
-    this.handleFormSubmit();
+    // this.handleFormSubmit();
     this.handleClose();
 
     //AWS
@@ -71,17 +71,13 @@ class Foodform extends React.Component {
         'Content-Type': 'multipart/form-data'
       }
     }).then(response => {
-      console.log("--");
-      console.log(response);
-      console.log(response.data.key);
-      console.log("--");
-      const image = response.data.key
-      API.saveImage({image: image})
-      .then(res => console.log(res))
-      .catch(err => console.log(err.response.data));
+      const image = response.data.Location
+      API.saveImage({ image: image })
+        .then(res =>{ console.log(res, "res"); this.handleFormSubmit(res.data.image)})
+        .catch(err => console.log(err.response.data));
     }).catch(error => {
       console.log(error);
-    });
+    })
   };
 
   // MORE AWS
@@ -146,13 +142,14 @@ class Foodform extends React.Component {
     });
   };
 
-  handleFormSubmit = event => {
+  handleFormSubmit = imageid => {
     // event.preventDefault();
     if (this.state.name && this.state.description) {
 
       API.saveDish({
         user: this.state.user,
         name: this.state.name,
+        image: imageid,
         description: this.state.description,
         address: this.state.address,
         rating: this.state.rating,

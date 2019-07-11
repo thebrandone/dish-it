@@ -11,7 +11,7 @@ function PostCard(props) {
                 </ListGroupItem>
             </ListGroup>
 
-            <Card.Img variant="top" fixed='top' src={props.Location} />
+            <Card.Img variant="top" fixed='top' src={props.image} />
             <Card.Body>
                 <Card.Title>{props.name}</Card.Title>
                 <Card.Text>
