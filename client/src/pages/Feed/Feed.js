@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import PostCard from "../../components/PostCard";
 import API from "../../utils/API";
 import { Container } from "react-bootstrap";
-import { Input, TextArea, FormBtn } from "../../components/Form";
-import Jumbotron from "../../components/Jumbotron";
-import DeleteBtn from "../../components/DeleteBtn";
+// import { Input, TextArea, FormBtn } from "../../components/Form";
+// import Jumbotron from "../../components/Jumbotron";
+// import DeleteBtn from "../../components/DeleteBtn";
 
 
 

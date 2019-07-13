@@ -1,8 +1,8 @@
 import React from "react";
 import { Navbar, Nav, Form, NavDropdown } from 'react-bootstrap';
 import './style.css';
-import Foodform from '../Foodform';
-import EditProfileForm from "../EditProfileForm";
+// import Foodform from '../Foodform';
+// import EditProfileForm from "../EditProfileForm";
 // import { PostData } from "../Login/services/PostData";
 import Login from "../Login/Login";
 import Logout from "../Login/Logout";
