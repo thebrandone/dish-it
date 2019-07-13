@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import PostCard from "../../components/PostCard";
 import API from "../../utils/API";
 import { Container } from "react-bootstrap";
-import { Input, TextArea, FormBtn } from "../../components/Form";
-import Jumbotron from "../../components/Jumbotron";
-import DeleteBtn from "../../components/DeleteBtn";
+// import { Input, TextArea, FormBtn } from "../../components/Form";
+// import Jumbotron from "../../components/Jumbotron";
+// import DeleteBtn from "../../components/DeleteBtn";
 
 
 
@@ -22,7 +22,7 @@ class Feed extends Component {
     this.loadDishes();
   }
 
-  // Loads all books  and sets them to this.state.books
+  // Loads all dishes
   loadDishes = () => {
     API.getDishes()
       .then(res =>
@@ -33,11 +33,11 @@ class Feed extends Component {
 
   // Deletes a book from the database with a given id, then reloads books from the db
 
-  deleteDish = id => {
-    API.deleteDish(id)
-      .then(res => this.loadDishes())
-      .catch(err => console.log(err));
-  };
+  // deleteDish = id => {
+  //   API.deleteDish(id)
+  //     .then(res => this.loadDishes())
+  //     .catch(err => console.log(err));
+  // };
 
   renderStars = (rating) => {
     console.log(rating);

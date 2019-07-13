@@ -34,9 +34,9 @@ class Foodform extends React.Component {
     this.handleClose = this.handleClose.bind(this);
   }
 
-  componentDidMount() {
-    //this.loadDishes();
-  }
+  // componentDidMount() {
+  //   //this.loadDishes();
+  // }
 
   
   handleChange = event => {
@@ -46,6 +46,8 @@ class Foodform extends React.Component {
       [name]: value,
     });
 
+    this.setState({user: sessionStorage.getItem("name")})
+
   };
 
   handleSubmit = event => {
@@ -53,6 +55,7 @@ class Foodform extends React.Component {
     // alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} I give this ${this.state.rating} stars. address: ${this.state.address} Date: ${this.state.startDate}`);
 
     this.setState({
+      user: this.state.user,
       name: this.state.name,
       img: this.state.img,
       description: this.state.description,
@@ -94,12 +97,6 @@ class Foodform extends React.Component {
     this.setState({ show: true });
   }
 
-  // handleDateChange = date => {
-  //   this.setState({
-  //     startDate: this.state.date
-  //   });
-  //   return date;
-  // }
 
   handleDateChange = date => {
     this.setState({
@@ -130,11 +127,11 @@ class Foodform extends React.Component {
   //     console.log()
   // };
 
-  deleteDish = id => {
-    API.deleteDish(id)
-      .then(res => this.loadDishes())
-      .catch(err => console.log(err));
-  };
+  // deleteDish = id => {
+  //   API.deleteDish(id)
+  //     .then(res => this.loadDishes())
+  //     .catch(err => console.log(err));
+  // };
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -164,6 +161,7 @@ class Foodform extends React.Component {
         .then(res => console.log(this.state))
         .then(this.props.loadDishes)
         .catch(err => console.log(err));
+        window.location.reload()
     }
   };
 
@@ -271,7 +269,7 @@ class Foodform extends React.Component {
             <Button variant="secondary" onClick={this.handleClose}>
               Close
             </Button>
-            <Button type="submit" value="Submit" variant="primary" onClick={this.handleSubmit}>
+           <Button type="submit" value="Submit" variant="primary" onClick={this.handleSubmit}>
               Submit
             </Button>
           </Modal.Footer>
