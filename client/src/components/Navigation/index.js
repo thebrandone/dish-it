@@ -43,10 +43,10 @@ class Navigation extends React.Component {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                            <Nav.Link href="#home">Home</Nav.Link>
-                            <Nav.Link href="#link">My Profile</Nav.Link>
+                            <Nav.Link href="/">Home</Nav.Link>
+                            <Nav.Link href="/profile">My Profile</Nav.Link>
                             <NavDropdown title="Discover" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Dishes</NavDropdown.Item>
+                                <NavDropdown.Item href="search/3.1">Dishes</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">Locations</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.3">Friends</NavDropdown.Item>
                                 <NavDropdown.Divider />
