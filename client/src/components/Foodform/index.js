@@ -38,6 +38,7 @@ class Foodform extends React.Component {
     //this.loadDishes();
   }
 
+  
   handleChange = event => {
     const { name, value } = event.target;
 
@@ -49,7 +50,7 @@ class Foodform extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} I give this ${this.state.rating} stars. address: ${this.state.address} Date: ${this.state.startDate}`);
+    // alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} I give this ${this.state.rating} stars. address: ${this.state.address} Date: ${this.state.startDate}`);
 
     this.setState({
       name: this.state.name,
@@ -148,7 +149,12 @@ class Foodform extends React.Component {
 
   handleFormSubmit = event => {
     // event.preventDefault();
-    if (this.state.name && this.state.description) {
+    if (!this.state.name  || !this.state.description || !this.state.address || !this.state.rating) {
+      alert("Please fill out each required section")
+  return;
+      }
+  else
+   if (this.state.name && this.state.description) {
 
       API.saveDish({
         user: this.state.user,
@@ -180,18 +186,23 @@ class Foodform extends React.Component {
           </Modal.Header>
           <Modal.Body>
             <form onSubmit={this.handleSubmit}>
+              
               <label>
-                Name of dish:
-              <input name="name" type="text" value={this.state.value} onChange={this.handleChange} />
+                *Name of dish:
+              <input name="name" type="text" value={this.state.value} onChange={this.handleChange} required />
               </label>
+              
               <label>
                 Upload Image:
             <input name="img" type="file" ref={this.fileInput} onChange={this.handleFileUpload} />
               </label>
               <label>
-                Describe the dish:
+                *Describe the dish:
             <textarea name="description" value={this.state.value} onChange={this.handleChange} />
 
+              </label>
+              <label>
+                *Rate this dish:
               </label>
               <StarRatingComponent
                 starCount={10}
@@ -199,7 +210,7 @@ class Foodform extends React.Component {
                 onStarClick={this.onStarClick.bind(this)}
               />
               <label>
-                Location:
+                *Location:
             {/* <input type="text" name="location" value={this.state.value} onChange={this.handleChange} /> */}
 
 
@@ -255,7 +266,7 @@ class Foodform extends React.Component {
                   onChange={this.handleDateChange}
                 />
               </label>
-
+              <span className="required-text">*Required Fields</span>
             </form>
 
           </Modal.Body>
