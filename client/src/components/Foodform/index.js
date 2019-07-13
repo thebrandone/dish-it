@@ -34,9 +34,9 @@ class Foodform extends React.Component {
     this.handleClose = this.handleClose.bind(this);
   }
 
-  componentDidMount() {
-    //this.loadDishes();
-  }
+  // componentDidMount() {
+  //   //this.loadDishes();
+  // }
 
   
   handleChange = event => {
@@ -94,12 +94,6 @@ class Foodform extends React.Component {
     this.setState({ show: true });
   }
 
-  // handleDateChange = date => {
-  //   this.setState({
-  //     startDate: this.state.date
-  //   });
-  //   return date;
-  // }
 
   handleDateChange = date => {
     this.setState({
@@ -130,11 +124,11 @@ class Foodform extends React.Component {
   //     console.log()
   // };
 
-  deleteDish = id => {
-    API.deleteDish(id)
-      .then(res => this.loadDishes())
-      .catch(err => console.log(err));
-  };
+  // deleteDish = id => {
+  //   API.deleteDish(id)
+  //     .then(res => this.loadDishes())
+  //     .catch(err => console.log(err));
+  // };
 
   handleInputChange = event => {
     const { name, value } = event.target;
