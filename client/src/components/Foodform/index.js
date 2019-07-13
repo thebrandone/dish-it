@@ -46,6 +46,8 @@ class Foodform extends React.Component {
       [name]: value,
     });
 
+    this.setState({user: sessionStorage.getItem("name")})
+
   };
 
   handleSubmit = event => {
@@ -53,6 +55,7 @@ class Foodform extends React.Component {
     // alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} I give this ${this.state.rating} stars. address: ${this.state.address} Date: ${this.state.startDate}`);
 
     this.setState({
+      user: this.state.user,
       name: this.state.name,
       img: this.state.img,
       description: this.state.description,
