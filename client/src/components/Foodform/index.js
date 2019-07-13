@@ -167,6 +167,7 @@ class Foodform extends React.Component {
         .then(res => console.log(this.state))
         .then(this.props.loadDishes)
         .catch(err => console.log(err));
+        window.location.reload()
     }
   };
 
@@ -274,7 +275,7 @@ class Foodform extends React.Component {
             <Button variant="secondary" onClick={this.handleClose}>
               Close
             </Button>
-            <Button type="submit" value="Submit" variant="primary" onClick={this.handleSubmit}>
+           <Button type="submit" value="Submit" variant="primary" onClick={this.handleSubmit}>
               Submit
             </Button>
           </Modal.Footer>
