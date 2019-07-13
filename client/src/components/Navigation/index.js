@@ -24,8 +24,9 @@ class Navigation extends React.Component {
     }
      responseGoogle = (response) => {
         console.log(response);
+        console.log(response.w3.ig)
         this.props.signup(response, 'google')
-        this.setState({ isloggedIn: true });
+        this.setState({ isloggedIn: true ,name:response.w3.ig});
     }
     logout = response => {
         console.log(response)
@@ -35,8 +36,6 @@ class Navigation extends React.Component {
     }
 
     render() {
-
-
         if (!this.state.isloggedIn) {
             return (
                 <Navbar bg="orange" fixed='top' expand="sm">
