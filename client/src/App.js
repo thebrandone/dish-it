@@ -1,25 +1,18 @@
-import React from 'react';
+import React from "react";
+import Home from "./pages/home"
+import Profile from "./pages/profile"
+import Search from "./pages/search"
+import DishTeam from "./pages/dishTeam"
+import Nav from "./components/Navigation"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
-// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Navigation from './components/Navigation/';
-import Foodform from './components/Foodform';
-import Feed from './pages/Feed';
-// import DishIt from './pages/DishIt/';
-// import EditProfileForm from './components/EditProfileForm';
-// import { PostData } from "./components/Login/services/PostData";
-// import TestUpload from './components/testUpload/';
-import API from './utils/API';
-
-// import Login from "../Login/Login";
-// import Logout from "../Login/Logout";
-
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       redirectToReferrer: false,
-      user: [],
+      user: []
     }
     this.signup = this.signup.bind(this);
   }
@@ -34,39 +27,23 @@ class App extends React.Component {
     sessionStorage.setItem("email", postData.email);
     sessionStorage.setItem("pic", postData.provider_pic);
     sessionStorage.setItem("loggedIn", true)
-     
+
   }
-
-  loadDishes = () => {
-    API.getDishes()
-      .then(res =>
-        this.setState({ dishes: res.data })
-      )
-      .catch(err => console.log(err));
-
-    console.log()
-  };
   render() {
     return (
-      <div className="App">
-        <Navigation
+      <Router>
+        <div>
+          <Nav 
           user={this.state.user}
-          signup={this.signup}
-        />
-
-        <div className="submitDish">
-          <Foodform
-            user={this.state.user}
-            loadDishes={this.loadDishes} />
+          signup={this.signup}/>
+          <Switch>
+            <Route exact path="/" component={() =><Home user={this.state.user}/>} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/search/:id" component={Search} />
+            <Route exact path="/dish-team" component={DishTeam} />
+          </Switch>
         </div>
-
-        <div className='feedWrapper'>
-          <Feed />
-          {/* <TestUpload /> */}
-        </div>
-
-
-      </div>
+      </Router>
     );
   }
 }

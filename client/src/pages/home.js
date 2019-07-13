@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import PostCard from "../../components/PostCard";
-import API from "../../utils/API";
+import PostCard from "../components/PostCard";
+import API from "../utils/API";
 import { Container } from "react-bootstrap";
+import Foodform from "../components/Foodform"
 // import { Input, TextArea, FormBtn } from "../../components/Form";
 // import Jumbotron from "../../components/Jumbotron";
 // import DeleteBtn from "../../components/DeleteBtn";
 
 
 
-class Feed extends Component {
+class Home extends Component {
   // Setting our component's initial state
 
   state = {
@@ -104,6 +105,7 @@ class Feed extends Component {
 
   render() {
     return (
+        <div className= "feedWrapper">
       <Container fluid>
         {this.state.dishes.length ? (
           <Container>
@@ -126,8 +128,12 @@ class Feed extends Component {
             <h3>No Results to Display</h3>
           )}
       </Container>
+      <div className="submitDish">
+      <Foodform />
+      </div>
+      </div>
     );
   }
 }
 
-export default Feed;
+export default Home;
