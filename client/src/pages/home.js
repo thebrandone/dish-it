@@ -13,7 +13,6 @@ class Home extends Component {
   // Setting our component's initial state
 
   state = {
-    dishes: [],
     rating: 0,
     user: ''
   };
@@ -27,7 +26,7 @@ class Home extends Component {
   loadDishes = () => {
     API.getDishes()
       .then(res =>
-        this.setState({ dishes: res.data}, console.log(typeof res.data))
+        this.setState({ dishes: [...res.data]}, console.log(res.data))
       )
       .catch(err => console.log(err));
   };
@@ -104,10 +103,11 @@ class Home extends Component {
   };
 
   render() {
+    console.log(this.state.dishes)
     return (
         <div className= "feedWrapper">
       <Container fluid>
-        {this.state.dishes.length ? (
+        {this.state.dishes && this.state.dishes.length ? (
           <Container>
             {this.state.dishes.map(dish => {
               return (
