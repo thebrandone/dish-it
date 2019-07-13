@@ -34,9 +34,9 @@ class Foodform extends React.Component {
     this.handleClose = this.handleClose.bind(this);
   }
 
-  // componentDidMount() {
-  //   //this.loadDishes();
-  // }
+  componentDidMount() {
+    //this.loadDishes();
+  }
 
   
   handleChange = event => {
