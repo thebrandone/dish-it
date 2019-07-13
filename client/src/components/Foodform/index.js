@@ -168,7 +168,7 @@ class Foodform extends React.Component {
 
   render() {
     // const { rating } = this.state;
-    if (this.state.isLoggedIn) {
+   
       return (
 
         <div className="dishForm">
@@ -280,14 +280,10 @@ class Foodform extends React.Component {
 
         </div>
       );
-    }
-    else{
-      return(
-      <Button className="dish-btn" variant="outline-danger">
-            To activate please log in!
-        </Button>
-      )
-    }
+    
+    
+    
+    
   }
 
 }
