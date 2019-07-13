@@ -26,7 +26,7 @@ class Feed extends Component {
   loadDishes = () => {
     API.getDishes()
       .then(res =>
-        this.setState({ dishes: res.data })
+        this.setState({ dishes: res.data}, console.log(typeof res.data))
       )
       .catch(err => console.log(err));
   };
