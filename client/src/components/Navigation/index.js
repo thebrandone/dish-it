@@ -17,31 +17,25 @@ class Navigation extends React.Component {
         // this.getProducts = this.getProducts.bind(this);
     };
     componentDidMount() {
-        this.getUserInfo();
-        this.setState({ isloggedIn: (sessionStorage.getItem("loggedIn")) })
+        this.setState({
+            isloggedIn: (sessionStorage.getItem("loggedIn")),
+            name: (sessionStorage.getItem("name"))
+        })
     }
-    getUserInfo = () => {
-        var info = sessionStorage.getItem("name");
-        console.log(info);
-        this.setState({ name: info })
+     responseGoogle = (response) => {
+        console.log(response);
+        console.log(response.w3.ig)
+        this.props.signup(response, 'google')
+        this.setState({ isloggedIn: true ,name:response.w3.ig});
+    }
+    logout = response => {
+        console.log(response)
+        sessionStorage.clear();
+        alert("You have signed out")
+        this.setState({ isloggedIn: false })
     }
 
     render() {
-        const responseGoogle = (response) => {
-            console.log(response);
-            this.props.signup(response, 'google')
-            this.setState({ isloggedIn: true });
-        }
-        const logout = response => {
-            console.log(response)
-            sessionStorage.setItem("name", '');
-            sessionStorage.setItem("email", '');
-            sessionStorage.setItem("pic", '');
-            sessionStorage.clear();
-            this.setState({ redirect: true });
-            alert("You have signed out")
-            this.setState({ isloggedIn: false })
-        }
         if (!this.state.isloggedIn) {
             return (
                 <Navbar bg="orange" fixed='top' expand="sm">
@@ -63,7 +57,7 @@ class Navigation extends React.Component {
                         <Form inline>
                             <Login
                                 signup={this.signup}
-                                responseGoogle={responseGoogle}
+                                responseGoogle={this.responseGoogle}
                             />
                         </Form>
                     </Navbar.Collapse>
@@ -92,7 +86,7 @@ class Navigation extends React.Component {
                         <Form inline>
 
                             <Logout
-                                logout={logout}
+                                logout={this.logout}
                             />
                         </Form>
                     </Navbar.Collapse>
