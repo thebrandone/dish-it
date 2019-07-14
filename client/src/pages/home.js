@@ -24,16 +24,19 @@ class Home extends Component {
 
   // When the component mounts, load all books and save them to this.state.books
   componentDidMount() {
+    console.log("--");
     this.loadDishes();
+    console.log("--");
   }
   
   // Loads all dishes
   loadDishes = () => {
     API.getDishes()
       .then(res =>
-        this.setState({ dishes: [...res.data] }, console.log(res.data))
+        this.setState({ dishes: [res.data] })
       )
-      .catch(err => console.log(err));
+      .catch(err => console.log(err.response.data));
+      console.log("--");
   };
 
   // Deletes a book from the database with a given id, then reloads books from the db
