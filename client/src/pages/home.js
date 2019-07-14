@@ -111,7 +111,8 @@ class Home extends Component {
           <Container>
             {this.state.dishes.map(dish => {
               return (
-                <PostCard key={dish._id}
+                <PostCard 
+                  key={dish._id}
                   name={dish.name}
                   description={dish.description}
                   image={dish.image}
