@@ -76,10 +76,6 @@ app.post('/test-upload', (request, response) => {
     });
 });
 
-
-
-
-
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(bodyParser.json());
@@ -104,9 +100,13 @@ app.use(routes);
 // })
 
 //connect to GREGS MONGO DB for Heroku
-mongoose.connect(process.env.MONGODB_URI || "mongodb://username:heroku_2db9fn8f@ds151076.mlab.com:51076/heroku_2db9fn8f", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://gregh:XLR8f45t@ds151076.mlab.com:51076/heroku_2db9fn8f", {
   useNewUrlParser: true
 })
+
+
+//mongodb://gregh:XLR8f45t@ds151076.mlab.com:51076/heroku_2db9fn8f
+
 
 mongoose.connection.once("open", () => {
 
