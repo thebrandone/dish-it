@@ -1,19 +1,19 @@
 import React, { Component } from "react";
-import PostCard from "../../components/PostCard";
-import API from "../../utils/API";
+import PostCard from "../components/PostCard";
+import API from "../utils/API";
 import { Container } from "react-bootstrap";
 import { Button } from 'react-bootstrap';
+import Foodform from "../components/Foodform"
 // import { Input, TextArea, FormBtn } from "../../components/Form";
 // import Jumbotron from "../../components/Jumbotron";
 // import DeleteBtn from "../../components/DeleteBtn";
 
 
 
-class Feed extends Component {
+class Home extends Component {
   // Setting our component's initial state
 
   state = {
-    dishes: [],
     rating: 0,
     user: ''
   };
@@ -27,7 +27,7 @@ class Feed extends Component {
   loadDishes = () => {
     API.getDishes()
       .then(res =>
-        this.setState({ dishes: res.data })
+        this.setState({ dishes: [...res.data]}, console.log(res.data))
       )
       .catch(err => console.log(err));
   };
@@ -104,7 +104,9 @@ class Feed extends Component {
   };
 
   render() {
+    console.log(this.state.dishes)
     return (
+        <div className= "feedWrapper">
       <Container fluid>
         <form>
         <label>
@@ -117,7 +119,8 @@ class Feed extends Component {
           <Container>
             {this.state.dishes.map(dish => {
               return (
-                <PostCard key={dish._id}
+                <PostCard 
+                  key={dish._id}
                   name={dish.name}
                   description={dish.description}
                   image={dish.image}
@@ -134,8 +137,12 @@ class Feed extends Component {
             <h3>No Results to Display</h3>
           )}
       </Container>
+      <div className="submitDish">
+      <Foodform />
+      </div>
+      </div>
     );
   }
 }
 
-export default Feed;
+export default Home;

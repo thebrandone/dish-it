@@ -17,31 +17,25 @@ class Navigation extends React.Component {
         // this.getProducts = this.getProducts.bind(this);
     };
     componentDidMount() {
-        this.getUserInfo();
-        this.setState({ isloggedIn: (sessionStorage.getItem("loggedIn")) })
+        this.setState({
+            isloggedIn: (sessionStorage.getItem("loggedIn")),
+            name: (sessionStorage.getItem("name"))
+        })
     }
-    getUserInfo = () => {
-        var info = sessionStorage.getItem("name");
-        console.log(info);
-        this.setState({ name: info })
+     responseGoogle = (response) => {
+        console.log(response);
+        console.log(response.w3.ig)
+        this.props.signup(response, 'google')
+        this.setState({ isloggedIn: true ,name:response.w3.ig});
+    }
+    logout = response => {
+        console.log(response)
+        sessionStorage.clear();
+        alert("You have signed out")
+        this.setState({ isloggedIn: false })
     }
 
     render() {
-        const responseGoogle = (response) => {
-            console.log(response);
-            this.props.signup(response, 'google')
-            this.setState({ isloggedIn: true });
-        }
-        const logout = response => {
-            console.log(response)
-            sessionStorage.setItem("name", '');
-            sessionStorage.setItem("email", '');
-            sessionStorage.setItem("pic", '');
-            sessionStorage.clear();
-            this.setState({ redirect: true });
-            alert("You have signed out")
-            this.setState({ isloggedIn: false })
-        }
         if (!this.state.isloggedIn) {
             return (
                 <Navbar bg="orange" fixed='top' expand="sm">
@@ -49,10 +43,10 @@ class Navigation extends React.Component {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                            <Nav.Link href="#home">Home</Nav.Link>
-                            <Nav.Link href="#link">My Profile</Nav.Link>
+                            <Nav.Link href="/">Home</Nav.Link>
+                            <Nav.Link href="/profile">My Profile</Nav.Link>
                             <NavDropdown title="Discover" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Dishes</NavDropdown.Item>
+                                <NavDropdown.Item href="search/3.1">Dishes</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">Locations</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.3">Friends</NavDropdown.Item>
                                 <NavDropdown.Divider />
@@ -63,7 +57,7 @@ class Navigation extends React.Component {
                         <Form inline>
                             <Login
                                 signup={this.signup}
-                                responseGoogle={responseGoogle}
+                                responseGoogle={this.responseGoogle}
                             />
                         </Form>
                     </Navbar.Collapse>
@@ -92,7 +86,7 @@ class Navigation extends React.Component {
                         <Form inline>
 
                             <Logout
-                                logout={logout}
+                                logout={this.logout}
                             />
                         </Form>
                     </Navbar.Collapse>

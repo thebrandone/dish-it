@@ -23,7 +23,8 @@ class Foodform extends React.Component {
       show: false,
       date: '',
       file: null,
-      dishes: []
+      dishes: [],
+      isLoggedIn: false
     };
     this.props = props;
     this.input = React.createRef();
@@ -34,11 +35,11 @@ class Foodform extends React.Component {
     this.handleClose = this.handleClose.bind(this);
   }
 
-  // componentDidMount() {
-  //   //this.loadDishes();
-  // }
+  componentDidMount(props) {
+    this.setState({ isLoggedIn: this.props.isLoggedIn })
+  }
 
-  
+
   handleChange = event => {
     const { name, value } = event.target;
 
@@ -46,7 +47,7 @@ class Foodform extends React.Component {
       [name]: value,
     });
 
-    this.setState({user: sessionStorage.getItem("name")})
+    this.setState({ user: sessionStorage.getItem("name") })
 
   };
 
@@ -77,7 +78,7 @@ class Foodform extends React.Component {
     }).then(response => {
       const image = response.data.Location
       API.saveImage({ image: image })
-        .then(res =>{ console.log(res, "res"); this.handleFormSubmit(res.data.image)})
+        .then(res => { console.log(res, "res"); this.handleFormSubmit(res.data.image) })
         .catch(err => console.log(err.response.data));
     }).catch(error => {
       console.log(error);
@@ -142,142 +143,149 @@ class Foodform extends React.Component {
 
   handleFormSubmit = imageid => {
     // event.preventDefault();
-    if (!this.state.name  || !this.state.description || !this.state.address || !this.state.rating) {
+    if (!this.state.name || !this.state.description || !this.state.address || !this.state.rating) {
       alert("Please fill out each required section")
-  return;
-      }
-  else
-   if (this.state.name && this.state.description) {
-
-      API.saveDish({
-        user: this.state.user,
-        name: this.state.name,
-        image: imageid,
-        description: this.state.description,
-        address: this.state.address,
-        rating: this.state.rating,
-        date: this.state.startDate
-      })
-        .then(res => console.log(this.state))
-        .then(this.props.loadDishes)
-        .catch(err => console.log(err));
-        window.location.reload()
+      return;
     }
+    else
+      if (this.state.name && this.state.description) {
+
+        API.saveDish({
+          user: this.state.user,
+          name: this.state.name,
+          image: imageid,
+          description: this.state.description,
+          address: this.state.address,
+          rating: this.state.rating,
+          date: this.state.startDate
+        })
+          .then(res => console.log(this.state))
+          .then(this.props.loadDishes)
+          .catch(err => console.log(err));
+        window.location.reload()
+      }
   };
 
   render() {
     // const { rating } = this.state;
-    return (
+   
+      return (
 
-      <div className="dishForm">
-        <Button className="dish-btn" variant="outline-danger" onClick={this.handleShow}>
-          Post Dish!
-
+        <div className="dishForm">
+        
+          <Button className="dish-btn" variant="outline-danger" onClick={this.handleShow}>
+            Post Dish!
+  
         </Button>
 
-        <Modal show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Submit a Dish!</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <form onSubmit={this.handleSubmit}>
-              
-              <label>
-                *Name of dish:
+          <Modal show={this.state.show} onHide={this.handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Submit a Dish!</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <form onSubmit={this.handleSubmit}>
+
+                <label>
+                  *Name of dish:
               <input name="name" type="text" value={this.state.value} onChange={this.handleChange} required />
-              </label>
-              
-              <label>
-                Upload Image:
+                </label>
+
+                <label>
+                  Upload Image:
             <input name="img" type="file" ref={this.fileInput} onChange={this.handleFileUpload} />
-              </label>
-              <label>
-                *Describe the dish:
+                </label>
+                <label>
+                  *Describe the dish:
             <textarea name="description" value={this.state.value} onChange={this.handleChange} />
 
+                </label>
+                <label>
+                  *Rate this dish:
               </label>
-              <label>
-                *Rate this dish:
-              </label>
-              <StarRatingComponent
-                starCount={10}
-                value={this.state.rating}
-                onStarClick={this.onStarClick.bind(this)}
-              />
-              <label>
-                *Location:
+                <StarRatingComponent
+                  starCount={10}
+                  value={this.state.rating}
+                  onStarClick={this.onStarClick.bind(this)}
+                />
+                <label>
+                  *Location:
             {/* <input type="text" name="location" value={this.state.value} onChange={this.handleChange} /> */}
 
 
-                <PlacesAutocomplete
-                  name="address"
-                  value={this.state.address}
-                  onChange={this.handleAddressChange}
-                  // onSelect={this.handleSelect}
-                  highlightFirstSuggestion={true}
-                >
-                  {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                    <div>
-                      <input
-                        {...getInputProps({
-                          placeholder: 'Search Places ...',
-                          className: 'location-search-input',
-                        })}
-                      />
-                      <div className="autocomplete-dropdown-container">
-                        {loading && <div>Loading...</div>}
-                        {suggestions.map(suggestion => {
-                          const className = suggestion.active
-                            ? 'suggestion-item--active'
-                            : 'suggestion-item';
-                          // inline style for demonstration purpose
-                          const style = suggestion.active
-                            ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                            : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                          return (
-                            <div
-                              {...getSuggestionItemProps(suggestion, {
-                                className,
-                                style,
-                              })}
-                            >
-                              <span>{suggestion.description}</span>
-                            </div>
-                          );
-                        })}
+                  <PlacesAutocomplete
+                    name="address"
+                    value={this.state.address}
+                    onChange={this.handleAddressChange}
+                    // onSelect={this.handleSelect}
+                    highlightFirstSuggestion={true}
+                  >
+                    {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                      <div>
+                        <input
+                          {...getInputProps({
+                            placeholder: 'Search Places ...',
+                            className: 'location-search-input',
+                          })}
+                        />
+                        <div className="autocomplete-dropdown-container">
+                          {loading && <div>Loading...</div>}
+                          {suggestions.map(suggestion => {
+                            const className = suggestion.active
+                              ? 'suggestion-item--active'
+                              : 'suggestion-item';
+                            // inline style for demonstration purpose
+                            const style = suggestion.active
+                              ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                              : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                            return (
+                              <div
+                                {...getSuggestionItemProps(suggestion, {
+                                  className,
+                                  style,
+                                })}
+                              >
+                                <span>{suggestion.description}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
                       </div>
-                    </div>
-                  )}
-                </PlacesAutocomplete>
-              </label>
+                    )}
+                  </PlacesAutocomplete>
+                </label>
 
-              <label> Date Devoured
+                <label> Date Devoured
           <DatePicker
-                  name="date"
-                  placeholderText={""}
-                  todayButton={"Today"}
-                  showTimeSelect
-                  selected={this.state.startDate}
-                  onChange={this.handleDateChange}
-                />
-              </label>
-              <span className="required-text">*Required Fields</span>
-            </form>
+                    name="date"
+                    placeholderText={""}
+                    todayButton={"Today"}
+                    showTimeSelect
+                    selected={this.state.startDate}
+                    onChange={this.handleDateChange}
+                  />
+                </label>
+                <span className="required-text">*Required Fields</span>
+              </form>
 
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleClose}>
-              Close
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={this.handleClose}>
+                Close
             </Button>
-           <Button type="submit" value="Submit" variant="primary" onClick={this.handleSubmit}>
-              Submit
+              <Button type="submit" value="Submit" variant="primary" onClick={this.handleSubmit}>
+                Submit
             </Button>
-          </Modal.Footer>
-        </Modal>
+            </Modal.Footer>
+          </Modal>
 
-      </div>
-    );
+        </div>
+      );
+    
+    
+    
+    
   }
+
 }
 
 export default Foodform;
