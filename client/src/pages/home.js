@@ -11,22 +11,25 @@ import Foodform from "../components/Foodform"
 
 class Home extends Component {
   // Setting our component's initial state
-
-  state = {
-    rating: 0,
-    user: ''
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      rating: 0,
+      user: '',
+      isloggedIn: props.isloggedIn
+    };
+  }
 
   // When the component mounts, load all books and save them to this.state.books
   componentDidMount() {
     this.loadDishes();
   }
-
+  
   // Loads all dishes
   loadDishes = () => {
     API.getDishes()
       .then(res =>
-        this.setState({ dishes: [...res.data]}, console.log(res.data))
+        this.setState({ dishes: [...res.data] }, console.log(res.data))
       )
       .catch(err => console.log(err));
   };
@@ -47,7 +50,7 @@ class Home extends Component {
         return "⭐✩✩✩✩✩✩✩✩✩ 1/10";
       }
       case 2: {
-        return "⭐⭐✩✩✩✩✩✩✩✩ 2/10";       
+        return "⭐⭐✩✩✩✩✩✩✩✩ 2/10";
       }
       case 3: {
         return "⭐⭐⭐✩✩✩✩✩✩✩ 3/10";
@@ -104,35 +107,64 @@ class Home extends Component {
 
   render() {
     console.log(this.state.dishes)
-    return (
-        <div className= "feedWrapper">
-      <Container fluid>
-        {this.state.dishes && this.state.dishes.length ? (
-          <Container>
-            {this.state.dishes.map(dish => {
-              return (
-                <PostCard key={dish._id}
-                  name={dish.name}
-                  description={dish.description}
-                  image={dish.image}
-                  address={dish.address}
-                  date={dish.date}
-                  rating={dish.rating}
-                  renderStars={this.renderStars}
-                  renderStarIcon={dish.renderStarIcon}>
-                </PostCard>
-              );
-            })}
+    if (!this.state.isloggedIn) {
+      return (
+        <div className="feedWrapper">
+          <Container fluid>
+            {this.state.dishes && this.state.dishes.length ? (
+              <Container>
+                {this.state.dishes.map(dish => {
+                  return (
+                    <PostCard key={dish._id}
+                      name={dish.name}
+                      description={dish.description}
+                      image={dish.image}
+                      address={dish.address}
+                      date={dish.date}
+                      rating={dish.rating}
+                      renderStars={this.renderStars}
+                      renderStarIcon={dish.renderStarIcon}>
+                    </PostCard>
+                  );
+                })}
+              </Container>
+            ) : (
+                <h3>No Results to Display</h3>
+              )}
           </Container>
-        ) : (
-            <h3>No Results to Display</h3>
-          )}
-      </Container>
-      <div className="submitDish">
-      <Foodform />
-      </div>
-      </div>
-    );
+        </div>
+      );
+    } else {
+      return (
+        <div className="feedWrapper">
+          <Container fluid>
+            {this.state.dishes && this.state.dishes.length ? (
+              <Container>
+                {this.state.dishes.map(dish => {
+                  return (
+                    <PostCard key={dish._id}
+                      name={dish.name}
+                      description={dish.description}
+                      image={dish.image}
+                      address={dish.address}
+                      date={dish.date}
+                      rating={dish.rating}
+                      renderStars={this.renderStars}
+                      renderStarIcon={dish.renderStarIcon}>
+                    </PostCard>
+                  );
+                })}
+              </Container>
+            ) : (
+                <h3>No Results to Display</h3>
+              )}
+          </Container>
+          <div className="submitDish">
+            <Foodform />
+          </div>
+        </div>
+      )
+    }
   }
 }
 
