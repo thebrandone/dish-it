@@ -20,6 +20,11 @@ class Home extends Component {
     };
   }
 
+  // state = {
+  //   rating: 0,
+  //   user: ''
+  // };
+
   // When the component mounts, load all books and save them to this.state.books
   componentDidMount() {
     this.loadDishes();
@@ -29,11 +34,7 @@ class Home extends Component {
   loadDishes = () => {
     API.getDishes()
       .then(res =>
-
-        // this.setState({ dishes: [...res.data]}, console.log(res.data))
-        this.setState({ dishes: [res.data]}, console.log(res.data))
-
-
+        this.setState({ dishes: [...res.data]}, console.log(res.data))
       )
       .catch(err => console.log(err));
   };
