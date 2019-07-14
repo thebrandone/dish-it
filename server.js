@@ -50,7 +50,7 @@ const uploadFile = (buffer, name, type) => {
   const params = {
     ACL: 'public-read',
     Body: buffer,
-    Bucket: process.env.S3_Bucket,
+    Bucket: process.env.S3_BUCKET,
     ContentType: type.mime,
     Key: `${name}.${type.ext}`
   };
@@ -76,12 +76,7 @@ app.post('/test-upload', (request, response) => {
     });
 });
 
-// app.get('/test-download', (request, response) => {
-//   const s3 = new AWS.S3();
-//   response = s3.listObjectsV2({
-//     Bucket: process.env.S3_Bucket
-//   })
-// })
+
 
 
 
