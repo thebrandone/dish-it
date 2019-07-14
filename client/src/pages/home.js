@@ -35,7 +35,7 @@ class Home extends Component {
   loadDishes = () => {
     API.getDishes()
       .then(res =>
-        this.setState({ dishes: [...res.data]})
+        this.setState({ dishes: res.data})
       )
       .catch(err => console.log(err));
   
@@ -50,7 +50,6 @@ class Home extends Component {
   // };
 
   renderStars = (rating) => {
-    console.log(rating);
 
     switch (rating) {
       case "1": {

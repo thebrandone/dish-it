@@ -7,8 +7,6 @@ import 'moment-timezone';
 
 function PostCard(props) {
 
-    console.log(props.user);
-    
     return (
         <Card>
             <ListGroup className="list-group-flush">
