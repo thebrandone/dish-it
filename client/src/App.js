@@ -12,9 +12,14 @@ class App extends React.Component {
     super(props);
     this.state = {
       redirectToReferrer: false,
-      user: []
+      user: [],
+      isloggedIn: false,
+      name:""
     }
     this.signup = this.signup.bind(this);
+  }
+  componentDidMount(){
+    this.setState({isloggedIn:sessionStorage.getItem("loggedIn"), name:sessionStorage.getItem("name")})
   }
 
   signup(res, type) {
@@ -29,15 +34,35 @@ class App extends React.Component {
     sessionStorage.setItem("loggedIn", true)
 
   }
+  responseGoogle = (response) => {
+    console.log(response);
+    console.log(response.w3.ig)
+    this.signup(response, 'google')
+    this.setState({ isloggedIn: true, name: response.w3.ig });
+  }
+  logout = response => {
+    console.log(response)
+    sessionStorage.clear();
+    alert("You have signed out")
+    this.setState({ isloggedIn: false })
+  }
+
   render() {
     return (
       <Router>
         <div>
-          <Nav 
-          user={this.state.user}
-          signup={this.signup}/>
+          <Nav
+            name={this.state.name}
+            signup={this.signup}
+            responseGoogle={this.responseGoogle}
+            logout={this.logout}
+            isloggedIn={this.state.isloggedIn} />
           <Switch>
-            <Route exact path="/" component={() =><Home user={this.state.user}/>} />
+            <Route exact path="/" component={() =>
+              <Home
+                user={this.state.user}
+                isloggedIn={this.state.isloggedIn}
+              />} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/search/:id" component={Search} />
             <Route exact path="/dish-team" component={DishTeam} />
