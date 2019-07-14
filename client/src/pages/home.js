@@ -14,11 +14,17 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      dishes: [],
       rating: 0,
       user: '',
-      isloggedIn: props.isloggedIn,
-      dishes: []
+      isloggedIn: props.isloggedIn
     };
+  }
+  state = {
+    dishes: [],
+    rating: 0,
+    user: '',
+    isloggedIn: this.props.isloggedIn
   }
 
   // state = {
@@ -35,7 +41,7 @@ class Home extends Component {
   loadDishes = () => {
     API.getDishes()
       .then(res =>
-        this.setState({dishes: [...res.data]})
+        this.setState({dishes: res.data})
       )
       .catch(err => console.log(err));
   
