@@ -1,6 +1,7 @@
 const db = require("../models");
 
 module.exports = {
+<<<<<<< HEAD
     findById: function(req, res) {
         db.Image
             .findById(req.params.id)
@@ -27,3 +28,12 @@ module.exports = {
 
     }
 }
+=======
+create: function(req, res) {
+    db.Image
+      .create(req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  }
+};
+>>>>>>> 210e0b7678e6ca7ed952861b4cbc226ff6812b3b

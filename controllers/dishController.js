@@ -3,9 +3,9 @@ const db = require("../models");
 module.exports = {
   findAll: function(req, res) {
     db.Dish
-      .find(req.query)
+      .find({})
       .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
+      .then(dbModel => res.json(dbModel, console.log(dbModel)))
       .catch(err => res.status(422).json(err));
   },
 

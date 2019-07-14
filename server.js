@@ -25,14 +25,18 @@ app.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  })
 }
 
 app.use(morgan('dev'));
 
 // AWS
 AWS.config.update({
-  accessKeyId: process.env.Access,
-  secretAccessKey: process.env.Secret,
+  accessKeyId: process.env.ACCESS,
+  secretAccessKey: process.env.SECRET,
 });
 
 // configure AWS to work with promises
@@ -46,7 +50,7 @@ const uploadFile = (buffer, name, type) => {
   const params = {
     ACL: 'public-read',
     Body: buffer,
-    Bucket: process.env.S3_Bucket,
+    Bucket: "dish-it-project",
     ContentType: type.mime,
     Key: `${name}.${type.ext}`
   };
@@ -91,15 +95,17 @@ app.use(morgan('dev'));
 app.use(routes);
 
 // catch all handler
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/client/build'));
-});
-
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/dishit", {
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/dishit", {
+//   useNewUrlParser: true
+// });
+
+// connect to the Mongo DB for Heroku
+mongoose.connect(process.env.MONGODB_URI || "mongodb://username:Starfish1@ds349587.mlab.com:49587/heroku_5sw7jz8q", {
   useNewUrlParser: true
-});
+})
+
 
 mongoose.connection.once("open", () => {
 

@@ -12,6 +12,9 @@
     width:50%;
 } */
 
+.required-text{
+    font-size:.75em;
+}
 
 button.dish-btn.btn.btn-primary {
     font-size: auto;

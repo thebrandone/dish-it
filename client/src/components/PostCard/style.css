@@ -2,6 +2,11 @@
     padding: 5px;
 }
 
+/* this adds a space before the date/time is shown */
+time {
+    margin-left: 2%;
+}
+
 .list-group-item{
     padding: 5px;
 }
