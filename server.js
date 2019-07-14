@@ -72,14 +72,12 @@ app.post('/test-upload', (request, response) => {
     });
 });
 
-app.get('/test-download', (request, response) => {
-  const s3 = new AWS.S3();
-  response = s3.listObjectsV2({
-    Bucket: process.env.S3_Bucket
-  })
-})
-
-
+// app.get('/test-download', (request, response) => {
+//   const s3 = new AWS.S3();
+//   response = s3.listObjectsV2({
+//     Bucket: process.env.S3_Bucket
+//   })
+// })
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
