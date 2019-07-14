@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PostCard from "../../components/PostCard";
 import API from "../../utils/API";
 import { Container } from "react-bootstrap";
+import { Button } from 'react-bootstrap';
 // import { Input, TextArea, FormBtn } from "../../components/Form";
 // import Jumbotron from "../../components/Jumbotron";
 // import DeleteBtn from "../../components/DeleteBtn";
@@ -82,6 +83,7 @@ class Feed extends Component {
 
   // Handles updating component state when the user types into the input field
   handleInputChange = event => {
+    event.preventDefault();
     const { name, value } = event.target;
     this.setState({
       [name]: value
@@ -92,19 +94,25 @@ class Feed extends Component {
   // Then reload books from the database
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.name && this.state.description) {
-      API.saveDish({
-        name: this.state.name,
-        description: this.state.description,
-      })
-        .then(res => this.loadDishes())
-        .catch(err => console.log(err));
-    }
+    console.log(this.state.user);
+    API.findByUser({user: this.state.user})
+      .then(res =>
+        this.setState({ dishes: res.data })
+      )
+      .catch(err => console.log(err.response.data));
+      console.log(this.state.dishes);
   };
 
   render() {
     return (
       <Container fluid>
+        <form>
+        <label>
+          *Name of user:
+          <input name="user" type="text" value={this.state.value} onChange={this.handleInputChange} required />
+        </label>
+        <Button type="submit" value="Submit" variant="primary" onClick={this.handleFormSubmit} />
+        </form>
         {this.state.dishes.length ? (
           <Container>
             {this.state.dishes.map(dish => {
