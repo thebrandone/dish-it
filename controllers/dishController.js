@@ -5,9 +5,8 @@ module.exports = {
     db.Dish
       .find({})
       .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
+      .then(dbModel => res.json(dbModel, console.log(dbModel)))
       .catch(err => res.status(422).json(err));
-      console.log(res)
   },
 
   // will need to be changed to find by hashtag
