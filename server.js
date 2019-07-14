@@ -104,9 +104,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://gregh:XLR8f45t@ds151076.m
   useNewUrlParser: true
 })
 
-
 //mongodb://gregh:XLR8f45t@ds151076.mlab.com:51076/heroku_2db9fn8f
-
 
 mongoose.connection.once("open", () => {
 
