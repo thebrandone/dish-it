@@ -98,11 +98,15 @@ app.use(routes);
 //   useNewUrlParser: true
 // });
 
-//connect to the Mongo DB for Heroku
-mongoose.connect(process.env.MONGODB_URI || "mongodb://username:Starfish1@ds349587.mlab.com:49587/heroku_5sw7jz8q", {
+// //connect to the Mongo DB for Heroku
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://username:Starfish1@ds349587.mlab.com:49587/heroku_5sw7jz8q", {
+//   useNewUrlParser: true
+// })
+
+//connect to GREGS MONGO DB for Heroku
+mongoose.connect(process.env.MONGODB_URI || "mongodb://username:heroku_2db9fn8f@ds151076.mlab.com:51076/heroku_2db9fn8f", {
   useNewUrlParser: true
 })
-
 
 mongoose.connection.once("open", () => {
 
