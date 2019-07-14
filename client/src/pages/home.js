@@ -29,7 +29,11 @@ class Home extends Component {
   loadDishes = () => {
     API.getDishes()
       .then(res =>
-        this.setState({ dishes: [...res.data] }, console.log(res.data))
+
+        // this.setState({ dishes: [...res.data]}, console.log(res.data))
+        this.setState({ dishes: [res.data]}, console.log(res.data))
+
+
       )
       .catch(err => console.log(err));
   };

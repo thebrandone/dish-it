@@ -50,7 +50,7 @@ const uploadFile = (buffer, name, type) => {
   const params = {
     ACL: 'public-read',
     Body: buffer,
-    Bucket: process.env.S3_Bucket,
+    Bucket: "dish-it-project",
     ContentType: type.mime,
     Key: `${name}.${type.ext}`
   };
