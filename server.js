@@ -98,7 +98,7 @@ app.use(routes);
 //   useNewUrlParser: true
 // });
 
-// connect to the Mongo DB for Heroku
+//connect to the Mongo DB for Heroku
 mongoose.connect(process.env.MONGODB_URI || "mongodb://username:Starfish1@ds349587.mlab.com:49587/heroku_5sw7jz8q", {
   useNewUrlParser: true
 })

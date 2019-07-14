@@ -60,7 +60,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={() =>
               <Home
-                user={this.state.user}
+                user={this.state.name}
                 isloggedIn={this.state.isloggedIn}
               />} />
             <Route exact path="/profile" component={Profile} />
