@@ -19,8 +19,6 @@ require('dotenv').config();
 const routes = require("./routes");
 const PORT = process.env.PORT || 3001;
 
-app.use(routes);
-
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -87,7 +85,7 @@ app.use(morgan('dev'));
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 // Add routes, both API and view
-
+app.use(routes);
 
 // catch all handler
 
@@ -111,9 +109,6 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://gregh:XLR8f45t@ds151076.m
 
 
 mongoose.connection.once("open", () => {
-
-  //app.use('/api', require('./routes/index'));
-  //app.use('/api', require('./routes/file'));
 
   // Start the API server
   app.listen(PORT, function () {

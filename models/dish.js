@@ -13,7 +13,8 @@ var FoodPost = new Schema({
     },
     image: {
         type: String,
-        ref: "Image"
+        ref: "Image",
+        required: false
     },
     description: {
         type: String,
