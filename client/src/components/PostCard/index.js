@@ -6,6 +6,7 @@ import Moment from 'react-moment';
 import 'moment-timezone';
 
 function PostCard(props) {
+
     return (
         <Card>
             <ListGroup className="list-group-flush">
