@@ -35,7 +35,9 @@ class Home extends Component {
   loadDishes = () => {
     API.getDishes()
       .then(res =>
+
         this.setState({dishes: Array.from(res.data)})
+
       )
       .catch(err => console.log(err));
   //var newData = this.state.data.concat([data]); 
