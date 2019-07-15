@@ -14,11 +14,17 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      dishes: [],
       rating: 0,
       user: '',
       isloggedIn: props.isloggedIn
     };
   }
+
+  // state = {
+  //   rating: 0,
+  //   user: ''
+  // };
 
   // When the component mounts, load all books and save them to this.state.books
   componentDidMount() {
@@ -29,13 +35,10 @@ class Home extends Component {
   loadDishes = () => {
     API.getDishes()
       .then(res =>
-
-        // this.setState({ dishes: [...res.data]}, console.log(res.data))
-        this.setState({ dishes: [res.data]}, console.log(res.data))
-
-
+        this.setState({dishes: Array.from(res.data)})
       )
       .catch(err => console.log(err));
+  //var newData = this.state.data.concat([data]); 
   };
 
   // Deletes a book from the database with a given id, then reloads books from the db
@@ -47,7 +50,6 @@ class Home extends Component {
   // };
 
   renderStars = (rating) => {
-    console.log(rating);
 
     switch (rating) {
       case "1": {
@@ -147,6 +149,7 @@ class Home extends Component {
                 {this.state.dishes.map(dish => {
                   return (
                     <PostCard key={dish._id}
+                      user={dish.user}
                       name={dish.name}
                       description={dish.description}
                       image={dish.image}
