@@ -83,6 +83,7 @@ app.post('/test-upload', (request, response) => {
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(morgan('dev'));
 // Put all API endpoints under '/api'
 
