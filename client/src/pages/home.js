@@ -14,13 +14,11 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      dishes: [],
       rating: 0,
       user: '',
       isloggedIn: props.isloggedIn
     };
-  }
-  state = {
-    dishes: []
   }
 
   // state = {
@@ -35,8 +33,6 @@ class Home extends Component {
   
   // Loads all dishes
   loadDishes = () => {
-
-
     API.getDishes()
       .then(res =>
         this.setState({dishes: Array.from(res.data)})
