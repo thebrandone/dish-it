@@ -159,7 +159,7 @@ class Foodform extends React.Component {
           rating: this.state.rating,
           date: this.state.startDate
         })
-          .then(res => console.log(this.state))
+          // .then(res => console.log(this.state))
           .then(this.props.loadDishes)
           .catch(err => console.log(err));
         window.location.reload()

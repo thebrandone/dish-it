@@ -20,11 +20,7 @@ class Home extends Component {
     };
   }
 
-  // state = {
-  //   rating: 0,
-  //   user: ''
-  // };
-
+  
   // When the component mounts, load all books and save them to this.state.books
   componentDidMount() {
     this.loadDishes();
@@ -111,7 +107,6 @@ class Home extends Component {
   };
 
   render() {
-    console.log(this.state.dishes)
     if (!this.state.isloggedIn) {
       return (
         <div className="feedWrapper">
