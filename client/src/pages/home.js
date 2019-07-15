@@ -20,12 +20,6 @@ class Home extends Component {
       isloggedIn: props.isloggedIn
     };
   }
-  state = {
-    dishes: [],
-    rating: 0,
-    user: '',
-    isloggedIn: this.props.isloggedIn
-  }
 
   // state = {
   //   rating: 0,
@@ -41,10 +35,10 @@ class Home extends Component {
   loadDishes = () => {
     API.getDishes()
       .then(res =>
-        this.setState({dishes: res.data})
+        this.setState({dishes: [res.data]})
       )
       .catch(err => console.log(err));
-  
+  //var newData = this.state.data.concat([data]); 
   };
 
   // Deletes a book from the database with a given id, then reloads books from the db
@@ -125,7 +119,7 @@ class Home extends Component {
           <Container fluid>
             {this.state.dishes && this.state.dishes.length ? (
               <Container>
-                {this.state.dishes.map(dish => {
+                {this.state.dishes[0].map(dish => {
                   return (
                     <PostCard key={dish._id}
                       name={dish.name}
@@ -152,7 +146,7 @@ class Home extends Component {
           <Container fluid>
             {this.state.dishes && this.state.dishes.length ? (
               <Container>
-                {this.state.dishes.map(dish => {
+                {this.state.dishes[0].map(dish => {
                   return (
                     <PostCard key={dish._id}
                       user={dish.user}
