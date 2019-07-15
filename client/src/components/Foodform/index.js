@@ -47,7 +47,7 @@ class Foodform extends React.Component {
       [name]: value,
     });
 
-    this.setState({ user: sessionStorage.getItem("name") })
+    this.setState({ user: sessionStorage.getItem("email") })
 
   };
 
@@ -78,7 +78,7 @@ class Foodform extends React.Component {
     }).then(response => {
       const image = response.data.Location
       API.saveImage({ image: image })
-        .then(res => { console.log(res, "res"); this.handleFormSubmit(res.data.image) })
+        .then(res => this.handleFormSubmit(res.data.image))
         .catch(err => console.log(err.response.data));
     }).catch(error => {
       console.log(error);

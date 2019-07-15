@@ -76,10 +76,6 @@ app.post('/test-upload', (request, response) => {
     });
 });
 
-
-
-
-
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(bodyParser.json());
