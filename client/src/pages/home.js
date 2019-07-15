@@ -14,11 +14,13 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dishes: [],
       rating: 0,
       user: '',
       isloggedIn: props.isloggedIn
     };
+  }
+  state = {
+    dishes: []
   }
 
   // state = {
@@ -33,9 +35,11 @@ class Home extends Component {
   
   // Loads all dishes
   loadDishes = () => {
+
+
     API.getDishes()
       .then(res =>
-        this.setState({dishes: [res.data]})
+        this.setState({dishes: Array.from(res.data)})
       )
       .catch(err => console.log(err));
   //var newData = this.state.data.concat([data]); 
@@ -119,7 +123,7 @@ class Home extends Component {
           <Container fluid>
             {this.state.dishes && this.state.dishes.length ? (
               <Container>
-                {this.state.dishes[0].map(dish => {
+                {this.state.dishes.map(dish => {
                   return (
                     <PostCard key={dish._id}
                       name={dish.name}
@@ -146,7 +150,7 @@ class Home extends Component {
           <Container fluid>
             {this.state.dishes && this.state.dishes.length ? (
               <Container>
-                {this.state.dishes[0].map(dish => {
+                {this.state.dishes.map(dish => {
                   return (
                     <PostCard key={dish._id}
                       user={dish.user}
