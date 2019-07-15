@@ -35,13 +35,13 @@ class App extends React.Component {
 
   }
   responseGoogle = (response) => {
-    console.log(response);
-    console.log(response.w3.ig)
+    // console.log(response);
+    // console.log(response.w3.ig)
     this.signup(response, 'google')
     this.setState({ isloggedIn: true, name: response.w3.ig });
   }
   logout = response => {
-    console.log(response)
+    // console.log(response)
     sessionStorage.clear();
     alert("You have signed out")
     this.setState({ isloggedIn: false })
@@ -60,7 +60,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={() =>
               <Home
-                user={this.state.user}
+                user={this.state.name}
                 isloggedIn={this.state.isloggedIn}
               />} />
             <Route exact path="/profile" component={Profile} />
