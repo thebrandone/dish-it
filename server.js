@@ -26,9 +26,11 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-  })
+
+  // app.get('*', (req, res) => {
+  //   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  // })
+
 }
 
 app.use(morgan('dev'));
@@ -79,6 +81,7 @@ app.post('/test-upload', (request, response) => {
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(morgan('dev'));
 // Put all API endpoints under '/api'
 
@@ -94,16 +97,21 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/dishit", {
   useNewUrlParser: true
 });
 
-// connect to the Mongo DB for Heroku
+// //connect to the Mongo DB for Heroku
 // mongoose.connect(process.env.MONGODB_URI || "mongodb://username:Starfish1@ds349587.mlab.com:49587/heroku_5sw7jz8q", {
 //   useNewUrlParser: true
 // })
 
+//connect to GREGS MONGO DB for Heroku
+mongoose.connect(process.env.MONGODB_URI || "mongodb://gregh:XLR8f45t@ds151076.mlab.com:51076/heroku_2db9fn8f", {
+  useNewUrlParser: true
+})
+
+
+//mongodb://gregh:XLR8f45t@ds151076.mlab.com:51076/heroku_2db9fn8f
+
 
 mongoose.connection.once("open", () => {
-
-  app.use('/api', require('./routes/index'));
-  //app.use('/api', require('./routes/file'));
 
   // Start the API server
   app.listen(PORT, function () {

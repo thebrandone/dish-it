@@ -38,10 +38,12 @@ class Home extends Component {
   loadDishes = () => {
     API.getDishes()
       .then(res =>
-        this.setState({ dishes: [...res.data]})
+
+        this.setState({dishes: Array.from(res.data)})
+
       )
-      .catch(err => console.log(err.response.data));
-      console.log("--");
+      .catch(err => console.log(err));
+  //var newData = this.state.data.concat([data]); 
   };
 
   // Deletes a book from the database with a given id, then reloads books from the db
@@ -53,7 +55,6 @@ class Home extends Component {
   // };
 
   renderStars = (rating) => {
-    console.log(rating);
 
     switch (rating) {
       case "1": {
@@ -160,6 +161,7 @@ class Home extends Component {
                 {this.state.dishes.map(dish => {
                   return (
                     <PostCard key={dish._id}
+                      user={dish.user}
                       name={dish.name}
                       description={dish.description}
                       image={dish.image}
