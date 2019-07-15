@@ -19,6 +19,8 @@ require('dotenv').config();
 const routes = require("./routes");
 const PORT = process.env.PORT || 3001;
 
+app.use(routes);
+
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -26,9 +28,9 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-  })
+  // app.get('*', (req, res) => {
+  //   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  // })
 }
 
 app.use(morgan('dev'));
@@ -85,7 +87,7 @@ app.use(morgan('dev'));
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 // Add routes, both API and view
-app.use(routes);
+
 
 // catch all handler
 
