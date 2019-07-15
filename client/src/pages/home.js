@@ -109,7 +109,8 @@ class Home extends Component {
     console.log(this.state.user);
     API.findByUser({user: this.state.user})
       .then(res =>
-        this.setState({ dishes: res.data })
+        console.log(res.data)
+        // this.setState({ dishes: Array.from(res.data) })
       )
       .catch(err => console.log(err.response.data));
       console.log(this.state.dishes);
@@ -148,6 +149,12 @@ class Home extends Component {
       return (
         <div className="feedWrapper">
           <Container fluid>
+          <form onSubmit={this.handleSubmit}>
+          <input name="name" type="text" value={this.state.value} onChange={this.handleInputChange} required />
+              <Button type="submit" value="Submit" variant="primary" onClick={this.handleFormSubmit}>
+                Submit
+              </Button>
+          </form>
             {this.state.dishes && this.state.dishes.length ? (
               <Container>
                 {this.state.dishes.map(dish => {
