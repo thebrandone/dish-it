@@ -14,6 +14,7 @@ class Tags extends React.Component {
       const newTags = [ ...this.state.tags ];
       newTags.splice(i, 1);
       this.setState({ tags: newTags });
+      console.log(this.state.tags)
     }
   
     inputKeyDown = (e) => {

@@ -10,7 +10,7 @@ function PostCard(props) {
     return (
         <Card>
             <ListGroup className="list-group-flush">
-                <ListGroupItem>
+                <ListGroupItem className="author">
                     {props.user}
                 </ListGroupItem>
             </ListGroup>

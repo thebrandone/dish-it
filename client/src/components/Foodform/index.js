@@ -19,7 +19,7 @@ class Foodform extends React.Component {
       name: '',
       img: '',
       description: '',
-      tags: ["BBQ", "THAI"],
+      tags: [""],
       address: '',
       rating: 0,
       show: false,
@@ -187,8 +187,9 @@ class Foodform extends React.Component {
               <Modal.Title>Submit a Dish!</Modal.Title>
             </Modal.Header>
             <Modal.Body>
+              
               <form onSubmit={this.handleSubmit}>
-
+              <div className="formContent">
                 <label>
                   *Name of dish:
               <input name="name" type="text" value={this.state.value} onChange={this.handleChange} required />
@@ -277,6 +278,7 @@ class Foodform extends React.Component {
                   />
                 </label>
                 <span className="required-text">*Required Fields</span>
+                </div>
               </form>
 
             </Modal.Body>

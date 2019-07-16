@@ -54,7 +54,10 @@ console.log(props.isloggedIn)
                             <NavDropdown.Item href="#action/3.4">Dish-it! Team</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
+                    <div className="welcome-text">
                     Welcome {props.name}
+                    </div>
+                    
                     <Form inline>
 
                         <Logout
