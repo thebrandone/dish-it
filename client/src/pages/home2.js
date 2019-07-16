@@ -149,7 +149,7 @@ class Home2 extends Component {
                 })}
               </Container>
             ) : (
-                <h3>No Results to Display</h3>
+                <h3>Loading Posts</h3>
               )}
           </Container>
           <div className="submitDish">
