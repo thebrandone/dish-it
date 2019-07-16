@@ -46,8 +46,8 @@ code {
   display: fixed;
   width: 200px;
   font-style: italic;
-  background-color: #c2404d;
-  color: rgb(218, 153, 32);
+  background-color: #f53b50;
+  color: rgb(255, 176, 30);
 }
 
 .container .container-fluid{

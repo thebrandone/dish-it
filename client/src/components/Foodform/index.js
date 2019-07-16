@@ -7,6 +7,7 @@ import { Button } from 'react-bootstrap';
 import "react-datepicker/dist/react-datepicker.css"
 import API from '../../utils/API.js'
 import axios from "axios"
+import Tags from "../Tags"
 // import LocationSearchInput from "../PlacesAutocomplete";
 import PlacesAutocomplete from 'react-places-autocomplete'
 
@@ -18,6 +19,7 @@ class Foodform extends React.Component {
       name: '',
       img: '',
       description: '',
+      tags: [""],
       address: '',
       rating: 0,
       show: false,
@@ -60,6 +62,7 @@ class Foodform extends React.Component {
       name: this.state.name,
       img: this.state.img,
       description: this.state.description,
+      tags: this.state.tags,
       address: this.state.address,
       rating: this.state.rating,
       date: this.state.date
@@ -156,6 +159,7 @@ class Foodform extends React.Component {
           image: imageid,
           description: this.state.description,
           address: this.state.address,
+          tags: this.state.tags,
           rating: this.state.rating,
           date: this.state.startDate
         })
@@ -183,8 +187,9 @@ class Foodform extends React.Component {
               <Modal.Title>Submit a Dish!</Modal.Title>
             </Modal.Header>
             <Modal.Body>
+              
               <form onSubmit={this.handleSubmit}>
-
+              <div className="formContent">
                 <label>
                   *Name of dish:
               <input name="name" type="text" value={this.state.value} onChange={this.handleChange} required />
@@ -199,6 +204,14 @@ class Foodform extends React.Component {
             <textarea name="description" value={this.state.value} onChange={this.handleChange} />
 
                 </label>
+
+                <Tags
+                name="tags"
+                value={this.state.value}
+                onChange={this.handleChange}
+                tags={this.state.tags}
+                />
+
                 <label>
                   *Rate this dish:
               </label>
@@ -265,6 +278,7 @@ class Foodform extends React.Component {
                   />
                 </label>
                 <span className="required-text">*Required Fields</span>
+                </div>
               </form>
 
             </Modal.Body>
