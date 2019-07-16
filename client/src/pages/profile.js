@@ -23,7 +23,57 @@ class Profile extends Component {
 
     componentDidMount() {
 
+this.loadDishes();
     }
+    loadDishes = () => {
+        API.getDishes()
+          .then(res =>
+    
+            this.setState({dishes: Array.from(res.data)})
+    
+          )
+          .catch(err => console.log(err));
+      //var newData = this.state.data.concat([data]); 
+      };
+      renderStars = (rating) => {
+
+        switch (rating) {
+          case "1": {
+            return "⭐✩✩✩✩✩✩✩✩✩ 1/10";
+          }
+          case 2: {
+            return "⭐⭐✩✩✩✩✩✩✩✩ 2/10";
+          }
+          case 3: {
+            return "⭐⭐⭐✩✩✩✩✩✩✩ 3/10";
+          }
+          case 4: {
+            return "⭐⭐⭐⭐✩✩✩✩✩✩ 4/10";
+          }
+          case 5: {
+            return "⭐⭐⭐⭐⭐✩✩✩✩✩ 5/10";
+          }
+          case 6: {
+            return "⭐⭐⭐⭐⭐⭐✩✩✩✩ 6/10";
+          }
+          case 7: {
+            return "⭐⭐⭐⭐⭐⭐⭐✩✩✩ 7/10";
+          }
+          case 8: {
+            return "⭐⭐⭐⭐⭐⭐⭐⭐✩✩ 8/10";
+          }
+          case 9: {
+            return "⭐⭐⭐⭐⭐⭐⭐⭐⭐✩ 9/10";
+          }
+          case 10: {
+            return "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 10/10";
+          }
+          default: {
+            this.setState.rating = "No Rating";
+            break;
+          }
+        }
+      };
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -58,6 +108,24 @@ class Profile extends Component {
                     
                 </Jumbotron>
                 Your Dish-it Posts
+
+                <Container>
+                {this.state.dishes.map(dish => {
+                  return (
+                    <PostCard key={dish._id}
+                      name={dish.name}
+                      description={dish.description}
+                      image={dish.image}
+                      address={dish.address}
+                      date={dish.date}
+                      rating={dish.rating}
+                      renderStars={this.renderStars}
+                      renderStarIcon={dish.renderStarIcon}
+                      >
+                    </PostCard>
+                  );
+                })}
+              </Container>
             </Container>
         )
     }

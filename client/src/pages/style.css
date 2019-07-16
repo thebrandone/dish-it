@@ -13,6 +13,7 @@
     align-content: center;
     text-align: center;
     background: rgba(241, 180, 65, 50%);
+
 }
 
 .card{
@@ -36,4 +37,5 @@
 
 .imgBtn{
     background-image: url("./box.png");
+
 }

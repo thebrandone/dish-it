@@ -21,5 +21,35 @@ button.dish-btn.btn.btn-primary {
 }
 
 .modal-body {
-    margin: 0% 32%;
+    margin: 0% 18%;
+}
+
+.modal-footer{
+    margin-right: 12%;
+}
+
+.modal-title {
+    margin-left: 25%;
+}
+
+input.location-search-input {
+    margin-top: 1%;
+}
+
+input[type="text"] {
+    margin-top: 6%;
+}
+
+.input-tag {
+    border: .45px solid #060606;
+}
+
+.react-datepicker-popper {
+    left: -15% !important;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item {
+    height: 30px;
+    padding: 13px 14px;
+    margin-top: 60%;
 }

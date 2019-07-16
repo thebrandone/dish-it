@@ -10,7 +10,7 @@ function PostCard(props) {
     return (
         <Card>
             <ListGroup className="list-group-flush">
-                <ListGroupItem>
+                <ListGroupItem className="author">
                     {props.user}
                 </ListGroupItem>
             </ListGroup>
@@ -25,6 +25,9 @@ function PostCard(props) {
             <ListGroup className="list-group-flush">
                 <ListGroupItem>
                     {props.renderStars(props.rating)}
+                </ListGroupItem>
+                <ListGroupItem>
+                    {props.tags}
                 </ListGroupItem>
                 <ListGroupItem>Location: {props.address}</ListGroupItem>
                 <ListGroupItem>Date:      

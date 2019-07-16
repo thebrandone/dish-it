@@ -3,6 +3,7 @@ import PostCard from "../components/PostCard";
 import API from "../utils/API";
 import { Container, Button} from "react-bootstrap";
 import Foodform from "../components/Foodform"
+import Wrapper from "../components/wrapper"
 // import { Input, TextArea, FormBtn } from "../../components/Form";
 // import Jumbotron from "../../components/Jumbotron";
 // import DeleteBtn from "../../components/DeleteBtn";
@@ -20,6 +21,7 @@ class Home extends Component {
   }
 
   // When the component mounts, load all dishes and save them to this.state.dishes[]
+
   componentDidMount() {
     this.loadDishes();
   }
@@ -96,7 +98,7 @@ class Home extends Component {
   };
 
   render() {
-    
+
     if (!this.state.isloggedIn) {
       return (
         
@@ -111,6 +113,7 @@ class Home extends Component {
                       name={dish.name}
                       description={dish.description}
                       image={dish.image}
+                      tags={dish.tags}
                       address={dish.address}
                       date={dish.date}
                       rating={dish.rating}
@@ -129,8 +132,10 @@ class Home extends Component {
     } else {
       return (
         <div className="feedWrapper">
+
           <Button className="toCompact image imgBtn" href="/compact" size="sm"></Button>
           <Container fluid>
+
             {this.state.dishes && this.state.dishes.length ? (
               <Container>
                 {this.state.dishes.map(dish => {
@@ -139,6 +144,7 @@ class Home extends Component {
                       user={dish.user}
                       name={dish.name}
                       description={dish.description}
+                      tags={dish.tags}
                       image={dish.image}
                       address={dish.address}
                       date={dish.date}
@@ -152,7 +158,7 @@ class Home extends Component {
             ) : (
                 <h3>Loading Posts</h3>
               )}
-          </Container>
+          </Wrapper>
           <div className="submitDish">
             <Foodform />
           </div>

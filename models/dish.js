@@ -20,6 +20,10 @@ var FoodPost = new Schema({
         type: String,
         required: false
     },
+    tags: {
+        type: Array,
+        required: false
+    },
     rating: {
         type: Number,
         required: false
