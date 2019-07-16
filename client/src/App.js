@@ -63,7 +63,11 @@ class App extends React.Component {
                 user={this.state.name}
                 isloggedIn={this.state.isloggedIn}
               />} />
-            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/profile" component={() =>
+              <Profile
+                user={this.state.name}
+                isloggedIn={this.state.isloggedIn}
+              />} />
             <Route exact path="/search/:id" component={Search} />
             <Route exact path="/dish-team" component={DishTeam} />
           </Switch>
