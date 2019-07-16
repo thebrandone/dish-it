@@ -12,7 +12,7 @@ router.route("/:id")
   .put(dishController.update)
   .delete(dishController.remove);
 
-router.route("/:user")
+router.route("/user/:user")
   .get(dishController.findByUser);
   
 module.exports = router;

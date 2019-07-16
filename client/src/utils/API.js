@@ -21,6 +21,6 @@ export default {
     return axios.post("/api/image", imgData);
   },
   findByUser: function(user) {
-    return axios.get("/api/dish" + user);
+    return axios.get("/api/dish/", user);
   }
 };

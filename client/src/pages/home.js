@@ -29,9 +29,7 @@ class Home extends Component {
 
   // When the component mounts, load all books and save them to this.state.books
   componentDidMount() {
-    console.log("--");
     this.loadDishes();
-    console.log("--");
   }
   
   // Loads all dishes
@@ -107,18 +105,17 @@ class Home extends Component {
   // Then reload books from the database
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log(this.state.user);
+    console.log(this.state.user, "STATE user");
     API.findByUser({user: this.state.user})
       .then(res =>
-        console.log(res.data)
-        // this.setState({ dishes: Array.from(res.data) })
+        console.log(res.data, "RES")
+        // this.setState({ dishes: res.data })
       )
       .catch(err => console.log(err.response.data));
-      console.log(this.state.dishes);
+      console.log(this.state.dishes, "STATE dishes");
   };
 
   render() {
-    console.log(this.state.dishes)
     if (!this.state.isloggedIn) {
       return (
         <div className="feedWrapper">
@@ -151,7 +148,7 @@ class Home extends Component {
         <div className="feedWrapper">
           <Container fluid>
           <form onSubmit={this.handleSubmit}>
-          <input name="name" type="text" value={this.state.value} onChange={this.handleInputChange} required />
+          <input name="user" type="text" value={this.state.value} onChange={this.handleInputChange} required />
               <Button type="submit" value="Submit" variant="primary" onClick={this.handleFormSubmit}>
                 Submit
               </Button>
