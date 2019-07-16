@@ -47,7 +47,7 @@ class Foodform extends React.Component {
       [name]: value,
     });
 
-    this.setState({ user: sessionStorage.getItem("name") })
+    this.setState({ user: sessionStorage.getItem("email") })
 
   };
 
