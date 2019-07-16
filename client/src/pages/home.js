@@ -158,7 +158,7 @@ class Home extends Component {
             ) : (
                 <h3>Loading Posts</h3>
               )}
-          </Wrapper>
+          </Container>
           <div className="submitDish">
             <Foodform />
           </div>
