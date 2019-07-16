@@ -32,9 +32,7 @@ class Home extends Component {
   loadDishes = () => {
     API.getDishes()
       .then(res =>
-
         this.setState({dishes: Array.from(res.data)})
-
       )
       .catch(err => console.log(err));
   //var newData = this.state.data.concat([data]); 
@@ -148,7 +146,7 @@ class Home extends Component {
                 {this.state.dishes.map(dish => {
                   return (
                     <PostCard key={dish._id}
-                      user={dish.user}
+                      user={this.state.user}
                       name={dish.name}
                       description={dish.description}
                       tags={dish.tags}

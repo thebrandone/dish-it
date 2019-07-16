@@ -19,7 +19,7 @@ class Foodform extends React.Component {
       name: '',
       img: '',
       description: '',
-      tags: [""],
+      tags: [],
       address: '',
       rating: 0,
       show: false,
@@ -56,13 +56,15 @@ class Foodform extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     // alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} I give this ${this.state.rating} stars. address: ${this.state.address} Date: ${this.state.startDate}`);
+      var stateCopy = Object.assign({}, this.state.tags);
+      
 
     this.setState({
       user: this.state.user,
       name: this.state.name,
       img: this.state.img,
       description: this.state.description,
-      tags: this.state.tags,
+      tags: stateCopy,
       address: this.state.address,
       rating: this.state.rating,
       date: this.state.date
