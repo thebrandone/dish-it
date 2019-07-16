@@ -127,6 +127,7 @@ class Home extends Component {
                       name={dish.name}
                       description={dish.description}
                       image={dish.image}
+                      tags={dish.tags}
                       address={dish.address}
                       date={dish.date}
                       rating={dish.rating}
@@ -154,6 +155,7 @@ class Home extends Component {
                       user={dish.user}
                       name={dish.name}
                       description={dish.description}
+                      tags={dish.tags}
                       image={dish.image}
                       address={dish.address}
                       date={dish.date}

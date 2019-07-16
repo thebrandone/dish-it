@@ -26,6 +26,9 @@ function PostCard(props) {
                 <ListGroupItem>
                     {props.renderStars(props.rating)}
                 </ListGroupItem>
+                <ListGroupItem>
+                    {props.tags}
+                </ListGroupItem>
                 <ListGroupItem>Location: {props.address}</ListGroupItem>
                 <ListGroupItem>Date:      
                     <Moment format="LLLL">
