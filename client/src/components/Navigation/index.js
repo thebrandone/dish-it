@@ -18,11 +18,11 @@ console.log(props.isloggedIn)
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/profile">My Profile</Nav.Link>
                         <NavDropdown title="Discover" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="search/3.1">Dishes</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Locations</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Friends</NavDropdown.Item>
+                            <NavDropdown.Item href="/search">Dishes</NavDropdown.Item>
+                            <NavDropdown.Item href="/locations">Locations</NavDropdown.Item>
+                            <NavDropdown.Item href="/friends">Friends</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Dish-it! Team</NavDropdown.Item>
+                            <NavDropdown.Item href="/dishteam">Dish-it! Team</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
 
@@ -47,17 +47,18 @@ console.log(props.isloggedIn)
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/profile">My Profile</Nav.Link>
                         <NavDropdown title="Discover" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="search/3.1">Dishes</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Locations</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Friends</NavDropdown.Item>
+
+                            <NavDropdown.Item href="/search">Dishes</NavDropdown.Item>
+                            <NavDropdown.Item href="/locations">Locations</NavDropdown.Item>
+                            <NavDropdown.Item href="/friends">Friends</NavDropdown.Item>
+
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Dish-it! Team</NavDropdown.Item>
+                            <NavDropdown.Item href="/dishteam">Dish-it! Team</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
-                    <div className="welcome-text">
-                    Welcome {props.name}
-                    </div>
-                    
+
+                    {props.name}
+
                     <Form inline>
 
                         <Logout

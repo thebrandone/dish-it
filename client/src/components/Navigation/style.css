@@ -6,8 +6,10 @@
 }
 
 .navbar-light .navbar-nav .nav-link{
-    color: rgb(255, 176, 30);
-    font-size: 20px;
+
+    color: #c2404d;
+    font-size: 15px;
+
 }
 
 .navbar-brand{
