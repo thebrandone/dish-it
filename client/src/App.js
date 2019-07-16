@@ -1,5 +1,6 @@
 import React from "react";
 import Home from "./pages/home"
+import Home2 from "./pages/home2"
 import Profile from "./pages/profile"
 import Search from "./pages/search"
 import DishTeam from "./pages/dishTeam"
@@ -58,11 +59,20 @@ class App extends React.Component {
             logout={this.logout}
             isloggedIn={this.state.isloggedIn} />
           <Switch>
+
+
             <Route exact path="/" component={() =>
               <Home
                 user={this.state.name}
                 isloggedIn={this.state.isloggedIn}
               />} />
+
+            <Route exact path="/compact" component={() =>
+              <Home2
+                user={this.state.name}
+                isloggedIn={this.state.isloggedIn}
+              />} />
+
             <Route exact path="/profile"
               component={() => <Profile
                 user={this.state.name}

@@ -54,7 +54,7 @@ console.log(props.isloggedIn)
                             <NavDropdown.Item href="/dishteam">Dish-it! Team</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
-                    Welcome {props.name}
+                    {props.name}
                     <Form inline>
 
                         <Logout

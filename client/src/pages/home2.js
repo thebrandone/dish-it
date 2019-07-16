@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import PostCard from "../components/PostCard";
+import React, { Component} from "react";
+import PostCard2 from "../components/PostCard2";
 import API from "../utils/API";
-import { Container, Button} from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 import Foodform from "../components/Foodform"
 // import { Input, TextArea, FormBtn } from "../../components/Form";
 // import Jumbotron from "../../components/Jumbotron";
 // import DeleteBtn from "../../components/DeleteBtn";
 
-class Home extends Component {
+class Home2 extends Component {
   // Setting our component's initial state
   constructor(props) {
     super(props);
@@ -99,15 +99,14 @@ class Home extends Component {
     
     if (!this.state.isloggedIn) {
       return (
-        
-        <div className="feedWrapper">
-          <Button className="toCompact" href="/compact" size="sm"/>
+        <div className="compactContainer">
+          <Button className="toCompact image imgBtn" href="/compact" size="sm"></Button>
           <Container fluid>
             {this.state.dishes && this.state.dishes.length ? (
               <Container>
                 {this.state.dishes.map(dish => {
                   return (
-                    <PostCard key={dish._id}
+                    <PostCard2 key={dish._id}
                       name={dish.name}
                       description={dish.description}
                       image={dish.image}
@@ -116,26 +115,26 @@ class Home extends Component {
                       rating={dish.rating}
                       renderStars={this.renderStars}
                       renderStarIcon={dish.renderStarIcon}>
-                    </PostCard>
+                    </PostCard2>
                   );
                 })}
               </Container>
             ) : (
-                <h3>Loading Posts</h3>
+              <h3>Loading Posts</h3>
               )}
           </Container>
         </div>
       );
     } else {
       return (
-        <div className="feedWrapper">
-          <Button className="toCompact image imgBtn" href="/compact" size="sm"></Button>
+        <div className="compactContainer">
+          <Button className="toCompact image imgBtn" href="/" size="sm"></Button>
           <Container fluid>
             {this.state.dishes && this.state.dishes.length ? (
               <Container>
                 {this.state.dishes.map(dish => {
                   return (
-                    <PostCard key={dish._id}
+                    <PostCard2 key={dish._id}
                       user={dish.user}
                       name={dish.name}
                       description={dish.description}
@@ -145,7 +144,7 @@ class Home extends Component {
                       rating={dish.rating}
                       renderStars={this.renderStars}
                       renderStarIcon={dish.renderStarIcon}>
-                    </PostCard>
+                    </PostCard2>
                   );
                 })}
               </Container>
@@ -161,4 +160,4 @@ class Home extends Component {
     }
   }
 }
-export default Home;
+export default Home2;
