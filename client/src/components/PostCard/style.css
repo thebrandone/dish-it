@@ -13,15 +13,20 @@ time {
 
 .btn-primary{
     width: 50%;
-    background: rgb(241, 180, 65);
+    background: white;
     border-color: black;
     color: black;
 }
 
+.author {
+    font-weight: bold;
+    margin: 0px auto;
+}
+
 .btn-primary:hover{
-    background-color: #c2404d;
+    background-color: #f53b50;
     color: white;
-    border-color: #c2404d;
+    border-color: #f53b50;
 }
 
 .btn-primary:visited{
@@ -39,7 +44,7 @@ time {
 .card{
     margin-bottom: 50px;
     box-shadow: 5px 10px 8px rgb(97, 96, 96);
-    border-color: rgb(241, 180, 65);
+    border-color: white;
     border-style: solid;
     border-width: 5px;
 }

@@ -1,21 +1,28 @@
 .navbar{
     
-    background: rgb(241, 180, 65);
+    background: #f53b50;
     box-shadow: 0 5px 10px black;    
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .navbar-light .navbar-nav .nav-link{
+
     color: #c2404d;
-    font-size: 20px;
+    font-size: 15px;
+
 }
 
 .navbar-brand{
     font-size: 25px;
 }
 
+.welcome-text {
+    margin-right: 3%;
+    color: rgb(255, 176, 30);
+}
+
 .dropdown-menu{
-    background-color: #c2404d;
+    background-color: white;
     border-style: solid;
     border-width: 1px;
     border-color: black;
@@ -24,21 +31,21 @@
 }
 
 .dropdown-item:visited{
-    background-color: #c2404d;
+    background-color: white;
     color: black;
 }
 
 .dropdown-item:hover{
-    background-color: rgb(241, 180, 65);
+    background-color: #f53b50;
 }
 
 .btn-outline-danger:hover{
-    color: rgb(241, 180, 65);
+    color: #f53b50;
     font-size: large;
 }
 
 .dropdown-divider{
-    border-top: 3px solid rgb(241, 180, 65);
+    border-top: 3px solid #f53b50;
 }
 
 .editProfileForm{
