@@ -93,9 +93,9 @@ app.use(routes);
 // catch all handler
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/dishit", {
-  useNewUrlParser: true
-});
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/dishit", {
+//   useNewUrlParser: true
+// });
 
 // //connect to the Mongo DB for Heroku
 // mongoose.connect(process.env.MONGODB_URI || "mongodb://username:Starfish1@ds349587.mlab.com:49587/heroku_5sw7jz8q", {

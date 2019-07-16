@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import PostCard from "../components/PostCard";
 import API from "../utils/API";
-import { Container, Button} from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 import Foodform from "../components/Foodform"
 import Wrapper from "../components/wrapper"
+import { Link } from "react-router-dom";
+
 // import { Input, TextArea, FormBtn } from "../../components/Form";
 // import Jumbotron from "../../components/Jumbotron";
 // import DeleteBtn from "../../components/DeleteBtn";
@@ -25,12 +27,12 @@ class Home extends Component {
   componentDidMount() {
     this.loadDishes();
   }
-  
+
   // Loads all dishes
   loadDishes = () => {
     API.getDishes()
       .then(res =>
-        this.setState({dishes: Array.from(res.data)})
+        this.setState({ dishes: Array.from(res.data) })
       )
       .catch(err => console.log(err));
   //var newData = this.state.data.concat([data]); 
@@ -102,9 +104,11 @@ class Home extends Component {
 
     if (!this.state.isloggedIn) {
       return (
-        
+
         <div className="feedWrapper">
-          <Button className="toCompact" href="/compact" size="sm"/>
+          <Link to="/compact">
+            <Button className="toCompact" size="sm" />
+          </Link>
           <Container fluid>
             {this.state.dishes && this.state.dishes.length ? (
               <Container>
@@ -134,8 +138,9 @@ class Home extends Component {
       return (
         <div className="feedWrapper">
 
-          <Button className="toCompact image imgBtn" href="/compact" size="sm"></Button>
-          <Container fluid>
+          <Link to="/compact">
+            <Button className="toCompact" size="sm" />
+          </Link>          <Container fluid>
 
             {this.state.dishes && this.state.dishes.length ? (
               <Container>

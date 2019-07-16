@@ -35,7 +35,12 @@
     height: 40px;
 }
 
+.btn-primary{
+    background-color: #f53b50;
+}
+
 .imgBtn{
     background-image: url("./box.png");
+
 
 }

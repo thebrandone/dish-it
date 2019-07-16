@@ -1,8 +1,10 @@
-import React, { Component} from "react";
+import React, { Component } from "react";
 import PostCard2 from "../components/PostCard2";
 import API from "../utils/API";
 import { Container, Button } from "react-bootstrap";
 import Foodform from "../components/Foodform"
+import { Link } from "react-router-dom";
+
 // import { Input, TextArea, FormBtn } from "../../components/Form";
 // import Jumbotron from "../../components/Jumbotron";
 // import DeleteBtn from "../../components/DeleteBtn";
@@ -23,12 +25,12 @@ class Home2 extends Component {
   componentDidMount() {
     this.loadDishes();
   }
-  
+
   // Loads all dishes
   loadDishes = () => {
     API.getDishes()
       .then(res =>
-        this.setState({dishes: Array.from(res.data)})
+        this.setState({ dishes: Array.from(res.data) })
       )
       .catch(err => console.log(err));
   };
@@ -96,12 +98,13 @@ class Home2 extends Component {
   };
 
   render() {
-    
+
     if (!this.state.isloggedIn) {
       return (
         <div className="compactContainer">
-          <Button className="toCompact image imgBtn" href="/compact" size="sm"></Button>
-          <Container fluid>
+          <Link to="/">
+            <Button className="toCompact" size="sm" />
+          </Link>          <Container fluid>
             {this.state.dishes && this.state.dishes.length ? (
               <Container>
                 {this.state.dishes.map(dish => {
@@ -120,7 +123,7 @@ class Home2 extends Component {
                 })}
               </Container>
             ) : (
-              <h3>Loading Posts</h3>
+                <h3>Loading Posts</h3>
               )}
           </Container>
         </div>
@@ -128,8 +131,9 @@ class Home2 extends Component {
     } else {
       return (
         <div className="compactContainer">
-          <Button className="toCompact image imgBtn" href="/" size="sm"></Button>
-          <Container fluid>
+          <Link to="/">
+            <Button className="toCompact" size="sm" />
+          </Link>          <Container fluid>
             {this.state.dishes && this.state.dishes.length ? (
               <Container>
                 {this.state.dishes.map(dish => {
