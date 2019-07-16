@@ -1,0 +1,16 @@
+.bioDiv{
+    margin-top: 50px;
+    max-width: 80%;
+    min-width: 50%;
+}
+
+.profileImage{
+    min-height: 150px;
+    max-height: 300px;
+}
+
+.profileCard{
+    align-content: center;
+    text-align: center;
+    background: rgba(241, 180, 65, 50%);
+}

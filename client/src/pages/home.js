@@ -7,8 +7,6 @@ import Foodform from "../components/Foodform"
 // import Jumbotron from "../../components/Jumbotron";
 // import DeleteBtn from "../../components/DeleteBtn";
 
-
-
 class Home extends Component {
   // Setting our component's initial state
   constructor(props) {
@@ -21,12 +19,7 @@ class Home extends Component {
     };
   }
 
-  // state = {
-  //   rating: 0,
-  //   user: ''
-  // };
-
-  // When the component mounts, load all books and save them to this.state.books
+  // When the component mounts, load all dishes and save them to this.state.dishes[]
   componentDidMount() {
     this.loadDishes();
   }
@@ -35,21 +28,10 @@ class Home extends Component {
   loadDishes = () => {
     API.getDishes()
       .then(res =>
-
         this.setState({dishes: Array.from(res.data)})
-
       )
       .catch(err => console.log(err));
-  //var newData = this.state.data.concat([data]); 
   };
-
-  // Deletes a book from the database with a given id, then reloads books from the db
-
-  // deleteDish = id => {
-  //   API.deleteDish(id)
-  //     .then(res => this.loadDishes())
-  //     .catch(err => console.log(err));
-  // };
 
   renderStars = (rating) => {
 
@@ -99,8 +81,8 @@ class Home extends Component {
     });
   };
 
-  // When the form is submitted, use the API.saveBook method to save the book data
-  // Then reload books from the database
+  // When the form is submitted, use the API.saveDish method to save the dish data
+  // Then reload dishes from the database
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.name && this.state.description) {
@@ -114,7 +96,7 @@ class Home extends Component {
   };
 
   render() {
-    console.log(this.state.dishes)
+    
     if (!this.state.isloggedIn) {
       return (
         <div className="feedWrapper">
@@ -176,5 +158,4 @@ class Home extends Component {
     }
   }
 }
-
 export default Home;

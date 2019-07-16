@@ -14,12 +14,12 @@ class App extends React.Component {
       redirectToReferrer: false,
       user: [],
       isloggedIn: false,
-      name:""
+      name: ""
     }
     this.signup = this.signup.bind(this);
   }
-  componentDidMount(){
-    this.setState({isloggedIn:sessionStorage.getItem("loggedIn"), name:sessionStorage.getItem("name")})
+  componentDidMount() {
+    this.setState({ isloggedIn: sessionStorage.getItem("loggedIn"), name: sessionStorage.getItem("name") })
   }
 
   signup(res, type) {
@@ -63,7 +63,11 @@ class App extends React.Component {
                 user={this.state.name}
                 isloggedIn={this.state.isloggedIn}
               />} />
-            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/profile"
+              component={() => <Profile
+                user={this.state.name}
+                isloggedIn={this.state.isloggedIn}
+              />} />
             <Route exact path="/search/:id" component={Search} />
             <Route exact path="/dish-team" component={DishTeam} />
           </Switch>
