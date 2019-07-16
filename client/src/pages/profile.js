@@ -22,6 +22,7 @@ class Profile extends Component {
     }
 
     componentDidMount() {
+
 this.loadDishes();
     }
     loadDishes = () => {
@@ -73,6 +74,7 @@ this.loadDishes();
           }
         }
       };
+
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -106,6 +108,7 @@ this.loadDishes();
                     
                 </Jumbotron>
                 Your Dish-it Posts
+
                 <Container>
                 {this.state.dishes.map(dish => {
                   return (

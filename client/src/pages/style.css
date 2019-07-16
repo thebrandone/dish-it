@@ -13,4 +13,29 @@
     align-content: center;
     text-align: center;
     background: rgba(241, 180, 65, 50%);
+
+}
+
+.card{
+    width: 90%;
+    padding: 3px;
+    text-align: center;
+}
+
+.compactContainer{
+    margin-top: 80px;
+}
+
+.toCompact{
+    position: fixed;
+    top: 100px;
+    left: 0px;
+    z-index: 998;
+    width: 53px;
+    height: 40px;
+}
+
+.imgBtn{
+    background-image: url("./box.png");
+
 }

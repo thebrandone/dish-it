@@ -17,8 +17,18 @@ console.log(props.isloggedIn)
                 <Nav className="mr-auto">
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/profile">My Profile</Nav.Link>
+<<<<<<< HEAD
                         <Nav.Link href="/search">Discover</Nav.Link>
                         <Nav.Link href="/dish-team">Dish-it Team</Nav.Link>
+=======
+                        <NavDropdown title="Discover" id="basic-nav-dropdown">
+                            <NavDropdown.Item href="/search">Dishes</NavDropdown.Item>
+                            <NavDropdown.Item href="/locations">Locations</NavDropdown.Item>
+                            <NavDropdown.Item href="/friends">Friends</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="/dishteam">Dish-it! Team</NavDropdown.Item>
+                        </NavDropdown>
+>>>>>>> bfdd814343e616bdbb02edf55ea57177f5525d09
                     </Nav>
                     <Form inline>
                         <Login
@@ -40,13 +50,24 @@ console.log(props.isloggedIn)
                     <Nav className="mr-auto">
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/profile">My Profile</Nav.Link>
+<<<<<<< HEAD
                         <Nav.Link href="/search">Discover</Nav.Link>
                         <Nav.Link href="/dish-team">Dish-it Team</Nav.Link>
+=======
+                        <NavDropdown title="Discover" id="basic-nav-dropdown">
+
+                            <NavDropdown.Item href="/search">Dishes</NavDropdown.Item>
+                            <NavDropdown.Item href="/locations">Locations</NavDropdown.Item>
+                            <NavDropdown.Item href="/friends">Friends</NavDropdown.Item>
+
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="/dishteam">Dish-it! Team</NavDropdown.Item>
+                        </NavDropdown>
+>>>>>>> bfdd814343e616bdbb02edf55ea57177f5525d09
                     </Nav>
-                    <div className="welcome-text">
-                    Welcome {props.name}
-                    </div>
-                    
+
+                    {props.name}
+
                     <Form inline>
 
                         <Logout
