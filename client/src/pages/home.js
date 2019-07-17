@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PostCard from "../components/PostCard";
 import API from "../utils/API";
-import { Container, Button } from "react-bootstrap";
+import { Container, Button, Spinner} from "react-bootstrap";
 import Foodform from "../components/Foodform"
 import Wrapper from "../components/wrapper"
 import { Link } from "react-router-dom";
@@ -129,7 +129,7 @@ class Home extends Component {
                 })}
               </Container>
             ) : (
-                <h3>Loading Posts</h3>
+              <Spinner className="loadSpinner" animation="grow" variant="dark" />
               )}
           </Container>
         </div>
@@ -162,7 +162,7 @@ class Home extends Component {
                 })}
               </Container>
             ) : (
-                <h3>Loading Posts</h3>
+              <Spinner className="loadSpinner" animation="grow" variant="dark" />
               )}
           </Container>
           <div className="submitDish">
