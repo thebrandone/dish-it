@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import PostCard from "../components/PostCard";
 import API from "../utils/API";
-import { Container, Button } from "react-bootstrap";
+import { Container, Button, Spinner} from "react-bootstrap";
 import Foodform from "../components/Foodform"
-import Wrapper from "../components/wrapper"
 import { Link } from "react-router-dom";
 
 // import { Input, TextArea, FormBtn } from "../../components/Form";
@@ -18,6 +17,7 @@ class Home extends Component {
       dishes: [],
       rating: 0,
       user: '',
+      username: '',
       isloggedIn: props.isloggedIn
     };
   }
@@ -26,6 +26,7 @@ class Home extends Component {
 
   componentDidMount() {
     this.loadDishes();
+
   }
 
   // Loads all dishes
@@ -35,6 +36,7 @@ class Home extends Component {
         this.setState({ dishes: Array.from(res.data) })
       )
       .catch(err => console.log(err));
+  //var newData = this.state.data.concat([data]); 
   };
 
   renderStars = (rating) => {
@@ -114,6 +116,8 @@ class Home extends Component {
                 {this.state.dishes.map(dish => {
                   return (
                     <PostCard key={dish._id}
+                      username={dish.username}
+                      profilePic={dish.profilePic}
                       name={dish.name}
                       description={dish.description}
                       image={dish.image}
@@ -128,7 +132,7 @@ class Home extends Component {
                 })}
               </Container>
             ) : (
-                <h3>Loading Posts</h3>
+              <Spinner className="loadSpinner" animation="grow" variant="dark" />
               )}
           </Container>
         </div>
@@ -146,7 +150,9 @@ class Home extends Component {
                 {this.state.dishes.map(dish => {
                   return (
                     <PostCard key={dish._id}
-                      user={this.state.user}
+                      username={dish.username}
+                      profilePic={dish.profilePic}
+                      user={dish.user}
                       name={dish.name}
                       description={dish.description}
                       tags={dish.tags}
@@ -161,7 +167,7 @@ class Home extends Component {
                 })}
               </Container>
             ) : (
-                <h3>Loading Posts</h3>
+              <Spinner className="loadSpinner" animation="grow" variant="dark" />
               )}
           </Container>
           <div className="submitDish">

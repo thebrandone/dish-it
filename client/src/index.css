@@ -5,7 +5,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: rgba(212, 189, 145, 0.459);
 
 }
 
@@ -48,9 +47,16 @@ code {
   width: 200px;
   font-style: italic;
   background-color: #f53b50;
-  color: rgb(255, 176, 30);
+  color: white;
 }
 
 .container .container-fluid{
   margin-bottom: 80px;
+}
+
+.loadSpinner{
+  width: 300px;
+  height: 300px;
+  display: center;
+  
 }

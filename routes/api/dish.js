@@ -14,5 +14,11 @@ router.route("/:id")
 
 router.route("/user/:user")
   .get(dishController.findByUser);
+
+router.route("/location/:location")
+  .get(dishController.findByLocation);
+
+router.route("/dish/:name")
+  .get(dishController.findByName);
   
 module.exports = router;

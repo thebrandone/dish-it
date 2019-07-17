@@ -41,5 +41,17 @@ module.exports = {
       .find({user: req.body})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  findByLocation: function(req, res) {
+    db.Dish
+      .find({address: req.query})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findByName: function(req, res) {
+    db.Dish
+      .find({name: /req.body/i})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
 };

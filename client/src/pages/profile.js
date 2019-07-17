@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 import ProfilePostCard from "../components/ProfilePostCard";
 import API from "../utils/API";
-import { Container, Jumbotron, Button, Card } from "react-bootstrap";
-// import Foodform from "../components/Foodform"
+import { Container, Jumbotron } from "react-bootstrap";
 import Image from 'react-bootstrap/Image'
 import './style.css';
-// import { Input, TextArea, FormBtn } from "../../components/Form";
-// import Jumbotron from "../../components/Jumbotron";
-import DeleteBtn from "../components/DeleteBtn";
 
 class Profile extends Component {
   // Setting our component's initial state
@@ -103,7 +99,7 @@ class Profile extends Component {
   };
 
   dishDelete = id => {
-    API.deleteDish(id).then(() => this.loadDishes());
+    API.deleteDish(id).then(() => this.loadUser());
   };
 
   render() {
@@ -114,35 +110,27 @@ class Profile extends Component {
           <Image src={sessionStorage.getItem('pic')} className='profileImage' roundedCircle />
 
           <h1>{sessionStorage.getItem('name')}</h1>
-          <form>
-
-          </form>
-
-        </Jumbotron>
-        Your Dish-it Posts
-
-        <Container>
+          
+          <h3 >Your Dish-it History</h3>
+        
           {this.state.dishes.map(dish => {
             return (
               <ProfilePostCard key={dish._id}
+                id={dish._id}
                 name={dish.name}
                 description={dish.description}
                 image={dish.image}
-                address={dish.address}
+                address={dish.address.substr(0,dish.address.indexOf(','))}
                 date={dish.date}
                 rating={dish.rating}
                 renderStars={this.renderStars}
                 renderStarIcon={dish.renderStarIcon}
-              >
-                <button>
-                <DeleteBtn  onClick={() => this.dishDelete(dish._id)} />
-                </button>
-                
-              </ProfilePostCard>
-            );
-            
-          })};
-        </Container>
+                dishDelete={this.dishDelete}
+              />
+            )
+          })}
+      
+        </Jumbotron>
       </Container>
     )
   }

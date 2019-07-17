@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
+import { Card, ListGroup, ListGroupItem, Button, Image } from 'react-bootstrap';
 import './style.css';
 // import burger from './burger.jpeg';
 import Moment from 'react-moment';
@@ -9,9 +9,10 @@ function PostCard(props) {
 
     return (
         <Card>
-            <ListGroup className="list-group-flush">
-                <ListGroupItem className="author">
-                    {props.user}
+            <ListGroup className="list-group-flush author">
+                <ListGroupItem>
+                <Image src={props.profilePic} className="profilePic" roundedCircle />
+                    {props.username}
                 </ListGroupItem>
             </ListGroup>
 

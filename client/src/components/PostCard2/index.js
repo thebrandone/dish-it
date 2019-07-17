@@ -1,8 +1,6 @@
 import React from "react";
-import { ListGroup, ListGroupItem, Container, Link, Image, Button, Row, Col } from 'react-bootstrap';
+import { ListGroup, ListGroupItem, Container, Image, Row, Col } from 'react-bootstrap';
 import './style.css';
-// import burger from './burger.jpeg';
-import Moment from 'react-moment';
 import 'moment-timezone';
 
 function PostCard2(props) {
@@ -16,7 +14,7 @@ function PostCard2(props) {
                 <Col xs={8} m={6} >
                     <strong className="cardName">{props.name}</strong>
                     <ListGroup  className="infoSide">
-                        <ListGroupItem><strong>Posted by</strong> {props.user}</ListGroupItem>
+                        <ListGroupItem><strong>Posted by</strong> {props.username}</ListGroupItem>
 
                         <ListGroupItem className="desc">{props.description}</ListGroupItem>
 

@@ -1,6 +1,6 @@
 .bioDiv{
-    margin-top: 50px;
-    max-width: 80%;
+    margin-top: 20px;
+    max-width: 90%;
     min-width: 50%;
 }
 
@@ -12,7 +12,8 @@
 .profileCard{
     align-content: center;
     text-align: center;
-    background: rgba(241, 180, 65, 50%);
+    background: rgba(206, 44, 32, 0.4);
+    margin: 80px 15px 0px 15px;
 
 }
 
@@ -20,10 +21,18 @@
     width: 90%;
     padding: 3px;
     text-align: center;
+    background-color: rgba(210, 70, 70, 0.208);
+    border-radius: 10px;
+    margin-right: 0;
 }
 
 .compactContainer{
     margin-top: 80px;
+    background-color: grey;
+    border-radius: 10px;
+    text-align: center;
+    height: fit-content;
+
 }
 
 .toCompact{
@@ -57,10 +66,19 @@
     /* margin-left: auto; */
 }
 
-/* .btn-primary{
-    background-color: #f53b50;
-} */
+.delButton{
+    z-index: 200;
+}
 
-/* .imgBtn{
-    background-image: url("https://img.icons8.com/ios-filled/50/000000/menu.png");
-} */
+.searchFeed{
+    margin-top: 100px;
+    text-align: center;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    overflow: auto;
+    height: 600px;
+}
+
+
+

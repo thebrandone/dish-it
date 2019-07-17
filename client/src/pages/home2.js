@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PostCard2 from "../components/PostCard2";
 import API from "../utils/API";
-import { Container, Button } from "react-bootstrap";
+import { Container, Button, Spinner } from "react-bootstrap";
 import Foodform from "../components/Foodform"
 import { Link } from "react-router-dom";
 
@@ -111,6 +111,8 @@ class Home2 extends Component {
                 {this.state.dishes.map(dish => {
                   return (
                     <PostCard2 key={dish._id}
+                      username={dish.username}
+                      profilePic={dish.profilePic}
                       name={dish.name}
                       description={dish.description}
                       image={dish.image}
@@ -124,7 +126,7 @@ class Home2 extends Component {
                 })}
               </Container>
             ) : (
-                <h3>Loading Posts</h3>
+              <Spinner className="loadSpinner" animation="grow" variant="dark" />
               )}
           </Container>
         </div>
@@ -141,6 +143,8 @@ class Home2 extends Component {
                 {this.state.dishes.map(dish => {
                   return (
                     <PostCard2 key={dish._id}
+                      username={dish.username}
+                      profilePic={dish.profilePic}
                       user={dish.user}
                       name={dish.name}
                       description={dish.description}
@@ -155,7 +159,7 @@ class Home2 extends Component {
                 })}
               </Container>
             ) : (
-                <h3>Loading Posts</h3>
+              <Spinner className="loadSpinner" animation="grow" variant="dark" />
               )}
           </Container>
           <div className="submitDish">

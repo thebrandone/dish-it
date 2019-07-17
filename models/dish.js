@@ -7,6 +7,10 @@ var FoodPost = new Schema({
         type: String,
         required: false
     },
+    username: {
+        type: String,
+        required: false
+    },
     name: {
         type: String,
         required: false
@@ -46,6 +50,10 @@ var FoodPost = new Schema({
     },
     date: {
         type: Date,
+        required: false
+    },
+    profilePic:{
+        type: String,
         required: false
     }
 });

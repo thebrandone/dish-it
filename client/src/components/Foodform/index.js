@@ -16,6 +16,7 @@ class Foodform extends React.Component {
     super(props);
     this.state = {
       user: '',
+      username: '',
       name: '',
       img: '',
       description: '',
@@ -29,7 +30,8 @@ class Foodform extends React.Component {
       date: '',
       file: null,
       dishes: [],
-      isLoggedIn: false
+      isLoggedIn: false,
+      profilePic: ''
     };
     this.props = props;
     this.input = React.createRef();
@@ -54,6 +56,10 @@ class Foodform extends React.Component {
 
     this.setState({ user: sessionStorage.getItem("email") })
 
+    this.setState({ username: sessionStorage.getItem("name") })
+
+    this.setState({ profilePic: sessionStorage.getItem("pic") })
+
   };
 
   handleSubmit = event => {
@@ -62,6 +68,8 @@ class Foodform extends React.Component {
       
     this.setState({
       user: this.state.user,
+      username: this.state.username,
+      profilePic: this.state.profilePic,
       name: this.state.name,
       img: this.state.img,
       description: this.state.description,
@@ -159,17 +167,16 @@ class Foodform extends React.Component {
       if (this.state.name && this.state.description) {
 
         API.saveDish({
+          username: this.state.username,
           user: this.state.user,
-      name: this.state.name,
-      img: this.state.img,
-      description: this.state.description,
-      tags: this.state.tags,
-      address: this.state.address,
-      restaurant:this.state.restaurant,
-      city:this.state.city,
-      state:this.state.state,
-      rating: this.state.rating,
-      date: this.state.date
+          name: this.state.name.toLowerCase(),
+          image: imageid,
+          description: this.state.description,
+          address: this.state.address,
+          tags: this.state.tags,
+          rating: this.state.rating,
+          date: this.state.startDate,
+          profilePic: this.state.profilePic
         })
           // .then(res => console.log(this.state))
           .then(this.props.loadDishes)
