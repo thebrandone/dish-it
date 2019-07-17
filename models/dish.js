@@ -36,6 +36,18 @@ var FoodPost = new Schema({
         type: String,
         required: false
     },
+    restaurant: {
+        type: String,
+        required: false
+    },
+    city: {
+        type: String,
+        required: false
+    },
+    state: {
+        type: String,
+        required: false
+    },
     date: {
         type: Date,
         required: false

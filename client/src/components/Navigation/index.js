@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav, Form, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, Form } from 'react-bootstrap';
 import './style.css';
 // import Foodform from '../Foodform';
 // import EditProfileForm from "../EditProfileForm";
@@ -14,18 +14,12 @@ console.log(props.isloggedIn)
                 <Navbar.Brand href="#home">Dish-it!</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
+                <Nav className="mr-auto">
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/profile">My Profile</Nav.Link>
-                        <NavDropdown title="Discover" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="/search">Dishes</NavDropdown.Item>
-                            <NavDropdown.Item href="/locations">Locations</NavDropdown.Item>
-                            <NavDropdown.Item href="/friends">Friends</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="/dishteam">Dish-it! Team</NavDropdown.Item>
-                        </NavDropdown>
+                        <Nav.Link href="/search">Discover</Nav.Link>
+                        <Nav.Link href="/dish-team">Dish-it Team</Nav.Link>
                     </Nav>
-
                     <Form inline>
                         <Login
                             signup={props.signup}
@@ -46,15 +40,8 @@ console.log(props.isloggedIn)
                     <Nav className="mr-auto">
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/profile">My Profile</Nav.Link>
-                        <NavDropdown title="Discover" id="basic-nav-dropdown">
-
-                            <NavDropdown.Item href="/search">Dishes</NavDropdown.Item>
-                            <NavDropdown.Item href="/locations">Locations</NavDropdown.Item>
-                            <NavDropdown.Item href="/friends">Friends</NavDropdown.Item>
-
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="/dishteam">Dish-it! Team</NavDropdown.Item>
-                        </NavDropdown>
+                        <Nav.Link href="/search">Discover</Nav.Link>
+                        <Nav.Link href="/dish-team">Dish-it Team</Nav.Link>
                     </Nav>
 
                     {props.name}
