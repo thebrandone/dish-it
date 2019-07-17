@@ -20,7 +20,10 @@ class Foodform extends React.Component {
       img: '',
       description: '',
       tags: [],
-      address: '',
+      address:"",
+      restaurant: '',
+      city: "",
+      state:"",
       rating: 0,
       show: false,
       date: '',
@@ -56,24 +59,24 @@ class Foodform extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     // alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} I give this ${this.state.rating} stars. address: ${this.state.address} Date: ${this.state.startDate}`);
-      var stateCopy = Object.assign({}, this.state.tags);
       
-
     this.setState({
       user: this.state.user,
       name: this.state.name,
       img: this.state.img,
       description: this.state.description,
-      tags: stateCopy,
+      tags: this.state.tags,
       address: this.state.address,
+      restaurant:this.state.restaurant,
+      city:this.state.city,
+      state:this.state.state,
       rating: this.state.rating,
       date: this.state.date
     });
     // this.handleFormSubmit();
+    console.log(this.state.address)
     this.handleClose();
-
     //AWS
-
     const formData = new FormData();
     formData.append('file', this.state.file[0]);
     axios.post(`/test-upload`, formData, {
@@ -103,7 +106,6 @@ class Foodform extends React.Component {
     this.setState({ show: true });
   }
 
-
   handleDateChange = date => {
     this.setState({
       startDate: date
@@ -112,11 +114,12 @@ class Foodform extends React.Component {
   }
 
   handleAddressChange = address => {
-    this.setState({
-      address
+    let addressArray= address.split(",")
+    this.setState({ 
+     address:address,restaurant:addressArray[0], city:addressArray[2], state:addressArray[3]
     });
-
-    console.log(address);
+    console.log( address); 
+    console.log( addressArray[2] )
   };
 
   onStarClick(nextValue, prevValue, name) {
@@ -157,13 +160,16 @@ class Foodform extends React.Component {
 
         API.saveDish({
           user: this.state.user,
-          name: this.state.name,
-          image: imageid,
-          description: this.state.description,
-          address: this.state.address,
-          tags: this.state.tags,
-          rating: this.state.rating,
-          date: this.state.startDate
+      name: this.state.name,
+      img: this.state.img,
+      description: this.state.description,
+      tags: this.state.tags,
+      address: this.state.address,
+      restaurant:this.state.restaurant,
+      city:this.state.city,
+      state:this.state.state,
+      rating: this.state.rating,
+      date: this.state.date
         })
           // .then(res => console.log(this.state))
           .then(this.props.loadDishes)
@@ -171,10 +177,8 @@ class Foodform extends React.Component {
         window.location.reload()
       }
   };
-
   render() {
-    // const { rating } = this.state;
-   
+    
       return (
 
         <div className="dishForm">
