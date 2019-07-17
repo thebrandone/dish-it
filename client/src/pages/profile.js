@@ -103,7 +103,7 @@ class Profile extends Component {
   };
 
   dishDelete = id => {
-    API.deleteDish(id).then(() => this.loadDishes());
+    API.deleteDish(id).then(() => this.loadUser());
   };
 
   render() {
@@ -114,35 +114,27 @@ class Profile extends Component {
           <Image src={sessionStorage.getItem('pic')} className='profileImage' roundedCircle />
 
           <h1>{sessionStorage.getItem('name')}</h1>
-          <form>
-
-          </form>
-
-        </Jumbotron>
-        Your Dish-it Posts
-
-        <Container>
+          
+          <h3 >Your Dish-it Posts</h3>
+        
           {this.state.dishes.map(dish => {
             return (
               <ProfilePostCard key={dish._id}
+                id={dish._id}
                 name={dish.name}
                 description={dish.description}
                 image={dish.image}
-                address={dish.address}
+                address={dish.address.substr(0,dish.address.indexOf(','))}
                 date={dish.date}
                 rating={dish.rating}
                 renderStars={this.renderStars}
                 renderStarIcon={dish.renderStarIcon}
-              >
-                <button>
-                <DeleteBtn  onClick={() => this.dishDelete(dish._id)} />
-                </button>
-                
-              </ProfilePostCard>
-            );
-            
-          })};
-        </Container>
+                dishDelete={this.dishDelete}
+              />
+            )
+          })}
+      
+        </Jumbotron>
       </Container>
     )
   }
