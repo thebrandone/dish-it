@@ -78,7 +78,6 @@ app.post('/test-upload', (request, response) => {
     });
 });
 
-
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(bodyParser.json());
@@ -94,9 +93,9 @@ app.use(routes);
 // catch all handler
 
 // Connect to the Mongo DB
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/dishit", {
-//   useNewUrlParser: true
-// });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/dishit", {
+  useNewUrlParser: true
+});
 
 // //connect to the Mongo DB for Heroku
 // mongoose.connect(process.env.MONGODB_URI || "mongodb://username:Starfish1@ds349587.mlab.com:49587/heroku_5sw7jz8q", {
@@ -104,9 +103,9 @@ app.use(routes);
 // })
 
 //connect to GREGS MONGO DB for Heroku
-mongoose.connect(process.env.MONGODB_URI || "mongodb://gregh:XLR8f45t@ds151076.mlab.com:51076/heroku_2db9fn8f", {
-  useNewUrlParser: true
-})
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://gregh:XLR8f45t@ds151076.mlab.com:51076/heroku_2db9fn8f", {
+//   useNewUrlParser: true
+// })
 
 
 //mongodb://gregh:XLR8f45t@ds151076.mlab.com:51076/heroku_2db9fn8f

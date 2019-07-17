@@ -16,15 +16,23 @@ class Profile extends Component {
     this.state = {
       dishes: [],
       rating: 0,
-      user: '',
+      user: sessionStorage.getItem("email"),
       isloggedIn: props.isloggedIn
     };
   }
 
   componentDidMount() {
-
-    this.loadDishes();
+    this.loadUser();
   }
+
+  loadUser = () => {
+    API.findByUser(this.state.user)
+    .then(res =>
+      this.setState({ dishes: res.data })
+    )
+    .catch(err => console.log(err.response.data));
+  }
+  
   loadDishes = () => {
     API.getDishes()
       .then(res =>
