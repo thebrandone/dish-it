@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PostCard from "../components/PostCard";
+import PostCard2 from "../components/PostCard2";
 import API from "../utils/API";
 import { Container } from "react-bootstrap";
 import { Button } from 'react-bootstrap';
@@ -7,7 +7,6 @@ import Foodform from "../components/Foodform"
 // import { Input, TextArea, FormBtn } from "../../components/Form";
 // import Jumbotron from "../../components/Jumbotron";
 // import DeleteBtn from "../../components/DeleteBtn";
-
 
 
 class Search extends Component {
@@ -18,6 +17,7 @@ class Search extends Component {
       dishes: [],
       rating: 0,
       user: '',
+      search: '',
       isloggedIn: props.isloggedIn
     };
   }
@@ -29,6 +29,7 @@ class Search extends Component {
 
   // When the component mounts, load all books and save them to this.state.books
   componentDidMount() {
+      
   }
   
   // Loads all dishes
@@ -93,18 +94,18 @@ class Search extends Component {
 
   // Handles updating component state when the user types into the input field
   handleInputChange = event => {
+      
     event.preventDefault();
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
+    this.setState( {search: event.target.value} );
   };
 
   // When the form is submitted, use the API.saveBook method to save the book data
   // Then reload books from the database
   handleFormSubmit = event => {
     event.preventDefault();
-    API.findByUser(this.state.user)
+    console.log(this.state.search)
+
+    API.findByName(this.state.search)
       .then(res =>
         this.setState({ dishes: res.data })
       )
@@ -114,8 +115,9 @@ class Search extends Component {
   render() {
     if (!this.state.isloggedIn) {
       return (
-        <div className="feedWrapper">
+        <div className="searchFeed">
           <Container fluid>
+              <h3>Search for a dish name</h3>
           <form onSubmit={this.handleSubmit}>
           <input name="user" type="text" value={this.state.value} onChange={this.handleInputChange} required />
               <Button type="submit" value="Submit" variant="primary" onClick={this.handleFormSubmit}>
@@ -126,16 +128,19 @@ class Search extends Component {
               <Container>
                 {this.state.dishes.map(dish => {
                   return (
-                    <PostCard key={dish._id}
-                      name={dish.name}
-                      description={dish.description}
-                      image={dish.image}
-                      address={dish.address}
-                      date={dish.date}
-                      rating={dish.rating}
-                      renderStars={this.renderStars}
-                      renderStarIcon={dish.renderStarIcon}>
-                    </PostCard>
+                    <PostCard2 key={dish._id}
+                    username={dish.username}
+                    profilePic={dish.profilePic}
+                    name={dish.name}
+                    description={dish.description}
+                    image={dish.image}
+                    tags={dish.tags}
+                    address={dish.address}
+                    date={dish.date}
+                    rating={dish.rating}
+                    renderStars={this.renderStars}
+                    renderStarIcon={dish.renderStarIcon}>
+                    </PostCard2>
                   );
                 })}
               </Container>
@@ -147,7 +152,7 @@ class Search extends Component {
       );
     } else {
       return (
-        <div className="feedWrapper">
+        <div className="searchFeed">
           <Container fluid>
           <form onSubmit={this.handleSubmit}>
           <input name="user" type="text" value={this.state.value} onChange={this.handleInputChange} required />
@@ -159,17 +164,19 @@ class Search extends Component {
               <Container>
                 {this.state.dishes.map(dish => {
                   return (
-                    <PostCard key={dish._id}
-                      user={dish.user}
-                      name={dish.name}
-                      description={dish.description}
-                      image={dish.image}
-                      address={dish.address}
-                      date={dish.date}
-                      rating={dish.rating}
-                      renderStars={this.renderStars}
-                      renderStarIcon={dish.renderStarIcon}>
-                    </PostCard>
+                    <PostCard2 key={dish._id}
+                    username={dish.username}
+                    profilePic={dish.profilePic}
+                    name={dish.name}
+                    description={dish.description}
+                    image={dish.image}
+                    tags={dish.tags}
+                    address={dish.address}
+                    date={dish.date}
+                    rating={dish.rating}
+                    renderStars={this.renderStars}
+                    renderStarIcon={dish.renderStarIcon}>
+                    </PostCard2>
                   );
                 })}
               </Container>

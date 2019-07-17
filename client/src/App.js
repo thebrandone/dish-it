@@ -1,11 +1,13 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/home"
 import Home2 from "./pages/home2"
 import Profile from "./pages/profile"
 import Search from "./pages/search"
+import Search2 from "./pages/search2"
 import DishTeam from "./pages/dishTeam"
 import Nav from "./components/Navigation"
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import './App.css';
 
 class App extends React.Component {
@@ -78,6 +80,7 @@ class App extends React.Component {
                 isloggedIn={this.state.isloggedIn}
               />} />
             <Route exact path="/search/" component={Search} />
+            <Route exact path="/locations/" component={Search2} />
             <Route exact path="/dish-team" component={DishTeam} />
           </Switch>
         </div>
