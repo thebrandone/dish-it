@@ -1,16 +1,15 @@
 import React, { Component } from "react";
-import PostCard from "../components/PostCard";
+import PostCard2 from "../components/PostCard2";
 import API from "../utils/API";
 import { Container, Button } from "react-bootstrap";
 import Foodform from "../components/Foodform"
-import Wrapper from "../components/wrapper"
 import { Link } from "react-router-dom";
 
 // import { Input, TextArea, FormBtn } from "../../components/Form";
 // import Jumbotron from "../../components/Jumbotron";
 // import DeleteBtn from "../../components/DeleteBtn";
 
-class Home extends Component {
+class Home2 extends Component {
   // Setting our component's initial state
   constructor(props) {
     super(props);
@@ -23,7 +22,6 @@ class Home extends Component {
   }
 
   // When the component mounts, load all dishes and save them to this.state.dishes[]
-
   componentDidMount() {
     this.loadDishes();
   }
@@ -79,7 +77,6 @@ class Home extends Component {
 
   // Handles updating component state when the user types into the input field
   handleInputChange = event => {
-    event.preventDefault();
     const { name, value } = event.target;
     this.setState({
       [name]: value
@@ -90,40 +87,39 @@ class Home extends Component {
   // Then reload dishes from the database
   handleFormSubmit = event => {
     event.preventDefault();
-    console.log(this.state.user, "STATE user");
-    API.findByUser({user: this.state.user})
-      .then(res =>
-        console.log(res.data, "RES")
-        // this.setState({ dishes: res.data })
-      )
-      .catch(err => console.log(err.response.data));
-      console.log(this.state.dishes, "STATE dishes");
+    if (this.state.name && this.state.description) {
+      API.saveDish({
+        name: this.state.name,
+        description: this.state.description,
+      })
+        .then(res => this.loadDishes())
+        .catch(err => console.log(err));
+    }
   };
 
   render() {
+
     if (!this.state.isloggedIn) {
       return (
-
-        <div className="feedWrapper">
-          <Link to="/compact">
-            <Button className="toCompact" size="sm" />
-          </Link>
+        <div className="compactContainer">
+          <Link to="/">
+            <Button className="toCompact" size="sm"/>
+          </Link>          
           <Container fluid>
             {this.state.dishes && this.state.dishes.length ? (
               <Container>
                 {this.state.dishes.map(dish => {
                   return (
-                    <PostCard key={dish._id}
+                    <PostCard2 key={dish._id}
                       name={dish.name}
                       description={dish.description}
                       image={dish.image}
-                      tags={dish.tags}
                       address={dish.address}
                       date={dish.date}
                       rating={dish.rating}
                       renderStars={this.renderStars}
                       renderStarIcon={dish.renderStarIcon}>
-                    </PostCard>
+                    </PostCard2>
                   );
                 })}
               </Container>
@@ -135,28 +131,26 @@ class Home extends Component {
       );
     } else {
       return (
-        <div className="feedWrapper">
-
-          <Link to="/compact">
-            <Button className="toCompact" size="sm" />
-          </Link>          <Container fluid>
-
+        <div className="compactContainer">
+          <Link to="/">
+          <Button className="toFeed" size="sm"/>
+          </Link>          
+          <Container fluid>
             {this.state.dishes && this.state.dishes.length ? (
               <Container>
                 {this.state.dishes.map(dish => {
                   return (
-                    <PostCard key={dish._id}
+                    <PostCard2 key={dish._id}
                       user={dish.user}
                       name={dish.name}
                       description={dish.description}
-                      tags={dish.tags}
                       image={dish.image}
                       address={dish.address}
                       date={dish.date}
                       rating={dish.rating}
                       renderStars={this.renderStars}
                       renderStarIcon={dish.renderStarIcon}>
-                    </PostCard>
+                    </PostCard2>
                   );
                 })}
               </Container>
@@ -172,4 +166,4 @@ class Home extends Component {
     }
   }
 }
-export default Home;
+export default Home2;

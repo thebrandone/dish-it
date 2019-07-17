@@ -1,0 +1,101 @@
+.card-body{
+    padding: 5px;
+}
+
+
+/* this adds a space before the date/time is shown */
+time {
+    margin-left: 2%;
+}
+
+.list-group-item{
+    padding: 5px;
+}
+
+.btn-primary{
+    width: 50%;
+    background: rgb(241, 180, 65);
+    border-color: black;
+    color: black;
+}
+
+.btn-primary:hover{
+    background-color: #c2404d;
+    color: white;
+    border-color: #c2404d;
+}
+
+.btn-primary:visited{
+    border-style: none;
+}
+
+/* .compactView div{
+    width: 100%;
+    height: 200px;
+    font-size: x-small;
+}
+
+
+.compactView .container{
+    width: 100%;
+    margin-bottom: 125px;
+}
+
+.list-group-item{
+    height: 25px;
+} */
+
+.compactView{
+    width: 100%;
+    background: rgba(0, 0, 0, 0.178);
+    padding: 10px;
+    margin: 15px 0 15px 0;
+}
+
+.smallImage{
+    max-width: 100%;
+    max-height: 190px;
+    padding-bottom: 4px;
+}
+
+.imageSide{
+   text-align: center;
+}
+.infoSide{
+    color: black;
+    font-size: small;
+}
+
+.list-group-item{
+    background: none;
+    border-style: none;
+    max-height: 80px;
+    margin: 0;
+    padding: 2px 0px 2px 0px;
+    font-size: small;
+
+}
+.cardName{
+    margin: 0;
+    padding: 0;
+    color: darkred;
+}
+
+.container{
+    max-height: 270px;
+    font-size: x-small;
+}
+
+strong{
+    font-size: x-small;
+}
+
+time{
+    font-size: x-small;
+}
+
+.desc{
+    overflow-y: auto;
+}
+
+

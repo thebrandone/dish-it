@@ -1,0 +1,59 @@
+.bioDiv{
+    margin-top: 50px;
+    max-width: 80%;
+    min-width: 50%;
+}
+
+.profileImage{
+    min-height: 150px;
+    max-height: 300px;
+}
+
+.profileCard{
+    align-content: center;
+    text-align: center;
+    background: rgba(241, 180, 65, 50%);
+
+}
+
+.card{
+    width: 90%;
+    padding: 3px;
+    text-align: center;
+}
+
+.compactContainer{
+    margin-top: 80px;
+}
+
+.toCompact{
+    position: fixed;
+    top: 100px;
+    left: 0px;
+    z-index: 998;
+    width: 60px;
+    height: 60px;
+    background-image: url("https://img.icons8.com/ios-filled/50/000000/menu.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.toFeed{
+    position: fixed;
+    top: 100px;
+    left: 0px;
+    z-index: 998;
+    width: 60px;
+    height: 60px;
+    background-image: url("https://img.icons8.com/ios-filled/50/000000/stacking.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* .btn-primary{
+    background-color: #f53b50;
+} */
+
+/* .imgBtn{
+    background-image: url("https://img.icons8.com/ios-filled/50/000000/menu.png");
+} */
