@@ -72,5 +72,25 @@
     height: 600px;
 }
 
+.dishTeam{
 
+    margin-top: 55px;
+    align-content: center; 
+    max-width: 500px;
+    text-align: center;
+}
 
+.carousel-caption{
+    background-color: rgba(203, 61, 61, 0.317);
+    color: white;
+    border-radius: 20px;
+}
+
+.d-block{
+    border-radius: 20px;
+}
+
+.dishitLogo{
+    width: 400px;
+    margin-top: 20px;
+}

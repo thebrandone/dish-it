@@ -81,7 +81,7 @@ class App extends React.Component {
               />} />
             <Route exact path="/search/" component={Search} />
             <Route exact path="/locations/" component={Search2} />
-            <Route exact path="/dish-team" component={DishTeam} />
+            <Route exact path="/dishteam" component={DishTeam} />
           </Switch>
         </div>
       </Router>
