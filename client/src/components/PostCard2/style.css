@@ -2,6 +2,7 @@
     padding: 5px;
 }
 
+
 /* this adds a space before the date/time is shown */
 time {
     margin-left: 2%;
@@ -62,18 +63,16 @@ time {
 }
 .infoSide{
     color: black;
-    overflow: scroll;
     font-size: small;
 }
 
 .list-group-item{
     background: none;
     border-style: none;
-    overflow: scroll;
     max-height: 80px;
     margin: 0;
     padding: 2px 0px 2px 0px;
-    font-size: x-small;
+    font-size: small;
 
 }
 .cardName{
@@ -83,7 +82,7 @@ time {
 }
 
 .container{
-    max-height: 260px;
+    max-height: 270px;
     font-size: x-small;
 }
 
@@ -93,6 +92,10 @@ strong{
 
 time{
     font-size: x-small;
+}
+
+.desc{
+    overflow-y: auto;
 }
 
 
