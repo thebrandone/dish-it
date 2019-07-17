@@ -9,8 +9,8 @@ export default {
   getDish: function(id) {
     return axios.get("/api/dish/" + id);
   },
-  getProfileDish: function(name) {
-    return axios.get("/api/dish/" + name)
+  getProfileDish: function(query) {
+    return axios.get("/api/dish/", { params: {q: query} });
   },
   // Deletes the book with the given id
   deleteDish: function(id) {
