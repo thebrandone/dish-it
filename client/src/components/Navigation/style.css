@@ -8,7 +8,9 @@
 .navbar-light .navbar-nav .nav-link{
 
     color: #c2404d;
-    font-size: 15px;
+    font-size: 17px;
+    color: rgb(255, 176, 30);
+
 
 }
 
@@ -51,3 +53,4 @@
 .editProfileForm{
     height: auto;
 }
+
