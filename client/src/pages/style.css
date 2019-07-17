@@ -20,6 +20,8 @@
     width: 90%;
     padding: 3px;
     text-align: center;
+    background-color: rgba(210, 70, 70, 0.208);
+    border-radius: 10px;
 }
 
 .compactContainer{

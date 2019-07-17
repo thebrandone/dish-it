@@ -111,6 +111,8 @@ class Home2 extends Component {
                 {this.state.dishes.map(dish => {
                   return (
                     <PostCard2 key={dish._id}
+                      username={dish.username}
+                      profilePic={dish.profilePic}
                       name={dish.name}
                       description={dish.description}
                       image={dish.image}
@@ -141,6 +143,8 @@ class Home2 extends Component {
                 {this.state.dishes.map(dish => {
                   return (
                     <PostCard2 key={dish._id}
+                      username={dish.username}
+                      profilePic={dish.profilePic}
                       user={dish.user}
                       name={dish.name}
                       description={dish.description}

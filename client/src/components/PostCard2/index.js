@@ -16,7 +16,7 @@ function PostCard2(props) {
                 <Col xs={8} m={6} >
                     <strong className="cardName">{props.name}</strong>
                     <ListGroup  className="infoSide">
-                        <ListGroupItem><strong>Posted by</strong> {props.user}</ListGroupItem>
+                        <ListGroupItem><strong>Posted by</strong> {props.username}</ListGroupItem>
 
                         <ListGroupItem className="desc">{props.description}</ListGroupItem>
 

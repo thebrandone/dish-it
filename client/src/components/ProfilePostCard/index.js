@@ -1,8 +1,6 @@
 import React from "react";
-import { Container, Row, Col, ListGroup, Image, ListGroupItem, Button } from 'react-bootstrap';
+import { Row, Col, ListGroup, Image, ListGroupItem, Button } from 'react-bootstrap';
 import './style.css';
-// import burger from './burger.jpeg';
-import Moment from 'react-moment';
 import 'moment-timezone';
 
 function ProfilePostCard(props) {
@@ -29,8 +27,6 @@ function ProfilePostCard(props) {
                    
                 </Col>
             </Row>
-
-      
     )
 }
 export default ProfilePostCard;

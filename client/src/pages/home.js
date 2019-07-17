@@ -3,7 +3,6 @@ import PostCard from "../components/PostCard";
 import API from "../utils/API";
 import { Container, Button, Spinner} from "react-bootstrap";
 import Foodform from "../components/Foodform"
-import Wrapper from "../components/wrapper"
 import { Link } from "react-router-dom";
 
 // import { Input, TextArea, FormBtn } from "../../components/Form";
@@ -18,6 +17,7 @@ class Home extends Component {
       dishes: [],
       rating: 0,
       user: '',
+      username: '',
       isloggedIn: props.isloggedIn
     };
   }
@@ -26,6 +26,7 @@ class Home extends Component {
 
   componentDidMount() {
     this.loadDishes();
+
   }
 
   // Loads all dishes
@@ -115,6 +116,8 @@ class Home extends Component {
                 {this.state.dishes.map(dish => {
                   return (
                     <PostCard key={dish._id}
+                      username={dish.username}
+                      profilePic={dish.profilePic}
                       name={dish.name}
                       description={dish.description}
                       image={dish.image}
@@ -147,6 +150,8 @@ class Home extends Component {
                 {this.state.dishes.map(dish => {
                   return (
                     <PostCard key={dish._id}
+                      username={dish.username}
+                      profilePic={dish.profilePic}
                       user={dish.user}
                       name={dish.name}
                       description={dish.description}
