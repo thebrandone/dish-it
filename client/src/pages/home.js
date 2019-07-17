@@ -80,6 +80,7 @@ class Home extends Component {
 
   // Handles updating component state when the user types into the input field
   handleInputChange = event => {
+    event.preventDefault();
     const { name, value } = event.target;
     this.setState({
       [name]: value
@@ -90,18 +91,17 @@ class Home extends Component {
   // Then reload dishes from the database
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.name && this.state.description) {
-      API.saveDish({
-        name: this.state.name,
-        description: this.state.description,
-      })
-        .then(res => this.loadDishes())
-        .catch(err => console.log(err));
-    }
+    console.log(this.state.user, "STATE user");
+    API.findByUser({user: this.state.user})
+      .then(res =>
+        console.log(res.data, "RES")
+        // this.setState({ dishes: res.data })
+      )
+      .catch(err => console.log(err.response.data));
+      console.log(this.state.dishes, "STATE dishes");
   };
 
   render() {
-
     if (!this.state.isloggedIn) {
       return (
 
