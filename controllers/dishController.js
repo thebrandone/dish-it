@@ -38,7 +38,7 @@ module.exports = {
   },
   findByUser: function(req, res) {
     db.Dish
-      .find({user: req.params.user})
+      .find({user: req.body})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }
