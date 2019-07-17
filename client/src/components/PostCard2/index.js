@@ -1,8 +1,6 @@
 import React from "react";
-import { ListGroup, ListGroupItem, Container, Link, Image, Button, Row, Col } from 'react-bootstrap';
+import { ListGroup, ListGroupItem, Container, Image, Row, Col } from 'react-bootstrap';
 import './style.css';
-// import burger from './burger.jpeg';
-import Moment from 'react-moment';
 import 'moment-timezone';
 
 function PostCard2(props) {

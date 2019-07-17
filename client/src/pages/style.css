@@ -22,6 +22,7 @@
     text-align: center;
     background-color: rgba(210, 70, 70, 0.208);
     border-radius: 10px;
+    margin-right: 0;
 }
 
 .compactContainer{
