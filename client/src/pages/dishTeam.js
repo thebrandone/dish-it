@@ -1,7 +1,8 @@
 import React, { Component } from "react"
 import Wrapper from "../components/wrapper"
 import Cards from "../components/PicsDishTeam"
-import { Container } from "react-bootstrap";
+import { Container, Carousel, Image, CarouselItem } from "react-bootstrap";
+
 
 
 class DishTeam extends Component {
@@ -30,7 +31,7 @@ class DishTeam extends Component {
             {
                 "id": 5,
                 "name": "Brandon Emons",
-                "image": "https://files.slack.com/files-pri/TFC801MDL-FLKDWRTRV/img_20190426_124758.jpg"
+                "image": "https://dish-it-project.s3.amazonaws.com/bucketFolder/IMG_20190426_124758.jpg"
             }
         ]
     };
@@ -44,27 +45,75 @@ class DishTeam extends Component {
     // Map over this.state.cards and render a cardsCard component for each cards object
     render() {
         return (
-            <div className= "dishTeam">
-                <Container>
-                    <Wrapper>
-                        <strong>Dish It Team</strong>
-                    {this.state.cards.map(card => (
-                            <Cards
-                                id={card.id}
-                                key={card.id}
-                                name={card.name}
-                                image={card.image}
+            <Container className="dishTeam">
+
+                <h2> Dish-it! Team </h2>
+                <div className="dishTeam">
+                    <Carousel className="light">
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src="https://media.licdn.com/dms/image/C4E03AQEdHCAV1iSlOA/profile-displayphoto-shrink_800_800/0?e=1568851200&v=beta&t=PEt0c6gMtJVE4Yx_N6K6JLiel10Mec8iIhLHh0DF_nc"
+                                alt="First slide"
                             />
-                        ))}
-                    </Wrapper>
-                    <Wrapper>
-                        <div>
-                            Dish-it! the app that allwos you to showcase the dishes that you have enjoyed and or not enjoyed while eating at your favorite restaurants.
-                            Need ideas for what to eat? Scroll through evey dish that has been posted and see what looks good and get inspired of what to have for lunch or dinner.
-                        </div>
-                    </Wrapper>
-                </Container>
-            </div>
+                            <Carousel.Caption>
+                                <h3>Greg Horrocks</h3>
+                                <p>gregfhorrocks@gmail.com</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src="https://media.licdn.com/dms/image/C4D03AQEQaoGqmwkvFA/profile-displayphoto-shrink_800_800/0?e=1568851200&v=beta&t=TrVEa8D40X0hwxUOvJeou72ulG_30hgMhb_qlB5SQJg"
+                                alt="Third slide"
+                            />
+
+                            <Carousel.Caption>
+                                <h3>Robert Tibbs</h3>
+                                <p>Tibbsr09@gmail.com</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src="https://avatars3.githubusercontent.com/u/44414542?s=460&v=4"
+                                alt="Third slide"
+                            />
+
+                            <Carousel.Caption>
+                                <h3>Ryan Brown</h3>
+                                <p>rb054549@gmail.com</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src="https://media.licdn.com/dms/image/C4E03AQFTbJOBOQT_ZA/profile-displayphoto-shrink_200_200/0?e=1568851200&v=beta&t=xxRu7far82gurJtMtH2WIsxXW9F6_yZODcEpMlOT4AI"
+                                alt="Third slide"
+                            />
+
+                            <Carousel.Caption>
+                                <h3>Blair Betts</h3>
+                                <p>blairbetts25@gmail.com</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src="https://dish-it-project.s3.amazonaws.com/bucketFolder/IMG_20190426_124758.jpg"
+                                alt="Third slide"
+                            />
+
+                            <Carousel.Caption>
+                                <h3>Brandon Emons</h3>
+                                <p></p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                    </Carousel>
+                </div>
+                <Image className="dishitLogo" src="https://dish-it-project.s3.amazonaws.com/bucketFolder/dishitlogo.png"/>
+
+            </Container>
         );
     }
 }

@@ -20,11 +20,8 @@ class Foodform extends React.Component {
       name: '',
       img: '',
       description: '',
-      tags: [],
-      address:"",
-      restaurant: '',
-      city: "",
-      state:"",
+      tags: [""],
+      address: '',
       rating: 0,
       show: false,
       date: '',
@@ -65,7 +62,7 @@ class Foodform extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     // alert(`name ${this.state.name} <br> Image: ${this.state.img} description: ${this.state.description} I give this ${this.state.rating} stars. address: ${this.state.address} Date: ${this.state.startDate}`);
-      
+
     this.setState({
       user: this.state.user,
       username: this.state.username,
@@ -75,16 +72,14 @@ class Foodform extends React.Component {
       description: this.state.description,
       tags: this.state.tags,
       address: this.state.address,
-      restaurant:this.state.restaurant,
-      city:this.state.city,
-      state:this.state.state,
       rating: this.state.rating,
       date: this.state.date
     });
     // this.handleFormSubmit();
-    console.log(this.state.address)
     this.handleClose();
+
     //AWS
+
     const formData = new FormData();
     formData.append('file', this.state.file[0]);
     axios.post(`/test-upload`, formData, {
@@ -114,6 +109,7 @@ class Foodform extends React.Component {
     this.setState({ show: true });
   }
 
+
   handleDateChange = date => {
     this.setState({
       startDate: date
@@ -122,12 +118,11 @@ class Foodform extends React.Component {
   }
 
   handleAddressChange = address => {
-    let addressArray= address.split(",")
-    this.setState({ 
-     address:address,restaurant:addressArray[0], city:addressArray[2], state:addressArray[3]
+    this.setState({
+      address
     });
-    console.log( address); 
-    console.log( addressArray[2] )
+
+    console.log(address);
   };
 
   onStarClick(nextValue, prevValue, name) {
@@ -184,8 +179,10 @@ class Foodform extends React.Component {
         window.location.reload()
       }
   };
+
   render() {
-    
+    // const { rating } = this.state;
+   
       return (
 
         <div className="dishForm">

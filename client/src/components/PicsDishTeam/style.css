@@ -1,4 +1,4 @@
-.card {
+/* .card {
     background: transparent;
     border-radius: 2px;
     height: 215px;
@@ -56,4 +56,13 @@ li{
 strong{
   font-size: 15px;
 }
+   */
+
+   .teamImage{
+     width: 100px;
+   }
+
+.teamDiv{
+  text-align: center;
   
+}

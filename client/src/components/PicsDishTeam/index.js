@@ -4,9 +4,9 @@ import "./style.css";
 function Cards(props) {
     return (
 
-        <div>
-            <div className="img-container">
-                <img alt={props.name} src={props.image} />
+        <div className="teamDiv">
+            <div  >
+                <img className="teamImage" alt={props.name} src={props.image} />
             </div>
             <div className="content">
                 <ul>
