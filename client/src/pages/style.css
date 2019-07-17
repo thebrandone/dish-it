@@ -31,16 +31,29 @@
     top: 100px;
     left: 0px;
     z-index: 998;
-    width: 53px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
+    background-image: url("https://img.icons8.com/ios-filled/50/000000/menu.png");
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-.btn-primary{
+.toFeed{
+    position: fixed;
+    top: 100px;
+    left: 0px;
+    z-index: 998;
+    width: 60px;
+    height: 60px;
+    background-image: url("https://img.icons8.com/ios-filled/50/000000/stacking.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* .btn-primary{
     background-color: #f53b50;
-}
+} */
 
-.imgBtn{
-    background-image: url("./box.png");
-
-
-}
+/* .imgBtn{
+    background-image: url("https://img.icons8.com/ios-filled/50/000000/menu.png");
+} */

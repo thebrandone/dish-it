@@ -18,18 +18,14 @@ function PostCard2(props) {
                     <ListGroup  className="infoSide">
                         <ListGroupItem><strong>Posted by</strong> {props.user}</ListGroupItem>
 
-                        <ListGroupItem>{props.description}</ListGroupItem>
+                        <ListGroupItem className="desc">{props.description}</ListGroupItem>
 
 
                         <ListGroupItem>
                             {props.renderStars(props.rating)}
                         </ListGroupItem>
-                        <ListGroupItem><strong>Location:</strong> {props.address}</ListGroupItem>
-                        <ListGroupItem><strong>Date:</strong>
-                    <Moment format="ll">
-                                {props.date}
-                            </Moment>
-                        </ListGroupItem>
+                        <ListGroupItem>Location:{props.address}</ListGroupItem>
+                        
                     </ListGroup>
                 </Col>
             </Row>

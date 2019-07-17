@@ -103,8 +103,9 @@ class Home2 extends Component {
       return (
         <div className="compactContainer">
           <Link to="/">
-            <Button className="toCompact" size="sm" />
-          </Link>          <Container fluid>
+            <Button className="toCompact" size="sm"/>
+          </Link>          
+          <Container fluid>
             {this.state.dishes && this.state.dishes.length ? (
               <Container>
                 {this.state.dishes.map(dish => {
@@ -132,8 +133,9 @@ class Home2 extends Component {
       return (
         <div className="compactContainer">
           <Link to="/">
-            <Button className="toCompact" size="sm" />
-          </Link>          <Container fluid>
+          <Button className="toFeed" size="sm"/>
+          </Link>          
+          <Container fluid>
             {this.state.dishes && this.state.dishes.length ? (
               <Container>
                 {this.state.dishes.map(dish => {
