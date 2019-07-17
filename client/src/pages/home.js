@@ -3,6 +3,9 @@ import PostCard from "../components/PostCard";
 import API from "../utils/API";
 import { Container, Button } from "react-bootstrap";
 import Foodform from "../components/Foodform"
+import Wrapper from "../components/wrapper"
+import { Link } from "react-router-dom";
+
 // import { Input, TextArea, FormBtn } from "../../components/Form";
 // import Jumbotron from "../../components/Jumbotron";
 // import DeleteBtn from "../../components/DeleteBtn";
@@ -76,6 +79,7 @@ class Home extends Component {
 
   // Handles updating component state when the user types into the input field
   handleInputChange = event => {
+    event.preventDefault();
     const { name, value } = event.target;
     this.setState({
       [name]: value
@@ -86,23 +90,24 @@ class Home extends Component {
   // Then reload dishes from the database
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.name && this.state.description) {
-      API.saveDish({
-        name: this.state.name,
-        description: this.state.description,
-      })
-        .then(res => this.loadDishes())
-        .catch(err => console.log(err));
-    }
+    console.log(this.state.user, "STATE user");
+    API.findByUser({user: this.state.user})
+      .then(res =>
+        console.log(res.data, "RES")
+        // this.setState({ dishes: res.data })
+      )
+      .catch(err => console.log(err.response.data));
+      console.log(this.state.dishes, "STATE dishes");
   };
 
   render() {
-
     if (!this.state.isloggedIn) {
       return (
 
         <div className="feedWrapper">
-          <Button className="toCompact" href="/compact" size="sm" />
+          <Link to="/compact">
+            <Button className="toCompact" size="sm" />
+          </Link>
           <Container fluid>
             {this.state.dishes && this.state.dishes.length ? (
               <Container>
@@ -132,8 +137,9 @@ class Home extends Component {
       return (
         <div className="feedWrapper">
 
-          <Button className="toCompact image imgBtn" href="/compact" size="sm"></Button>
-          <Container fluid>
+          <Link to="/compact">
+            <Button className="toCompact" size="sm" />
+          </Link>          <Container fluid>
 
             {this.state.dishes && this.state.dishes.length ? (
               <Container>
