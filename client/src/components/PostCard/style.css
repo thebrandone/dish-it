@@ -1,5 +1,6 @@
 .card-body{
     padding: 5px;
+    
 }
 
 /* this adds a space before the date/time is shown */
@@ -47,6 +48,7 @@ time {
     border-color: white;
     border-style: solid;
     border-width: 5px;
+    margin-right: 0;
 }
 
 .profilePic{

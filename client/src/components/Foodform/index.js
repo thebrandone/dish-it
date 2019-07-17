@@ -164,7 +164,7 @@ class Foodform extends React.Component {
         API.saveDish({
           username: this.state.username,
           user: this.state.user,
-          name: this.state.name,
+          name: this.state.name.toLowerCase(),
           image: imageid,
           description: this.state.description,
           address: this.state.address,

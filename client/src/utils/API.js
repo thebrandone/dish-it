@@ -26,11 +26,10 @@ export default {
   findByUser: function(user) {
     return axios.get("/api/dish/?user=" + user);
   },
-  findByLocation: function(location) {
-    return axios.get("/api/dish/?location=" + location);
+  findByLocation: function(address) {
+    return axios.get("/api/dish/?address=" + address);
   },
-  findByTags: function(tag) {
-    return axios.get("/api/dish/?tag=" + tag);
+  findByName: function(name) {
+    return axios.get("/api/dish/?name=" + name);
   }
-
 };

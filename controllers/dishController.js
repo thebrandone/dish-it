@@ -44,15 +44,14 @@ module.exports = {
   },
   findByLocation: function(req, res) {
     db.Dish
-      .find({location: req.body})
+      .find({address: req.query})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  findByTag: function(req, res) {
+  findByName: function(req, res) {
     db.Dish
-      .find({tag: req.body})
+      .find({name: /req.body/i})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }
-  
 };

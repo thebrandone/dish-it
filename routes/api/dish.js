@@ -19,6 +19,6 @@ router.route("/location/:location")
   .get(dishController.findByLocation);
 
 router.route("/dish/:name")
-  .get(dishController.findByTag);
+  .get(dishController.findByName);
   
 module.exports = router;
