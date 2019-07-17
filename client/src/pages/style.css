@@ -1,6 +1,6 @@
 .bioDiv{
-    margin-top: 50px;
-    max-width: 80%;
+    margin-top: 20px;
+    max-width: 90%;
     min-width: 50%;
 }
 
@@ -12,8 +12,8 @@
 .profileCard{
     align-content: center;
     text-align: center;
-    background: rgba(241, 180, 65, 50%);
-
+    background: rgba(206, 44, 32, 0.4);
+    margin: 80px 15px 0px 15px;
 }
 
 .card{
@@ -50,10 +50,8 @@
     background-position: center;
 }
 
-/* .btn-primary{
-    background-color: #f53b50;
-} */
+.delButton{
+    z-index: 200;
+}
 
-/* .imgBtn{
-    background-image: url("https://img.icons8.com/ios-filled/50/000000/menu.png");
-} */
+

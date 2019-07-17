@@ -42,9 +42,26 @@ time {
 }
 
 .card{
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     box-shadow: 5px 10px 8px rgb(97, 96, 96);
     border-color: white;
-    border-style: solid;
+    border-style: round;
     border-width: 5px;
+}
+
+.delButton{
+    display: fixed;
+    border-radius: 10px;
+    bottom: 10px;
+}
+
+.compactView{
+    border-radius: 10px;
+}
+
+.desc{
+    overflow-y: auto;
+}
+.cardName{
+    font-size: medium;
 }

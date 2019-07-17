@@ -25,5 +25,12 @@ export default {
   },
   findByUser: function(user) {
     return axios.get("/api/dish/?user=" + user);
+  },
+  findByLocation: function(location) {
+    return axios.get("/api/dish/?location=" + location);
+  },
+  findByTags: function(tag) {
+    return axios.get("/api/dish/?tag=" + tag);
   }
+
 };
